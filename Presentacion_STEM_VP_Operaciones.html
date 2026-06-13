@@ -164,6 +164,15 @@
   .deliv .dl.dod .who{color:var(--moss-light)}
   .deliv .dl.dod .what{color:#eaf2e3}
 
+  /* ---------- DOWNLOAD BTN ---------- */
+  .dl-plan{display:inline-flex;align-items:center;gap:9px;margin-top:16px;
+           padding:10px 18px;border-radius:30px;background:var(--forest);color:#dff0d2;
+           font:600 clamp(11.5px,1.12vw,14px)/1 var(--sans);text-decoration:none;
+           border:1px solid rgba(168,198,134,.35);
+           transition:background .25s ease,transform .25s ease,box-shadow .25s ease}
+  .dl-plan:hover{background:var(--mid);transform:translateY(-2px);box-shadow:0 8px 20px rgba(21,49,30,.18)}
+  .dl-plan svg{width:15px;height:15px;stroke:#a8c686;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+
   /* ---------- ROLES ---------- */
   .roles-h{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px);margin-bottom:clamp(12px,1.6vw,20px)}
   .rolecard{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,1.9vw,26px);
@@ -362,14 +371,14 @@
       </div>
       <div class="rolecard">
         <div class="av">F</div>
-        <div class="rn">Fernando De Santiago</div>
+        <div class="rn">Fernando</div>
         <div class="rr">Ingeniero de Datos y Automatización</div>
         <div class="rl">Si el dato fluye, es Fernando.</div>
         <ul><li>ETL y migración de fuentes al DWH.</li><li>Pipelines en Python/SQL y Power Automate.</li><li>Administración de SharePoint y monitoreo.</li><li>Alertas de carga y datos atípicos.</li></ul>
       </div>
       <div class="rolecard">
         <div class="av">A</div>
-        <div class="rn">Avelina Paz</div>
+        <div class="rn">Avelina</div>
         <div class="rr">Analista de Datos y Operación</div>
         <div class="rl">Si el dato responde una pregunta del negocio, es Avelina.</div>
         <ul><li>Reportes Power BI y tablero de juntas.</li><li>Minutas, SEED y causa raíz.</li><li>Voz del negocio: traduce la operación al diseño.</li><li>Validación en campo de lo migrado.</li></ul>
@@ -490,7 +499,10 @@
     }).join('');
     detail.innerHTML=
       '<div><div class="dphase">'+w.ph+'</div><h3>'+w.dates+'</h3>'+
-      '<div class="ddates">Objetivo de la fase</div><div class="dgoal">'+w.goal+'</div></div>'+
+      '<div class="ddates">Objetivo de la fase</div><div class="dgoal">'+w.goal+'</div>'+
+      '<a class="dl-plan" href="https://ghveggies-bi.github.io/stem-presentacion/Plan_de_Trabajo_STEM.docx" download target="_blank">'+
+      '<svg viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>'+
+      'Descargar Plan de Trabajo STEM</a></div>'+
       '<div class="deliv">'+dl+'</div>';
   }
   var wkBtns=[].slice.call(document.querySelectorAll('#timeline .wk'));
