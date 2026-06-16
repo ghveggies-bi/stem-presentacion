@@ -173,6 +173,56 @@
   .dl-plan:hover{background:var(--mid);transform:translateY(-2px);box-shadow:0 8px 20px rgba(21,49,30,.18)}
   .dl-plan svg{width:15px;height:15px;stroke:#a8c686;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
 
+  /* ---------- CRONOGRAMA (toggle semanas / gantt) ---------- */
+  #cron{--g-armando:var(--forest);--g-fernando:var(--moss-deep);--g-avelina:var(--moss-light);--g-hito:#C9A227}
+  .cron-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .cron-toggle{display:inline-flex;background:var(--pale-2);border:1px solid var(--line);border-radius:30px;padding:4px}
+  .seg{border:none;background:none;cursor:pointer;font:600 clamp(11px,1.15vw,14px)/1 var(--sans);color:var(--muted);padding:9px 18px;border-radius:24px;transition:background .2s ease,color .2s ease}
+  .seg:hover{color:var(--ink)}
+  .seg.active{background:var(--forest);color:#eaf2e3}
+  .cron-bar .cron-dl{margin-top:0;padding:9px 16px}
+  .cron-view{flex:1;min-height:0;display:flex;flex-direction:column}
+  .cron-view[hidden]{display:none}
+  /* vista semanas */
+  .cron-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:clamp(10px,1.2vw,16px);min-height:0;margin-top:clamp(10px,1.4vw,16px)}
+  .wkc{background:var(--pale-2);border:1px solid var(--line);border-radius:16px;padding:clamp(11px,1.25vw,17px);display:flex;flex-direction:column;gap:clamp(4px,.55vw,7px);min-height:0;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s ease,border-color .25s ease}
+  .wkc:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi);border-color:var(--moss)}
+  .wtop{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .ws{font:700 clamp(15px,1.7vw,21px)/1 var(--serif);color:var(--ink)}
+  .wns{font:700 9px/1 var(--sans);letter-spacing:.05em;padding:4px 8px;border-radius:20px;background:#e2efd6;color:var(--moss-deep);white-space:nowrap}
+  .wdt{font:400 clamp(10px,1.02vw,12.5px)/1.2 var(--sans);color:var(--muted)}
+  .wth{font:700 clamp(12px,1.3vw,16px)/1.12 var(--sans);color:var(--moss-deep)}
+  .wtk{font:400 clamp(9.5px,1vw,12px)/1.34 var(--sans);color:var(--ink)}
+  .wkc.hito{border-left:4px solid var(--moss);background:#eef4e8}
+  .whb{display:inline-flex;align-items:center;gap:5px;margin-top:auto;padding-top:4px;font:700 8.5px/1.15 var(--sans);letter-spacing:.03em;text-transform:uppercase;color:var(--moss-deep)}
+  .whb svg{width:11px;height:11px;fill:var(--moss);stroke:none;flex:0 0 auto}
+  /* vista gantt */
+  .gantt{flex:1;display:flex;flex-direction:column;min-height:0;margin-top:clamp(10px,1.4vw,16px);overflow:auto}
+  .grow{display:grid;grid-template-columns:clamp(130px,15vw,196px) 1fr;align-items:center;min-height:clamp(17px,2.15vh,23px)}
+  .glabel{font:600 clamp(9.5px,1.02vw,12.5px)/1.18 var(--sans);color:var(--ink);padding-right:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gtrack{position:relative;display:grid;grid-template-columns:repeat(8,1fr);height:100%;align-items:center}
+  .gcell{grid-row:1;height:100%;border-right:1px solid var(--line)}
+  .gcell:first-child{border-left:1px solid var(--line)}
+  .gbar{grid-row:1;height:clamp(11px,1.6vh,15px);align-self:center;border-radius:5px;z-index:2;box-shadow:0 2px 5px rgba(21,49,30,.14)}
+  .gbar.a{background:var(--g-armando)}
+  .gbar.f{background:var(--g-fernando)}
+  .gbar.v{background:var(--g-avelina)}
+  .ghead{min-height:clamp(23px,3vh,31px)}
+  .ghead-track .hcell{grid-row:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--line)}
+  .ghead-track .hcell:first-child{border-left:1px solid var(--line)}
+  .hcell b{font:700 clamp(10.5px,1.2vw,15px)/1 var(--sans);color:var(--ink)}
+  .hcell i{font:400 clamp(8px,.82vw,10px)/1 var(--sans);color:var(--muted);font-style:normal;margin-top:2px}
+  .gmile{min-height:clamp(25px,3.3vh,35px)}
+  .mk{grid-row:1;display:flex;flex-direction:column;align-items:center;gap:4px;justify-self:center;z-index:3}
+  .diamond{width:13px;height:13px;background:var(--g-hito);transform:rotate(45deg);border-radius:2px;box-shadow:0 2px 5px rgba(0,0,0,.22)}
+  .mcap{font:600 8px/1.1 var(--sans);color:#9a7b1e;text-align:center;white-space:nowrap}
+  .ggroup{display:flex;align-items:center;gap:8px;font:700 clamp(10px,1.06vw,13px)/1 var(--sans);color:var(--moss-deep);margin:clamp(3px,.5vh,6px) 0 1px;padding-left:2px}
+  .sw{width:11px;height:11px;border-radius:3px;flex:0 0 auto;display:inline-block}
+  .glegend{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(10px,1.5vw,18px);margin-top:clamp(5px,.8vh,8px);padding-top:clamp(5px,.8vh,8px);border-top:1px solid var(--line);font:500 clamp(9.5px,1.02vw,12.5px)/1 var(--sans);color:var(--ink)}
+  .glegend span{display:inline-flex;align-items:center;gap:6px}
+  .diamond.dsm{width:11px;height:11px}
+  .nsnote{color:var(--muted);font-style:italic}
+
   /* ---------- ROLES ---------- */
   .roles-h{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px);margin-bottom:clamp(12px,1.6vw,20px)}
   .rolecard{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,1.9vw,26px);
@@ -317,21 +367,66 @@
   <section class="slide light">
     <div class="slide-head">
       <div class="eyebrow">Plan de ejecución</div>
-      <h2 class="head">Roadmap: 8 semanas, 16 jun – 7 ago</h2>
-      <p class="lede">Cada entregable se mide por Definición de Hecho: o cumple, o no existe. Pasa el cursor sobre cada semana. <b style="color:var(--moss-deep)">El círculo = quick win demostrable.</b></p>
+      <h2 class="head">Roadmap: 8 semanas, 22 jun – 14 ago</h2>
+      <p class="lede">Cada entregable se mide por Definición de Hecho. Alterna entre vista semanas y vista Gantt.</p>
     </div>
-    <div class="road-wrap">
-      <div class="timeline" id="timeline">
-        <button class="wk sel" data-phase="1" data-w="0"><span class="qw"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span><div class="wn">S1</div><div class="wd">16–20 jun</div></button>
-        <button class="wk" data-phase="2" data-w="1"><div class="wn">S2</div><div class="wd">23–27 jun</div></button>
-        <button class="wk" data-phase="2" data-w="2" data-qw="1"><span class="qw"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span><div class="wn">S3</div><div class="wd">30 jun–4 jul</div></button>
-        <button class="wk" data-phase="3" data-w="3"><div class="wn">S4</div><div class="wd">7–11 jul</div></button>
-        <button class="wk" data-phase="3" data-w="4" data-qw="1"><span class="qw"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span><div class="wn">S5</div><div class="wd">14–18 jul</div></button>
-        <button class="wk" data-phase="4" data-w="5"><div class="wn">S6</div><div class="wd">21–25 jul</div></button>
-        <button class="wk" data-phase="4" data-w="6"><div class="wn">S7</div><div class="wd">28 jul–1 ago</div></button>
-        <button class="wk" data-phase="5" data-w="7" data-qw="1"><span class="qw"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span><div class="wn">S8</div><div class="wd">3–7 ago</div></button>
+    <div class="road-wrap" id="cron">
+      <div class="cron-bar">
+        <div class="cron-toggle" role="tablist" aria-label="Vista del cronograma">
+          <button class="seg active" id="segWeeks" role="tab" aria-selected="true">Vista semanas</button>
+          <button class="seg" id="segGantt" role="tab" aria-selected="false">Vista Gantt</button>
+        </div>
+        <a class="dl-plan cron-dl" href="https://ghveggies-bi.github.io/stem-presentacion/Plan_de_Trabajo_STEM.docx" download target="_blank"><svg viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Descargar Plan de Trabajo STEM</a>
       </div>
-      <div class="detail" id="detail"><!-- filled by JS --></div>
+
+      <div class="cron-view" id="viewWeeks">
+        <div class="cron-grid">
+          <div class="wkc"><div class="wtop"><span class="ws">S1</span><span class="wns">NS 25</span></div><div class="wdt">22–26 jun</div><div class="wth">Fundación</div><div class="wtk">Modelo fact/dim; Voz del Negocio (≥30 preguntas); Mapa de Datos; prototipo LLM 1 tabla.</div></div>
+          <div class="wkc"><div class="wtop"><span class="ws">S2</span><span class="wns">NS 26</span></div><div class="wdt">29 jun–3 jul</div><div class="wth">Modelo núcleo</div><div class="wtk">DDL final + infra; ETL fuentes críticas; auditoría de los 3 BI.</div></div>
+          <div class="wkc hito"><div class="wtop"><span class="ws">S3</span><span class="wns">NS 27</span></div><div class="wdt">6–10 jul</div><div class="wth">Migración núcleo</div><div class="wtk">Tablas pobladas y validadas contra origen.</div><div class="whb"><svg viewBox="0 0 24 24"><path d="M12 2l10 10-10 10L2 12z"/></svg>Hito · Quick win, 1er BI sobre SQL</div></div>
+          <div class="wkc"><div class="wtop"><span class="ws">S4</span><span class="wns">NS 28</span></div><div class="wdt">13–17 jul</div><div class="wth">Migración masiva</div><div class="wtk">Resto de fuentes + linaje; validación en campo.</div></div>
+          <div class="wkc hito"><div class="wtop"><span class="ws">S5</span><span class="wns">NS 29</span></div><div class="wdt">20–24 jul</div><div class="wth">Demo IA</div><div class="wtk">Capa semántica; LLM responde ≥5 preguntas.</div><div class="whb"><svg viewBox="0 0 24 24"><path d="M12 2l10 10-10 10L2 12z"/></svg>Hito · Quick win, demo a dirección</div></div>
+          <div class="wkc"><div class="wtop"><span class="ws">S6</span><span class="wns">NS 30</span></div><div class="wdt">27–31 jul</div><div class="wth">Consolidación</div><div class="wtk">Alertas en Power Automate; hardening del ETL.</div></div>
+          <div class="wkc"><div class="wtop"><span class="ws">S7</span><span class="wns">NS 31</span></div><div class="wdt">3–7 ago</div><div class="wth">Consolidación</div><div class="wtk">3 BI 100% sobre SQL; adopción; LLM ampliado 15–20.</div></div>
+          <div class="wkc hito"><div class="wtop"><span class="ws">S8</span><span class="wns">NS 32</span></div><div class="wdt">10–14 ago</div><div class="wth">Entrega</div><div class="wtk">DW productivo; documentación completa.</div><div class="whb"><svg viewBox="0 0 24 24"><path d="M12 2l10 10-10 10L2 12z"/></svg>Hito · Demo LLM en vivo</div></div>
+        </div>
+      </div>
+
+      <div class="cron-view" id="viewGantt" hidden>
+        <div class="gantt">
+          <div class="grow ghead">
+            <div class="glabel"></div>
+            <div class="gtrack ghead-track"><div class="hcell"><b>S1</b><i>NS 25</i></div><div class="hcell"><b>S2</b><i>NS 26</i></div><div class="hcell"><b>S3</b><i>NS 27</i></div><div class="hcell"><b>S4</b><i>NS 28</i></div><div class="hcell"><b>S5</b><i>NS 29</i></div><div class="hcell"><b>S6</b><i>NS 30</i></div><div class="hcell"><b>S7</b><i>NS 31</i></div><div class="hcell"><b>S8</b><i>NS 32</i></div></div>
+          </div>
+          <div class="grow gmile">
+            <div class="glabel">Hitos</div>
+            <div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="mk" style="grid-column:3" title="Fin de S3 — Quick win, 1er BI sobre SQL"><span class="diamond"></span><span class="mcap">Quick win</span></span><span class="mk" style="grid-column:5" title="S5 — Demo a dirección"><span class="diamond"></span><span class="mcap">Demo dir.</span></span><span class="mk" style="grid-column:8" title="S8 — Entrega"><span class="diamond"></span><span class="mcap">Entrega</span></span></div>
+          </div>
+          <div class="ggroup"><span class="sw" style="background:var(--g-armando)"></span>Armando · DW + LLM</div>
+          <div class="grow"><div class="glabel">Modelo fact/dim</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar a" style="grid-column:1/2"></span></div></div>
+          <div class="grow"><div class="glabel">DDL final + infra</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar a" style="grid-column:2/4"></span></div></div>
+          <div class="grow"><div class="glabel">Capa semántica</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar a" style="grid-column:4/6"></span></div></div>
+          <div class="grow"><div class="glabel">LLM v1</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar a" style="grid-column:5/9"></span></div></div>
+          <div class="grow"><div class="glabel">Gobernanza de accesos</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar a" style="grid-column:7/8"></span></div></div>
+          <div class="ggroup"><span class="sw" style="background:var(--g-fernando)"></span>Fernando · ETL</div>
+          <div class="grow"><div class="glabel">Mapa de Datos + prototipo</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar f" style="grid-column:1/2"></span></div></div>
+          <div class="grow"><div class="glabel">ETL fuentes críticas</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar f" style="grid-column:2/4"></span></div></div>
+          <div class="grow"><div class="glabel">Resto de fuentes + linaje</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar f" style="grid-column:4/6"></span></div></div>
+          <div class="grow"><div class="glabel">Alertas + hardening</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar f" style="grid-column:6/8"></span></div></div>
+          <div class="ggroup"><span class="sw" style="background:var(--g-avelina)"></span>Avelina · Negocio + BI</div>
+          <div class="grow"><div class="glabel">Voz del Negocio</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar v" style="grid-column:1/2"></span></div></div>
+          <div class="grow"><div class="glabel">Auditoría 3 BI</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar v" style="grid-column:2/4"></span></div></div>
+          <div class="grow"><div class="glabel">Validación campo + juntas</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar v" style="grid-column:4/6"></span></div></div>
+          <div class="grow"><div class="glabel">3 BI sobre SQL + adopción</div><div class="gtrack"><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gcell"></span><span class="gbar v" style="grid-column:6/8"></span></div></div>
+          <div class="glegend">
+            <span><span class="sw" style="background:var(--g-armando)"></span>Armando · DW + LLM</span>
+            <span><span class="sw" style="background:var(--g-fernando)"></span>Fernando · ETL</span>
+            <span><span class="sw" style="background:var(--g-avelina)"></span>Avelina · Negocio + BI</span>
+            <span><span class="diamond dsm"></span>Hito</span>
+            <span class="nsnote">Semana proyecto N = Naturesweet 24 + N</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -413,7 +508,7 @@
       <span><b>8</b> semanas</span>
       <span><b>3</b> tableros sobre SQL</span>
       <span><b>15+</b> preguntas respondidas por IA</span>
-      <span>Entrega <b>7 ago 2026</b></span>
+      <span>Entrega <b>14 ago 2026</b></span>
     </div>
   </section>
 
@@ -471,48 +566,22 @@
     document.documentElement.style.setProperty('--my',y+'%');
   });
 
-  // ---------- ROADMAP ----------
-  var weeks=[
-    {ph:'Semana 1 · Fundación',dates:'16–20 jun',goal:'Eliminar incertidumbre y fijar la base: qué fuentes existen, qué pregunta el negocio y cómo se ve el modelo.',
-     dl:[['Armando','Modelo de datos preliminar (hechos / dimensiones).'],['Avelina','“Voz del Negocio”: 30+ preguntas reales por área, con su fuente.'],['Fernando','“Mapa de Datos”: cada fuente, dueño, frecuencia y calidad.'],['DoD','Diagrama con ≥3 hechos contrastado contra las preguntas reales.']]},
-    {ph:'Semanas 2–3 · Modelo y migración núcleo',dates:'23 jun – 4 jul',goal:'Crear el esquema definitivo y poblar las primeras fuentes críticas en SQL.',
-     dl:[['Armando','DDL final + decisión de infraestructura, validado contra 80% de las preguntas.'],['Fernando','ETL de las 3–5 fuentes que alimentan los tableros actuales.'],['Avelina','Auditoría de los 3 reportes Power BI: KPIs rotos y faltantes.'],['DoD','Tablas pobladas con conteo de filas validado contra el origen.']]},
-    {ph:'Semanas 2–3 · Modelo y migración núcleo',dates:'23 jun – 4 jul',goal:'Quick win: el primer reporte deja de leer exceles y se conecta a SQL.',
-     dl:[['Quick win','Primer reporte BI sobre SQL — se comunica el antes/después del refresh.'],['Fernando','ETL núcleo en producción con refresh programado.'],['Avelina','Comparativo de tiempos legacy vs nuevo.'],['DoD','Refresh medido en minutos frente a los 18:56 actuales.']]},
-    {ph:'Semanas 4–5 · Migración masiva + IA',dates:'7–11 jul',goal:'Llevar el resto de fuentes al DWH y documentar el linaje completo.',
-     dl:[['Fernando','100% de fuentes críticas en el DWH + documento de linaje.'],['Avelina','Validación en campo y tablero de juntas apuntando a SQL.'],['Armando','Capa semántica: prepara el terreno para la IA.'],['DoD','Linaje origen → transformación → tabla documentado.']]},
-    {ph:'Semanas 4–5 · Migración masiva + IA',dates:'14–18 jul',goal:'Quick win mayor: primera demo de IA a dirección.',
-     dl:[['Quick win','Demo a dirección: pregunta en lenguaje natural, respuesta con datos reales.'],['Armando','LLM responde correctamente ≥5 preguntas reales de la Voz del Negocio.'],['Avelina','Log de discrepancias resuelto/abierto.'],['DoD','Demo de 10 minutos: el momento “crecimos 3x”.']]},
-    {ph:'Semanas 6–7 · Consolidación',dates:'21–25 jul',goal:'Endurecer los pipelines y montar las alertas automáticas.',
-     dl:[['Fernando','Alertas en Power Automate + pipelines tolerantes a fallos.'],['Avelina','Migración de los 3 BI 100% sobre SQL.'],['Armando','Gobernanza de accesos definida.'],['DoD','Flujo que avisa en Teams cargas fallidas y datos atípicos.']]},
-    {ph:'Semanas 6–7 · Consolidación',dates:'28 jul – 1 ago',goal:'Adopción con la operación y ampliación de la IA.',
-     dl:[['Avelina','Manual de usuario + sesión de adopción con líderes de planta.'],['Armando','LLM ampliado a 15–20 preguntas + matriz de accesos aplicada.'],['Fernando','Hardening final del ETL.'],['DoD','Los 3 tableros migrados y adoptados en planta.']]},
-    {ph:'Semana 8 · Entrega y pitch',dates:'3–7 ago',goal:'DWH en producción, tableros conectados y la IA consultable en vivo ante dirección.',
-     dl:[['Equipo','DW en producción + BIs conectados + documentación completa.'],['Armando','Demo del LLM en vivo en la presentación de cierre.'],['IA','Pregúntale a tus datos: respuesta en lenguaje natural con datos reales.'],['DoD del proyecto','3 BI sobre SQL · LLM responde 15+ preguntas · linaje + alertas activas.']]}
-  ];
-  var detail=document.getElementById('detail');
-  function renderWeek(i){
-    var w=weeks[i];
-    var dl=w.dl.map(function(d){
-      var isDod=/dod/i.test(d[0]);
-      return '<div class="dl'+(isDod?' dod':'')+'"><div class="who">'+d[0]+'</div><div class="what">'+d[1]+'</div></div>';
-    }).join('');
-    detail.innerHTML=
-      '<div><div class="dphase">'+w.ph+'</div><h3>'+w.dates+'</h3>'+
-      '<div class="ddates">Objetivo de la fase</div><div class="dgoal">'+w.goal+'</div>'+
-      '<a class="dl-plan" href="https://ghveggies-bi.github.io/stem-presentacion/Plan_de_Trabajo_STEM.docx" download target="_blank">'+
-      '<svg viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>'+
-      'Descargar Plan de Trabajo STEM</a></div>'+
-      '<div class="deliv">'+dl+'</div>';
+  // ---------- CRONOGRAMA: toggle semanas / gantt ----------
+  var segW=document.getElementById('segWeeks');
+  var segG=document.getElementById('segGantt');
+  var vW=document.getElementById('viewWeeks');
+  var vG=document.getElementById('viewGantt');
+  function cronShow(weeks){
+    vW.hidden=!weeks; vG.hidden=weeks;
+    segW.classList.toggle('active',weeks);
+    segG.classList.toggle('active',!weeks);
+    segW.setAttribute('aria-selected',weeks?'true':'false');
+    segG.setAttribute('aria-selected',weeks?'false':'true');
   }
-  var wkBtns=[].slice.call(document.querySelectorAll('#timeline .wk'));
-  function selWeek(i){ wkBtns.forEach(function(b){b.classList.remove('sel')}); wkBtns[i].classList.add('sel'); renderWeek(i); }
-  wkBtns.forEach(function(b,i){
-    b.addEventListener('mouseenter',function(){selWeek(i)});
-    b.addEventListener('click',function(){selWeek(i)});
-    b.addEventListener('focus',function(){selWeek(i)});
-  });
-  renderWeek(0);
+  if(segW&&segG){
+    segW.addEventListener('click',function(){cronShow(true)});
+    segG.addEventListener('click',function(){cronShow(false)});
+  }
 })();
 </script>
 </body>
