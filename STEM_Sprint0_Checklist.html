@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEM · Sprint 0 — Validación interactiva</title>
+<style>
+:root{
+  --bg:#f3f5f2; --panel:#ffffff; --ink:#1c241e; --muted:#5d6b60;
+  --line:#dde3dd; --forest:#2e5e3a; --forest-2:#3f7a4e; --moss:#7da37f;
+  --accent:#2e5e3a; --soft:#eaf1ec;
+  --low:#2f8f4e; --low-bg:#e6f4ea; --med:#c98a14; --med-bg:#fbf1dc;
+  --high:#c0392b; --high-bg:#fbe6e3;
+  --done:#2e5e3a; --done-bg:#e6f1e9;
+  --shadow:0 1px 3px rgba(20,40,25,.08),0 1px 2px rgba(20,40,25,.04);
+  --radius:12px;
+}
+[data-theme="dark"]{
+  --bg:#11160f; --panel:#19211a; --ink:#e7ede7; --muted:#9bab9d;
+  --line:#2a352b; --forest:#7db98b; --forest-2:#6fae7e; --moss:#8fb892;
+  --accent:#7db98b; --soft:#1f2a20;
+  --low:#6fcf8b; --low-bg:#16301f; --med:#e3b85a; --med-bg:#33280f; --high:#e87a6e; --high-bg:#331c19;
+  --done:#7db98b; --done-bg:#1c2c20;
+  --shadow:0 1px 3px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 20px 64px}
+
+/* Header */
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:14px}
+.mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--forest),var(--moss));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.5px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);font-weight:700}
+h1{font-size:22px;margin:2px 0 0;font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font-family:inherit;font-size:13px;font-weight:600;border-radius:9px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);padding:9px 14px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+button:hover{border-color:var(--moss);transform:translateY(-1px)}
+button.primary{background:var(--forest);border-color:var(--forest);color:#fff}
+button.primary:hover{background:var(--forest-2)}
+button.danger:hover{border-color:var(--high);color:var(--high)}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;margin:8px 0 22px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.kpi .lab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
+.kpi .val{font-size:26px;font-weight:800;margin-top:4px;letter-spacing:-.02em}
+.kpi .val small{font-size:14px;color:var(--muted);font-weight:600}
+.bar{height:10px;border-radius:6px;background:var(--soft);overflow:hidden;margin-top:12px}
+.bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .4s ease}
+.riskdots{display:flex;gap:14px;margin-top:8px;font-size:12px;font-weight:600}
+.dot{display:inline-flex;align-items:center;gap:5px}
+.dot b{width:9px;height:9px;border-radius:50%}
+
+/* Section */
+.section{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  margin-bottom:16px;box-shadow:var(--shadow);overflow:hidden}
+.sec-head{display:flex;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;user-select:none}
+.sec-head:hover{background:var(--soft)}
+.sec-code{font-size:11px;font-weight:800;color:#fff;background:var(--forest);border-radius:6px;padding:4px 9px;letter-spacing:.04em;flex-shrink:0}
+.sec-title{font-weight:700;font-size:15px}
+.sec-note{font-size:12px;color:var(--muted)}
+.sec-meta{margin-left:auto;display:flex;align-items:center;gap:14px}
+.minibar{width:120px;height:7px;border-radius:5px;background:var(--soft);overflow:hidden}
+.minibar > i{display:block;height:100%;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .3s}
+.sec-pct{font-size:12.5px;font-weight:700;width:46px;text-align:right}
+.chev{transition:.2s;color:var(--muted)}
+.section.collapsed .chev{transform:rotate(-90deg)}
+.section.collapsed .sec-body{display:none}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{background:var(--soft);text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--muted);font-weight:700;border-bottom:1px solid var(--line);position:sticky;top:0}
+.tbl td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr.done td{background:var(--done-bg)}
+.c-field{font-weight:700;min-width:130px}
+.c-crit{min-width:200px}
+.muted{color:var(--muted)}
+
+/* Toggle */
+.toggle{position:relative;width:46px;height:26px;flex-shrink:0;display:inline-block}
+.toggle input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:var(--line);border-radius:26px;transition:.2s;cursor:pointer}
+.slider:before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.toggle input:checked + .slider{background:var(--done)}
+.toggle input:checked + .slider:before{transform:translateX(20px)}
+.statelab{display:block;font-size:10.5px;font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:.04em}
+.statelab.on{color:var(--done)} .statelab.off{color:var(--muted)}
+.c-state{width:92px;text-align:center}
+
+/* Notes + risk */
+.notes{width:100%;min-width:150px;border:1px solid var(--line);border-radius:8px;background:var(--bg);
+  color:var(--ink);font-family:inherit;font-size:12.5px;padding:7px 9px;resize:vertical;min-height:38px}
+.notes:focus{outline:none;border-color:var(--moss)}
+.risk{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12.5px;
+  font-weight:700;cursor:pointer;width:100%}
+.risk:focus{outline:none;border-color:var(--moss)}
+.risk[data-r="Bajo"]{background:var(--low-bg);color:var(--low);border-color:var(--low)}
+.risk[data-r="Medio"]{background:var(--med-bg);color:var(--med);border-color:var(--med)}
+.risk[data-r="Alto"]{background:var(--high-bg);color:var(--high);border-color:var(--high)}
+.c-notes{width:200px} .c-risk{width:108px}
+
+.saved{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);
+  background:var(--forest);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;
+  box-shadow:var(--shadow);transition:.3s;opacity:0;pointer-events:none;z-index:50}
+.saved.show{transform:translateX(-50%) translateY(0);opacity:1}
+footer{margin-top:28px;color:var(--muted);font-size:11.5px;text-align:center}
+
+@media(max-width:880px){
+  .kpis{grid-template-columns:1fr 1fr}
+  .sec-meta .minibar{display:none}
+  .tbl thead{display:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl tr{border-bottom:8px solid var(--bg);padding:6px 0}
+  .tbl td{border:none;padding:6px 14px}
+  .tbl td:before{content:attr(data-l);display:block;font-size:10px;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--muted);font-weight:700;margin-bottom:3px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="mark">ST</div>
+      <div>
+        <div class="eyebrow">Proyecto STEM · Sprint 0</div>
+        <h1>Validación interactiva de entregables</h1>
+        <div class="sub">22–30 jun 2026 · GHVeggies BI · El progreso se guarda en este navegador</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="theme" title="Cambiar tema">◐ Tema</button>
+      <button id="export" class="primary">⬇ Exportar progreso</button>
+      <button id="reset" class="danger">↺ Reiniciar</button>
+    </div>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="lab">Avance general del Sprint 0</div>
+      <div class="val"><span id="pctAll">0</span>% <small>· <span id="doneAll">0</span>/<span id="totAll">0</span> criterios</small></div>
+      <div class="bar"><i id="barAll"></i></div>
+    </div>
+    <div class="kpi">
+      <div class="lab">Secciones completas</div>
+      <div class="val"><span id="secDone">0</span><small>/8</small></div>
+    </div>
+    <div class="kpi">
+      <div class="lab">Riesgos marcados</div>
+      <div class="riskdots">
+        <span class="dot"><b style="background:var(--high)"></b><span id="rHigh">0</span> Alto</span>
+        <span class="dot"><b style="background:var(--med)"></b><span id="rMed">0</span> Medio</span>
+        <span class="dot"><b style="background:var(--low)"></b><span id="rLow">0</span> Bajo</span>
+      </div>
+    </div>
+    <div class="kpi">
+      <div class="lab">Filas con evidencia</div>
+      <div class="val"><span id="evid">0</span><small>/<span id="totAll2">0</span></small></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+  <footer>
+    Documentación STEM · Sprint 0 · Datos almacenados localmente (localStorage). Usa "Exportar progreso" para respaldar.
+  </footer>
+</div>
+<div class="saved" id="toast">Guardado ✓</div>
+
+<script>
+const KEY = "stem_sprint0_v1";
+const RISKS = ["Bajo","Medio","Alto"];
+
+const DATA = [
+ {code:"F001", title:"Matriz de Conectividad", note:"Dueño: Fernando · Día 1",
+  rows:[
+   ["ID de fuente","Identificador único, sin duplicados en la matriz","Columna ID poblada al 100%","IDs reutilizados o vacíos"],
+   ["Sistema / origen","Nombre del sistema (Power BI, SharePoint, Ridder, SQL, SISSO, Calidad)","Valor de catálogo cerrado","Texto libre inconsistente"],
+   ["Ruta / endpoint","URL o ruta completa y resoluble","Captura de acceso o link validado","~20 links SharePoint sin validar"],
+   ["Método de acceso","Graph API / REST / pyodbc / manual declarado","Método anotado por fuente","Asumir REST ACS (deprecado)"],
+   ["Estado de acceso","OK / Bloqueado / Pendiente con justificación","Resultado de prueba de conexión","7 sin acceso (6 SISSO, 1 Calidad)"],
+   ["Credencial / cuenta","Cuenta de servicio o usuario responsable nombrado","Referencia a credencial (no el secreto)","Credencial personal no transferible"],
+   ["Tenant","ghveggies o agrogemso identificado","Tenant marcado por fuente","Confundir los dos tenants"],
+  ]},
+ {code:"F002", title:"CTS Master Spec v1", note:"Dueño: Fernando · cierre de semana",
+  rows:[
+   ["Encabezado del documento","Versión, fecha, autor y alcance presentes","Bloque de control de versión visible","Versión sin actualizar"],
+   ["Definición de CTS","Criterio de Tratamiento de Subproductos descrito sin ambigüedad","Sección de definición aprobada","Definiciones tácitas no escritas"],
+   ["Catálogo de campos","Cada campo con nombre, tipo y descripción","Tabla de campos completa","Tipos de dato sin declarar"],
+   ["Reglas de formato","Formatos esperados por campo (fecha, número, texto)","Reglas enlazadas a F003","Reglas que contradicen F003"],
+   ["Frecuencia de actualización","Definida por fuente o marcada como pendiente","Columna frecuencia poblada","Frecuencias indefinidas sin marcar"],
+   ["Trazabilidad a Voz del Negocio","Cada CTS mapeado a ≥1 pregunta de A001","Referencia cruzada A001","CTS sin demanda de negocio"],
+   ["Alcance Fase 2 explícito","SISSO y Calidad marcados como Fase 2","Nota de exclusión visible","Mezclar Fase 1 y Fase 2"],
+  ]},
+ {code:"F003", title:"Inventario de Formatos", note:"Dueño: Fernando · semana · alerta: sin dueño por fuente",
+  rows:[
+   ["Nombre del formato","Nombre real del archivo o plantilla","Listado contra origen","Plantillas no inventariadas"],
+   ["Tipo / extensión","xlsx, csv, lista, vpax, etc.","Extensión registrada","Asumir .vpax = Model.bim (es DaxModel.json)"],
+   ["Estructura de columnas","Encabezados y orden documentados","Captura de estructura","Estructura volátil sin congelar"],
+   ["Dueño / capturista","Persona nombrada (no rol genérico)","Nombre individual asignado","Capturistas no nombrados aún"],
+   ["Volumen / tamaño","Filas o MB aproximados (ej. Ridder ~50MB/día)","Conteo o peso registrado","Subestimar volumen para el modelo"],
+   ["Plantilla canónica","Reconoce CropData_Semanal_GAF.xlsx como activo existente","Referencia a estructura canónica","Reinventar la plantilla de gobernanza"],
+   ["¿Entra al DW?","Sí / No / Fase 2 decidido por fuente","Columna de decisión poblada","Dejar la decisión ambigua"],
+  ]},
+ {code:"F004", title:"Backlog CTS — plantilla poblable", note:"Dueño: Fernando · cierre de semana",
+  rows:[
+   ["ID CTS","Identificador único por ítem del backlog","Columna ID sin huecos","IDs duplicados"],
+   ["Descripción del ítem","Descripción clara y accionable","Texto de ítem completo","Ítems ambiguos no ejecutables"],
+   ["Fuente origen (F001)","Trazable a una fuente de la matriz F001","Referencia cruzada a F001","Ítem sin fuente trazable"],
+   ["Clasificación","Compliant / Parcial / No Compliant asignada","Clasificación de la matriz CTS","Clasificación en blanco"],
+   ["Prioridad","Alta / Media / Baja","Prioridad definida por ítem","Todo marcado Alta"],
+   ["DoD / criterio de cierre","Definición de Hecho explícita por ítem","Columna DoD poblada","Ítems sin DoD"],
+  ]},
+ {code:"CTS", title:"Matriz de clasificación CTS", note:"Compliant / Parcial / No Compliant",
+  rows:[
+   ["Compliant","Cumple estructura, formato, dueño nombrado y frecuencia definida; entra al DW sin retrabajo","Validación contra F002/F003 sin desviaciones","Marcar Compliant sin probar el acceso"],
+   ["Parcial","Cumple parcialmente; faltan campos, dueño o frecuencia, pero es recuperable en Sprint","Lista de desviaciones abiertas con responsable","Tratar Parcial como Compliant"],
+   ["No Compliant","No cumple estándar o sin acceso; queda fuera de Fase 1 o pasa a Fase 2","Justificación de exclusión y destino (Fase 2)","Forzar al DW una fuente No Compliant"],
+  ]},
+ {code:"A001", title:"Validación — Voz del Negocio", note:"Dueño: Avelina · semana · meta ≥30 preguntas",
+  rows:[
+   ["ID de pregunta","Identificador único por pregunta","Numeración continua sin huecos","Preguntas duplicadas"],
+   ["Pregunta de negocio","Redactada como pregunta real de la operación","≥30 preguntas registradas","Preguntas inventadas, no de campo"],
+   ["Área","Empaque / Producción (catálogo cerrado)","Clasificación por área completa","Área en blanco o ambigua"],
+   ["Fuente de datos candidata","Fuente que respondería la pregunta","Mapeo a fuente de F001","Preguntas sin fuente posible"],
+   ["Grano implícito","Nivel de detalle que exige la pregunta","Grano anotado por pregunta","Grano más fino que el dato disponible"],
+   ["Prioridad de negocio","Alta / Media / Baja según el negocio","Priorización validada con stakeholder","Priorizar sin el dueño del área"],
+   ["Apta para LLM v1","Marcada para el banco de ≥15 del LLM","Subconjunto LLM identificado","Banco LLM sin validar respuestas"],
+  ]},
+ {code:"A002", title:"Validación — Captura de Procesos", note:"Dueño: Avelina · semana",
+  rows:[
+   ["Proceso","Nombre del proceso de captura o reporte","Lista de procesos por área","Procesos informales no documentados"],
+   ["Capturista","Persona nombrada que genera el dato","Nombre individual","Rol genérico sin nombre"],
+   ["Periodicidad","Diaria / semanal / por evento","Frecuencia declarada","Periodicidad supuesta, no confirmada"],
+   ["Herramienta / formato","Excel, lista, sistema origen","Herramienta enlazada a F003","Herramienta no inventariada"],
+   ["Punto de entrada del dato","Dónde y cuándo se captura","Descripción del paso de captura","Doble captura no detectada"],
+   ["Salida / destino","Reporte o tablero que consume el dato","Trazabilidad captura → consumo","Dato sin consumidor conocido"],
+   ["Riesgo de calidad","Errores conocidos del proceso","Nota de calidad por proceso","Asumir calidad sin validar en campo"],
+  ]},
+ {code:"ARM002", title:"Grano de Fact_Empaque (negocio)", note:"Alerta: pendiente de validación de negocio (medio-alto)",
+  rows:[
+   ["Definición de grano","Una fila de Fact_Empaque = [unidad acordada] en una frase","Grano escrito y firmado por negocio","Grano asumido por BI, no por negocio"],
+   ["Dimensiones asociadas","Calendario, sitio, producto, línea, turno confirmadas","Lista de dimensiones validada","Dimensión faltante detectada tarde"],
+   ["Métricas / hechos","Medidas aditivas identificadas al grano","Catálogo de métricas aprobado","Mezclar métricas de distinto grano"],
+   ["Cobertura de sitios","JVA, PGA, GAF, BON, GSO, SON cubiertos","Confirmación por sitio","Grano que no aplica a todos los sitios"],
+   ["Contraste con A001","El grano responde las preguntas de empaque de Voz del Negocio","Mapeo grano ↔ preguntas A001","Grano que no responde el negocio"],
+   ["Aprobador de negocio","Stakeholder de Empaque (Victor Carrasco) valida","Aprobación registrada","Cerrar sin firma del área"],
+   ["Reversibilidad","Costo de cambiar el grano después documentado","Nota de impacto registrada","Subestimar el costo de re-granular"],
+  ]},
+];
+
+// ---- state ----
+let state = {};
+try{ const s = localStorage.getItem(KEY); if(s) state = JSON.parse(s); }catch(e){ state = {}; }
+
+function rk(sc,i){ return sc+"#"+i; }
+function get(sc,i){ return state[rk(sc,i)] || {done:false,notes:"",risk:""}; }
+function set(sc,i,patch){ state[rk(sc,i)] = Object.assign(get(sc,i),patch); save(); }
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); toast(); }catch(e){ console.warn("localStorage no disponible",e); }
+}
+let toastT;
+function toast(){
+  const t=document.getElementById("toast"); t.classList.add("show");
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),1100);
+}
+
+// ---- render ----
+function render(){
+  const root=document.getElementById("root"); root.innerHTML="";
+  DATA.forEach(sec=>{
+    const wrap=document.createElement("div"); wrap.className="section"; wrap.dataset.code=sec.code;
+    const head=document.createElement("div"); head.className="sec-head";
+    head.innerHTML=`
+      <span class="sec-code">${sec.code}</span>
+      <div><div class="sec-title">${sec.title}</div><div class="sec-note">${sec.note}</div></div>
+      <div class="sec-meta">
+        <div class="minibar"><i data-mini="${sec.code}"></i></div>
+        <span class="sec-pct" data-pct="${sec.code}">0%</span>
+        <span class="chev">▾</span>
+      </div>`;
+    head.addEventListener("click",()=>wrap.classList.toggle("collapsed"));
+    wrap.appendChild(head);
+
+    const body=document.createElement("div"); body.className="sec-body";
+    const tbl=document.createElement("table"); tbl.className="tbl";
+    tbl.innerHTML=`<thead><tr>
+      <th>Campo requerido</th><th>Criterio de aceptación</th><th>Evidencia requerida</th>
+      <th>Riesgo común</th><th>Estado</th><th>Evidencia / Notas</th><th>Riesgo</th></tr></thead>`;
+    const tb=document.createElement("tbody");
+    sec.rows.forEach((r,i)=>{
+      const st=get(sec.code,i);
+      const tr=document.createElement("tr"); if(st.done) tr.classList.add("done"); tr.dataset.row=i;
+      const riskOpts=`<option value="">—</option>`+RISKS.map(x=>`<option value="${x}" ${st.risk===x?"selected":""}>${x}</option>`).join("");
+      tr.innerHTML=`
+        <td class="c-field" data-l="Campo">${r[0]}</td>
+        <td class="c-crit" data-l="Criterio">${r[1]}</td>
+        <td class="muted" data-l="Evidencia req.">${r[2]}</td>
+        <td class="muted" data-l="Riesgo común">${r[3]}</td>
+        <td class="c-state" data-l="Estado">
+          <label class="toggle"><input type="checkbox" ${st.done?"checked":""} data-act="done"><span class="slider"></span></label>
+          <span class="statelab ${st.done?"on":"off"}">${st.done?"Completado":"Pendiente"}</span>
+        </td>
+        <td class="c-notes" data-l="Notas"><textarea class="notes" data-act="notes" placeholder="Evidencia o nota…">${st.notes||""}</textarea></td>
+        <td class="c-risk" data-l="Riesgo"><select class="risk" data-act="risk" data-r="${st.risk||""}">${riskOpts}</select></td>`;
+
+      tr.querySelector('[data-act="done"]').addEventListener("change",e=>{
+        set(sec.code,i,{done:e.target.checked});
+        tr.classList.toggle("done",e.target.checked);
+        const lab=tr.querySelector(".statelab");
+        lab.textContent=e.target.checked?"Completado":"Pendiente";
+        lab.className="statelab "+(e.target.checked?"on":"off");
+        refreshKpis();
+      });
+      tr.querySelector('[data-act="notes"]').addEventListener("input",e=>{
+        set(sec.code,i,{notes:e.target.value}); refreshKpis();
+      });
+      tr.querySelector('[data-act="risk"]').addEventListener("change",e=>{
+        set(sec.code,i,{risk:e.target.value}); e.target.dataset.r=e.target.value; refreshKpis();
+      });
+      tb.appendChild(tr);
+    });
+    tbl.appendChild(tb); body.appendChild(tbl); wrap.appendChild(body); root.appendChild(wrap);
+  });
+  refreshKpis();
+}
+
+function refreshKpis(){
+  let total=0,done=0,evid=0,secDone=0,rHigh=0,rMed=0,rLow=0;
+  DATA.forEach(sec=>{
+    let st=0,sd=0;
+    sec.rows.forEach((r,i)=>{
+      const v=get(sec.code,i); total++; st++;
+      if(v.done){done++;sd++;}
+      if(v.notes && v.notes.trim()) evid++;
+      if(v.risk==="Alto")rHigh++; else if(v.risk==="Medio")rMed++; else if(v.risk==="Bajo")rLow++;
+    });
+    const pct=st?Math.round(sd/st*100):0;
+    const pe=document.querySelector(`[data-pct="${sec.code}"]`);
+    const me=document.querySelector(`[data-mini="${sec.code}"]`);
+    if(pe)pe.textContent=pct+"%"; if(me)me.style.width=pct+"%";
+    if(pct===100)secDone++;
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("pctAll").textContent=pct;
+  document.getElementById("barAll").style.width=pct+"%";
+  document.getElementById("doneAll").textContent=done;
+  document.getElementById("totAll").textContent=total;
+  document.getElementById("totAll2").textContent=total;
+  document.getElementById("secDone").textContent=secDone;
+  document.getElementById("evid").textContent=evid;
+  document.getElementById("rHigh").textContent=rHigh;
+  document.getElementById("rMed").textContent=rMed;
+  document.getElementById("rLow").textContent=rLow;
+}
+
+// ---- actions ----
+document.getElementById("export").addEventListener("click",()=>{
+  const out={project:"STEM Sprint 0",exported_at:new Date().toISOString(),checklists:[]};
+  DATA.forEach(sec=>{
+    const rows=sec.rows.map((r,i)=>{const v=get(sec.code,i);
+      return {campo:r[0],criterio:r[1],estado:v.done?"Completado":"Pendiente",notas:v.notes||"",riesgo:v.risk||""};});
+    const done=rows.filter(x=>x.estado==="Completado").length;
+    out.checklists.push({code:sec.code,title:sec.title,avance_pct:Math.round(done/rows.length*100),rows});
+  });
+  const tot=DATA.reduce((a,s)=>a+s.rows.length,0);
+  const dn=DATA.reduce((a,s)=>a+s.rows.filter((_,i)=>get(s.code,i).done).length,0);
+  out.avance_general_pct=Math.round(dn/tot*100);
+  const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=`STEM_Sprint0_progreso_${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+});
+
+document.getElementById("reset").addEventListener("click",()=>{
+  if(confirm("Esto borra todo el progreso guardado en este navegador (estados, notas y riesgos). ¿Continuar?")){
+    localStorage.removeItem(KEY); state={}; render();
+  }
+});
+
+document.getElementById("theme").addEventListener("click",()=>{
+  const cur=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+  document.documentElement.setAttribute("data-theme",cur);
+  try{ localStorage.setItem(KEY+"_theme",cur); }catch(e){}
+});
+(function(){ try{ const t=localStorage.getItem(KEY+"_theme"); if(t) document.documentElement.setAttribute("data-theme",t);}catch(e){} })();
+
+render();
+</script>
+</body>
+</html>
