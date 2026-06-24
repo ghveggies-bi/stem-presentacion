@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyecto STEM — Portal</title>
+<style>
+  :root{
+    --forest:#15311E; --forest-2:#1E4429; --mid:#2C5F2D;
+    --moss:#7BA05B; --moss-deep:#5C8A3C; --moss-light:#A8C686;
+    --pale:#F6F8F3; --ink:#16311F; --muted:#5E6E5A; --line:#D8E2D0;
+    --white:#FFFFFF;
+    --shadow:0 10px 30px rgba(21,49,30,.10);
+    --shadow-hi:0 22px 50px rgba(21,49,30,.20);
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);min-height:100vh;
+    background:radial-gradient(1100px 700px at 80% -10%,#23512f 0%,#163a22 38%,#0f2517 100%);
+    -webkit-font-smoothing:antialiased;padding:clamp(24px,5vw,72px) clamp(20px,5vw,64px);}
+  .wrap{max-width:1080px;margin:0 auto}
+
+  /* header */
+  .top{display:flex;align-items:flex-start;gap:18px;margin-bottom:clamp(28px,4vw,48px)}
+  .logo{width:clamp(46px,5vw,62px);height:clamp(46px,5vw,62px);border-radius:15px;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--mid),var(--moss));display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow)}
+  .logo svg{width:56%;height:56%;stroke:#eaf2e3;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .eyebrow{font:600 clamp(11px,1.1vw,13px)/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--moss-light)}
+  h1{font:700 clamp(30px,4.6vw,52px)/1.05 var(--serif);color:#fff;letter-spacing:-.01em;margin-top:8px}
+  .sub{font:400 clamp(14px,1.5vw,18px)/1.5 var(--sans);color:#cfe0c4;margin-top:10px;max-width:60ch}
+
+  /* grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:clamp(16px,2vw,24px)}
+  .card{background:var(--white);border-radius:18px;padding:clamp(20px,2.2vw,28px);
+    text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;
+    border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow);
+    transition:transform .28s cubic-bezier(.2,.7,.3,1),box-shadow .28s ease}
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hi)}
+  .card .ic{width:clamp(42px,4.4vw,54px);height:clamp(42px,4.4vw,54px);border-radius:13px;flex:0 0 auto;
+    background:var(--pale);display:flex;align-items:center;justify-content:center;transition:transform .28s ease}
+  .card:hover .ic{transform:scale(1.07) rotate(-4deg)}
+  .card .ic svg{width:52%;height:52%;stroke:var(--mid);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .card h3{font:700 clamp(17px,1.8vw,22px)/1.2 var(--serif);color:var(--ink)}
+  .card p{font:400 clamp(12.5px,1.25vw,15px)/1.45 var(--sans);color:var(--muted);flex:1}
+  .card .go{display:inline-flex;align-items:center;gap:7px;font:700 clamp(12px,1.2vw,14px)/1 var(--sans);color:var(--moss-deep);margin-top:4px}
+  .card .go svg{width:15px;height:15px;stroke:var(--moss-deep);fill:none;stroke-width:2.4;transition:transform .25s ease}
+  .card:hover .go svg{transform:translateX(4px)}
+  .badge{position:absolute;top:16px;right:16px;font:700 9.5px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;
+    padding:5px 9px;border-radius:20px;background:#e2efd6;color:var(--moss-deep)}
+  .badge.doc{background:#e7eefb;color:#3a5a9a}
+  .badge.live{background:#fbeede;color:#b07d1e}
+
+  /* placeholder card para seguir construyendo */
+  .card.add{background:rgba(255,255,255,.06);border:1.5px dashed rgba(168,198,134,.5);box-shadow:none;
+    align-items:center;justify-content:center;text-align:center;min-height:180px;color:#cfe0c4}
+  .card.add:hover{transform:none;background:rgba(255,255,255,.1);box-shadow:none}
+  .card.add .ic{background:rgba(255,255,255,.08)}
+  .card.add .ic svg{stroke:var(--moss-light)}
+  .card.add h3{color:#eaf2e3;font-size:16px}
+  .card.add p{color:#9db792;font-size:12.5px;text-align:center}
+
+  footer{margin-top:clamp(30px,4vw,52px);text-align:center;
+    font:400 12px/1.5 var(--sans);color:#9db792}
+  footer b{color:#cfe0c4}
+  footer code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;font-size:11.5px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="logo">
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="11" rx="15" ry="6"/><path d="M9 11v13c0 3.3 6.7 6 15 6s15-2.7 15-6V11"/><path d="M9 24v13c0 3.3 6.7 6 15 6s15-2.7 15-6V24"/></svg>
+      </div>
+      <div>
+        <div class="eyebrow">Proyecto STEM</div>
+        <h1>Portal del proyecto</h1>
+        <p class="sub">Datawarehouse SQL gobernado de GHVeggies y su capa de consulta con IA. Aquí viven las presentaciones, el seguimiento y la documentación del proyecto.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- Presentación VP Operaciones -->
+      <a class="card" href="Presentacion_STEM_VP_Operaciones.html">
+        <span class="badge">Presentación</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Presentación VP Operaciones</h3>
+        <p>El recorrido ejecutivo del proyecto: el cambio, las restricciones, el roadmap de 8 semanas, el equipo y los riesgos.</p>
+        <span class="go">Abrir presentación <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <!-- Checklist Sprint 0 -->
+      <a class="card" href="STEM_Sprint0_Checklist.html">
+        <span class="badge live">Interactivo</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h9"/><path d="M19 15l2 2 3-3" transform="translate(-4 0)"/></svg></div>
+        <h3>Checklist Sprint 0</h3>
+        <p>Validación interactiva de los entregables F001–F004, A001–A002 y ARM002, con avance por persona y guardado local.</p>
+        <span class="go">Abrir checklist <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <!-- Plan de Trabajo -->
+      <a class="card" href="Plan_de_Trabajo_STEM.docx">
+        <span class="badge doc">Documento</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div>
+        <h3>Plan de Trabajo</h3>
+        <p>El plan maestro del proyecto en Word: alcance, sprints, RACI, backlog y definición de hecho por entregable.</p>
+        <span class="go">Descargar Word <svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg></span>
+      </a>
+
+      <!-- Placeholder para crecer -->
+      <div class="card add">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        <h3>Próximamente</h3>
+        <p>Aquí se agregan modelo dimensional, demos del LLM y tableros conforme avanza el proyecto.</p>
+      </div>
+
+    </div>
+
+    <footer>
+      <b>GHVeggies · Business Intelligence</b> &nbsp;·&nbsp; Querétaro &nbsp;·&nbsp; Entrega 14 ago 2026<br>
+      Para agregar un recurso: sube el archivo al repo y copia una tarjeta <code>&lt;a class="card"&gt;</code> en este index.
+    </footer>
+  </div>
+</body>
+</html>
