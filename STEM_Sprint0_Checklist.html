@@ -45,7 +45,7 @@ button.primary:hover{background:var(--forest-2)}
 button.danger:hover{border-color:var(--high);color:var(--high)}
 
 /* KPIs */
-.kpis{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;margin:8px 0 22px}
+.kpis{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;margin:8px 0 18px}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
 .kpi .lab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
 .kpi .val{font-size:26px;font-weight:800;margin-top:4px;letter-spacing:-.02em}
@@ -56,6 +56,24 @@ button.danger:hover{border-color:var(--high);color:var(--high)}
 .dot{display:inline-flex;align-items:center;gap:5px}
 .dot b{width:9px;height:9px;border-radius:50%}
 
+/* Avance por persona */
+.people-h{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:4px 2px 10px}
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.person{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.person .top{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.person .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--forest),var(--moss));
+  color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
+.person .who{font-weight:800;font-size:15px;line-height:1.15}
+.person .role{font-size:11px;color:var(--muted);font-weight:600}
+.person .pctbig{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-left:auto}
+.person .pctbig small{font-size:13px;color:var(--muted);font-weight:600}
+.person .pbar{height:9px;border-radius:6px;background:var(--soft);overflow:hidden}
+.person .pbar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .4s ease}
+.person .meta{display:flex;justify-content:space-between;margin-top:9px;font-size:11.5px;color:var(--muted);font-weight:600}
+.person .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.person .tag{font-size:10px;font-weight:700;padding:3px 7px;border-radius:5px;background:var(--soft);color:var(--forest);letter-spacing:.03em}
+.person .tag.full{background:var(--done-bg)}
+
 /* Section */
 .section{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
   margin-bottom:16px;box-shadow:var(--shadow);overflow:hidden}
@@ -64,6 +82,8 @@ button.danger:hover{border-color:var(--high);color:var(--high)}
 .sec-code{font-size:11px;font-weight:800;color:#fff;background:var(--forest);border-radius:6px;padding:4px 9px;letter-spacing:.04em;flex-shrink:0}
 .sec-title{font-weight:700;font-size:15px}
 .sec-note{font-size:12px;color:var(--muted)}
+.sec-owner{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 8px;border-radius:20px;background:var(--soft);color:var(--forest);flex-shrink:0}
 .sec-meta{margin-left:auto;display:flex;align-items:center;gap:14px}
 .minibar{width:120px;height:7px;border-radius:5px;background:var(--soft);overflow:hidden}
 .minibar > i{display:block;height:100%;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .3s}
@@ -71,6 +91,14 @@ button.danger:hover{border-color:var(--high);color:var(--high)}
 .chev{transition:.2s;color:var(--muted)}
 .section.collapsed .chev{transform:rotate(-90deg)}
 .section.collapsed .sec-body{display:none}
+
+/* Filtro */
+.filterbar{display:flex;align-items:center;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+.filterbar .flab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
+.fbtn{font-size:12px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--line);
+  background:var(--panel);color:var(--muted);cursor:pointer;transition:.15s}
+.fbtn:hover{border-color:var(--moss)}
+.fbtn.on{background:var(--forest);border-color:var(--forest);color:#fff}
 
 /* Table */
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
@@ -114,6 +142,7 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;text-align:center}
 
 @media(max-width:880px){
   .kpis{grid-template-columns:1fr 1fr}
+  .people{grid-template-columns:1fr}
   .sec-meta .minibar{display:none}
   .tbl thead{display:none}
   .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
@@ -166,6 +195,17 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;text-align:center}
     </div>
   </div>
 
+  <div class="people-h">Avance por persona</div>
+  <div class="people" id="people"></div>
+
+  <div class="filterbar">
+    <span class="flab">Filtrar por dueño:</span>
+    <button class="fbtn on" data-f="all">Todos</button>
+    <button class="fbtn" data-f="Fernando">Fernando</button>
+    <button class="fbtn" data-f="Avelina">Avelina</button>
+    <button class="fbtn" data-f="Armando">Armando</button>
+  </div>
+
   <div id="root"></div>
 
   <footer>
@@ -175,11 +215,18 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;text-align:center}
 <div class="saved" id="toast">Guardado ✓</div>
 
 <script>
-const KEY = "stem_sprint0_v1";
+const KEY = "stem_sprint0_v2";
 const RISKS = ["Bajo","Medio","Alto"];
 
+// Dueños del proyecto y sus iniciales/rol
+const OWNERS = {
+  Fernando: {ini:"F",  role:"Datos y automatización"},
+  Avelina:  {ini:"A",  role:"Voz del negocio"},
+  Armando:  {ini:"AG", role:"Arquitectura y modelo"}
+};
+
 const DATA = [
- {code:"F001", title:"Matriz de Conectividad", note:"Dueño: Fernando · Día 1",
+ {code:"F001", owner:"Fernando", title:"Matriz de Conectividad", note:"Dueño: Fernando · Día 1",
   rows:[
    ["ID de fuente","Identificador único, sin duplicados en la matriz","Columna ID poblada al 100%","IDs reutilizados o vacíos"],
    ["Sistema / origen","Nombre del sistema (Power BI, SharePoint, Ridder, SQL, SISSO, Calidad)","Valor de catálogo cerrado","Texto libre inconsistente"],
@@ -189,42 +236,42 @@ const DATA = [
    ["Credencial / cuenta","Cuenta de servicio o usuario responsable nombrado","Referencia a credencial (no el secreto)","Credencial personal no transferible"],
    ["Tenant","ghveggies o agrogemso identificado","Tenant marcado por fuente","Confundir los dos tenants"],
   ]},
- {code:"F002", title:"CTS Master Spec v1", note:"Dueño: Fernando · cierre de semana",
+ {code:"F002", owner:"Fernando", title:"CTS Master Spec v1", note:"Dueño: Fernando · cierre de semana",
   rows:[
    ["Encabezado del documento","Versión, fecha, autor y alcance presentes","Bloque de control de versión visible","Versión sin actualizar"],
-   ["Definición de CTS","Criterio de Tratamiento de Subproductos descrito sin ambigüedad","Sección de definición aprobada","Definiciones tácitas no escritas"],
+   ["Definición de CTS","Compliant Template Standard descrito sin ambigüedad","Sección de definición aprobada","Definiciones tácitas no escritas"],
    ["Catálogo de campos","Cada campo con nombre, tipo y descripción","Tabla de campos completa","Tipos de dato sin declarar"],
    ["Reglas de formato","Formatos esperados por campo (fecha, número, texto)","Reglas enlazadas a F003","Reglas que contradicen F003"],
    ["Frecuencia de actualización","Definida por fuente o marcada como pendiente","Columna frecuencia poblada","Frecuencias indefinidas sin marcar"],
    ["Trazabilidad a Voz del Negocio","Cada CTS mapeado a ≥1 pregunta de A001","Referencia cruzada A001","CTS sin demanda de negocio"],
    ["Alcance Fase 2 explícito","SISSO y Calidad marcados como Fase 2","Nota de exclusión visible","Mezclar Fase 1 y Fase 2"],
   ]},
- {code:"F003", title:"Inventario de Formatos", note:"Dueño: Fernando · semana · alerta: sin dueño por fuente",
+ {code:"F003", owner:"Fernando", title:"Inventario de Formatos", note:"Dueño: Fernando · semana · alerta: sin dueño por fuente",
   rows:[
    ["Nombre del formato","Nombre real del archivo o plantilla","Listado contra origen","Plantillas no inventariadas"],
    ["Tipo / extensión","xlsx, csv, lista, vpax, etc.","Extensión registrada","Asumir .vpax = Model.bim (es DaxModel.json)"],
    ["Estructura de columnas","Encabezados y orden documentados","Captura de estructura","Estructura volátil sin congelar"],
    ["Dueño / capturista","Persona nombrada (no rol genérico)","Nombre individual asignado","Capturistas no nombrados aún"],
    ["Volumen / tamaño","Filas o MB aproximados (ej. Ridder ~50MB/día)","Conteo o peso registrado","Subestimar volumen para el modelo"],
-   ["Plantilla canónica","Reconoce CropData_Semanal_GAF.xlsx como activo existente","Referencia a estructura canónica","Reinventar la plantilla de gobernanza"],
+   ["Fuente de verdad (14 pestañas)","Decidir cuál pestaña de Empaque_KPIS es la buena","Pestaña activa marcada vs respaldos","Cargar de una pestaña R/Histórico"],
    ["¿Entra al DW?","Sí / No / Fase 2 decidido por fuente","Columna de decisión poblada","Dejar la decisión ambigua"],
   ]},
- {code:"F004", title:"Backlog CTS — plantilla poblable", note:"Dueño: Fernando · cierre de semana",
+ {code:"F004", owner:"Fernando", title:"Backlog CTS — plantilla poblable", note:"Dueño: Fernando · cierre de semana",
   rows:[
    ["ID CTS","Identificador único por ítem del backlog","Columna ID sin huecos","IDs duplicados"],
    ["Descripción del ítem","Descripción clara y accionable","Texto de ítem completo","Ítems ambiguos no ejecutables"],
    ["Fuente origen (F001)","Trazable a una fuente de la matriz F001","Referencia cruzada a F001","Ítem sin fuente trazable"],
-   ["Clasificación","Compliant / Parcial / No Compliant asignada","Clasificación de la matriz CTS","Clasificación en blanco"],
+   ["Clasificación","Compliant / Partial / Non-Compliant asignada","Clasificación de la matriz CTS","Clasificación en blanco"],
    ["Prioridad","Alta / Media / Baja","Prioridad definida por ítem","Todo marcado Alta"],
    ["DoD / criterio de cierre","Definición de Hecho explícita por ítem","Columna DoD poblada","Ítems sin DoD"],
   ]},
- {code:"CTS", title:"Matriz de clasificación CTS", note:"Compliant / Parcial / No Compliant",
+ {code:"CTS", owner:"Fernando", title:"Matriz de clasificación CTS", note:"Compliant / Partial / Non-Compliant",
   rows:[
    ["Compliant","Cumple estructura, formato, dueño nombrado y frecuencia definida; entra al DW sin retrabajo","Validación contra F002/F003 sin desviaciones","Marcar Compliant sin probar el acceso"],
-   ["Parcial","Cumple parcialmente; faltan campos, dueño o frecuencia, pero es recuperable en Sprint","Lista de desviaciones abiertas con responsable","Tratar Parcial como Compliant"],
-   ["No Compliant","No cumple estándar o sin acceso; queda fuera de Fase 1 o pasa a Fase 2","Justificación de exclusión y destino (Fase 2)","Forzar al DW una fuente No Compliant"],
+   ["Partial","Cumple parcialmente; faltan campos, dueño o frecuencia, pero es recuperable en Sprint","Lista de desviaciones abiertas con responsable","Tratar Partial como Compliant"],
+   ["Non-Compliant","No cumple estándar o sin acceso; queda fuera de Fase 1 o pasa a Fase 2","Justificación de exclusión y destino (Fase 2)","Forzar al DW una fuente Non-Compliant"],
   ]},
- {code:"A001", title:"Validación — Voz del Negocio", note:"Dueño: Avelina · semana · meta ≥30 preguntas",
+ {code:"A001", owner:"Avelina", title:"Validación — Voz del Negocio", note:"Dueño: Avelina · semana · meta ≥30 preguntas",
   rows:[
    ["ID de pregunta","Identificador único por pregunta","Numeración continua sin huecos","Preguntas duplicadas"],
    ["Pregunta de negocio","Redactada como pregunta real de la operación","≥30 preguntas registradas","Preguntas inventadas, no de campo"],
@@ -234,7 +281,7 @@ const DATA = [
    ["Prioridad de negocio","Alta / Media / Baja según el negocio","Priorización validada con stakeholder","Priorizar sin el dueño del área"],
    ["Apta para LLM v1","Marcada para el banco de ≥15 del LLM","Subconjunto LLM identificado","Banco LLM sin validar respuestas"],
   ]},
- {code:"A002", title:"Validación — Captura de Procesos", note:"Dueño: Avelina · semana",
+ {code:"A002", owner:"Avelina", title:"Validación — Captura de Procesos", note:"Dueño: Avelina · semana",
   rows:[
    ["Proceso","Nombre del proceso de captura o reporte","Lista de procesos por área","Procesos informales no documentados"],
    ["Capturista","Persona nombrada que genera el dato","Nombre individual","Rol genérico sin nombre"],
@@ -244,21 +291,22 @@ const DATA = [
    ["Salida / destino","Reporte o tablero que consume el dato","Trazabilidad captura → consumo","Dato sin consumidor conocido"],
    ["Riesgo de calidad","Errores conocidos del proceso","Nota de calidad por proceso","Asumir calidad sin validar en campo"],
   ]},
- {code:"ARM002", title:"Grano de Fact_Empaque (negocio)", note:"Alerta: pendiente de validación de negocio (medio-alto)",
+ {code:"ARM002", owner:"Armando", title:"Grano de Fact_Empaque (negocio)", note:"Alerta: pendiente de validación de negocio (medio-alto)",
   rows:[
-   ["Definición de grano","Una fila de Fact_Empaque = [unidad acordada] en una frase","Grano escrito y firmado por negocio","Grano asumido por BI, no por negocio"],
-   ["Dimensiones asociadas","Calendario, sitio, producto, línea, turno confirmadas","Lista de dimensiones validada","Dimensión faltante detectada tarde"],
+   ["Definición de grano","Una fila = semana × predio × variedad, firmado por negocio","Grano escrito y firmado por negocio","Grano asumido por BI, no por negocio"],
+   ["Dimensiones asociadas","D_Sitio, D_Semana, D_Variedad confirmadas","Lista de dimensiones validada","Dimensión faltante detectada tarde"],
    ["Métricas / hechos","Medidas aditivas identificadas al grano","Catálogo de métricas aprobado","Mezclar métricas de distinto grano"],
    ["Cobertura de sitios","JVA, PGA, GAF, BON, GSO, SON cubiertos","Confirmación por sitio","Grano que no aplica a todos los sitios"],
    ["Contraste con A001","El grano responde las preguntas de empaque de Voz del Negocio","Mapeo grano ↔ preguntas A001","Grano que no responde el negocio"],
    ["Aprobador de negocio","Stakeholder de Empaque (Victor Carrasco) valida","Aprobación registrada","Cerrar sin firma del área"],
-   ["Reversibilidad","Costo de cambiar el grano después documentado","Nota de impacto registrada","Subestimar el costo de re-granular"],
+   ["Normalización de variedades","Validar duplicados (Cherubs Orgánico, Mini Pepino Org)","Tabla sucia→canónica firmada","Variedades duplicadas en el reporte"],
   ]},
 ];
 
 // ---- state ----
 let state = {};
 try{ const s = localStorage.getItem(KEY); if(s) state = JSON.parse(s); }catch(e){ state = {}; }
+let filter = "all";
 
 function rk(sc,i){ return sc+"#"+i; }
 function get(sc,i){ return state[rk(sc,i)] || {done:false,notes:"",risk:""}; }
@@ -272,14 +320,16 @@ function toast(){
   clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),1100);
 }
 
-// ---- render ----
+// ---- render secciones ----
 function render(){
   const root=document.getElementById("root"); root.innerHTML="";
   DATA.forEach(sec=>{
+    if(filter!=="all" && sec.owner!==filter) return;
     const wrap=document.createElement("div"); wrap.className="section"; wrap.dataset.code=sec.code;
     const head=document.createElement("div"); head.className="sec-head";
     head.innerHTML=`
       <span class="sec-code">${sec.code}</span>
+      <span class="sec-owner">${sec.owner}</span>
       <div><div class="sec-title">${sec.title}</div><div class="sec-note">${sec.note}</div></div>
       <div class="sec-meta">
         <div class="minibar"><i data-mini="${sec.code}"></i></div>
@@ -332,6 +382,34 @@ function render(){
   refreshKpis();
 }
 
+// ---- avance por persona ----
+function renderPeople(){
+  const cont=document.getElementById("people"); cont.innerHTML="";
+  Object.keys(OWNERS).forEach(name=>{
+    const secs=DATA.filter(s=>s.owner===name);
+    let total=0,done=0,fullSecs=0;
+    const tags=secs.map(s=>{
+      let st=0,sd=0;
+      s.rows.forEach((_,i)=>{st++;total++; if(get(s.code,i).done){sd++;done++;}});
+      const full=st&&sd===st; if(full)fullSecs++;
+      return {code:s.code, full};
+    });
+    const pct=total?Math.round(done/total*100):0;
+    const o=OWNERS[name];
+    const card=document.createElement("div"); card.className="person";
+    card.innerHTML=`
+      <div class="top">
+        <div class="av">${o.ini}</div>
+        <div><div class="who">${name}</div><div class="role">${o.role}</div></div>
+        <div class="pctbig">${pct}<small>%</small></div>
+      </div>
+      <div class="pbar"><i style="width:${pct}%"></i></div>
+      <div class="meta"><span>${done}/${total} criterios</span><span>${fullSecs}/${secs.length} entregables completos</span></div>
+      <div class="tags">${tags.map(t=>`<span class="tag ${t.full?"full":""}">${t.code}</span>`).join("")}</div>`;
+    cont.appendChild(card);
+  });
+}
+
 function refreshKpis(){
   let total=0,done=0,evid=0,secDone=0,rHigh=0,rMed=0,rLow=0;
   DATA.forEach(sec=>{
@@ -359,16 +437,32 @@ function refreshKpis(){
   document.getElementById("rHigh").textContent=rHigh;
   document.getElementById("rMed").textContent=rMed;
   document.getElementById("rLow").textContent=rLow;
+  renderPeople();
 }
+
+// ---- filtro por dueño ----
+document.querySelectorAll(".fbtn").forEach(b=>{
+  b.addEventListener("click",()=>{
+    document.querySelectorAll(".fbtn").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on"); filter=b.dataset.f; render();
+  });
+});
 
 // ---- actions ----
 document.getElementById("export").addEventListener("click",()=>{
-  const out={project:"STEM Sprint 0",exported_at:new Date().toISOString(),checklists:[]};
+  const out={project:"STEM Sprint 0",exported_at:new Date().toISOString(),por_persona:{},checklists:[]};
+  // avance por persona
+  Object.keys(OWNERS).forEach(name=>{
+    const secs=DATA.filter(s=>s.owner===name);
+    let total=0,done=0;
+    secs.forEach(s=>s.rows.forEach((_,i)=>{total++; if(get(s.code,i).done)done++;}));
+    out.por_persona[name]={avance_pct:total?Math.round(done/total*100):0,criterios:done,total};
+  });
   DATA.forEach(sec=>{
     const rows=sec.rows.map((r,i)=>{const v=get(sec.code,i);
       return {campo:r[0],criterio:r[1],estado:v.done?"Completado":"Pendiente",notas:v.notes||"",riesgo:v.risk||""};});
     const done=rows.filter(x=>x.estado==="Completado").length;
-    out.checklists.push({code:sec.code,title:sec.title,avance_pct:Math.round(done/rows.length*100),rows});
+    out.checklists.push({code:sec.code,owner:sec.owner,title:sec.title,avance_pct:Math.round(done/rows.length*100),rows});
   });
   const tot=DATA.reduce((a,s)=>a+s.rows.length,0);
   const dn=DATA.reduce((a,s)=>a+s.rows.filter((_,i)=>get(s.code,i).done).length,0);
