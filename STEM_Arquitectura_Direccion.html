@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project STEM — Data Architecture for Leadership</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#15311E; --forest-2:#1E4429; --mid:#2C5F2D;
+    --moss:#5C8A3C; --moss-2:#7BA05B; --moss-light:#A8C686;
+    --pale:#EDF2E8; --pale-2:#F6F8F3;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#16311F;background:#F6F8F3}
+  h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+  .nav-link{transition:.2s}
+  .nav-link:hover{color:#A8C686}
+  .nav-link.active{color:#A8C686;border-bottom:2px solid #A8C686}
+  .card-hover{transition:transform .28s cubic-bezier(.2,.7,.3,1),box-shadow .28s ease}
+  .card-hover:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(21,49,30,.18)}
+  .mermaid{display:flex;justify-content:center}
+  .slide{scroll-margin-top:80px}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-thumb{background:#A8C686;border-radius:5px}
+  /* idioma */
+  [data-es]{display:none}
+  html[lang="es"] [data-en]{display:none}
+  html[lang="es"] [data-es]{display:initial}
+  html[lang="es"] [data-es-block]{display:block}
+  .lang-btn{transition:.2s}
+  .lang-btn:hover{background:rgba(255,255,255,.18)}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 text-white shadow-lg" style="background:var(--forest)">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--moss)">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.6 3.6 3 8 3s8-1.4 8-3V5"/><path d="M4 12c0 1.6 3.6 3 8 3s8-1.4 8-3"/></svg>
+      </div>
+      <div>
+        <div class="text-xs tracking-[0.25em] uppercase" style="color:var(--moss-light)">Project STEM</div>
+        <div class="serif text-lg font-bold leading-none"><span data-en>Data Architecture</span><span data-es>Arquitectura de Datos</span></div>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#slide1" class="nav-link pb-1"><span data-en>Architecture</span><span data-es>Arquitectura</span></a>
+        <a href="#slide2" class="nav-link pb-1"><span data-en>Rationale</span><span data-es>Justificación</span></a>
+        <a href="#slide3" class="nav-link pb-1"><span data-en>What we need</span><span data-es>Qué necesitamos</span></a>
+      </nav>
+      <button id="langToggle" class="lang-btn text-xs font-bold px-3 py-1.5 rounded-full border" style="border-color:var(--moss-light);color:var(--moss-light)">
+        <span data-en>ES</span><span data-es>EN</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="max-w-7xl mx-auto px-6 pt-16 pb-10 text-center">
+  <div class="inline-block text-xs tracking-[0.3em] uppercase font-bold mb-4" style="color:var(--moss)">
+    <span data-en>Leadership Briefing · June 2026</span><span data-es>Presentación para Dirección · Junio 2026</span>
+  </div>
+  <h1 class="serif text-4xl md:text-6xl font-black mb-5" style="color:var(--forest)">
+    <span data-en>From fragile reports<br>to a single source of truth</span>
+    <span data-es>De reportes frágiles<br>a una sola fuente de verdad</span>
+  </h1>
+  <p class="max-w-2xl mx-auto text-lg text-gray-600">
+    <span data-en>Why we are moving operations from scattered files and Dataflows to a governed SQL Data Warehouse — and what we need from your side to make it happen.</span>
+    <span data-es>Por qué movemos la operación de archivos y Dataflows dispersos hacia un Data Warehouse SQL gobernado, y qué necesitamos de su parte para lograrlo.</span>
+  </p>
+</section>
+
+<!-- ============ SLIDE 1 — ARCHITECTURE ============ -->
+<section id="slide1" class="slide max-w-7xl mx-auto px-6 py-14">
+  <div class="flex items-center gap-4 mb-3">
+    <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--pale)">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+    </div>
+    <div>
+      <div class="text-xs tracking-[0.2em] uppercase font-bold" style="color:var(--moss)">Slide 1</div>
+      <h2 class="serif text-3xl font-bold" style="color:var(--forest)"><span data-en>Where we are and where we are going</span><span data-es>Dónde estamos y a dónde vamos</span></h2>
+    </div>
+  </div>
+  <p class="text-gray-600 mb-10 max-w-3xl">
+    <span data-en>This is not about looks. Today everything depends on links that break on their own; tomorrow the data lives governed and reports simply read from it.</span>
+    <span data-es>La diferencia no es estética. Hoy todo depende de eslabones que se rompen solos; mañana el dato vive gobernado y los reportes solo lo consultan.</span>
+  </p>
+
+  <!-- AS-IS -->
+  <div class="bg-white rounded-2xl shadow-md p-7 mb-8 card-hover">
+    <div class="flex items-center gap-3 mb-1 flex-wrap">
+      <span class="inline-flex items-center gap-2 text-sm font-bold px-3 py-1 rounded-full" style="background:#FBE6E3;color:#C0392B">● <span data-en>Current state</span><span data-es>Estado actual</span></span>
+      <h3 class="serif text-2xl font-bold" style="color:var(--forest)"><span data-en>As-Is — bottleneck</span><span data-es>As-Is — cuello de botella</span></h3>
+    </div>
+    <p class="text-gray-600 mb-6 text-sm">
+      <span data-en>Most heavy operational data already lives in the GHS ERP read database (GHS_BI) and reaches reports through two Gen 1 Dataflows, one per tenant. SharePoint files and lists, however, connect straight into the semantic model embedded in each .pbix. Every red link is a point where the dashboard breaks without warning.</span>
+      <span data-es>El grueso del dato operativo ya vive en la base de lectura del ERP GHS (GHS_BI) y llega a los reportes mediante dos Dataflows Gen 1, uno por tenant. En cambio, los archivos y listas de SharePoint conectan directo al modelo semántico incrustado en cada .pbix. Cada eslabón rojo es un punto donde el tablero se rompe sin aviso.</span>
+    </p>
+    <div class="mermaid">
+%%{init: {'theme':'base','themeVariables':{'fontFamily':'Inter','fontSize':'14px','primaryColor':'#EDF2E8','primaryBorderColor':'#7BA05B','lineColor':'#7BA05B','primaryTextColor':'#16311F'}}}%%
+graph LR
+  A1["GHS_BI ERP DB<br/>Tenant GHVeggies"] --> DF1["Dataflow Gen 1<br/>DFGhveggies"]:::riesgo
+  A2["GHS_BI ERP DB<br/>Tenant Ganfer / GSO"] --> DF2["Dataflow Gen 1<br/>DFGanfer"]:::riesgo
+  A3["SharePoint<br/>Excel · CSV"] --> SEM
+  A4["SharePoint<br/>Lists"] --> SEM
+  DF1 --> SEM["Semantic model<br/>embedded in .pbix"]:::riesgo
+  DF2 --> SEM
+  SEM --> RP["Report .pbix<br/>refresh ~19 min"]:::riesgo
+  classDef riesgo fill:#FBE6E3,stroke:#C0392B,stroke-width:2px,color:#8A2A1E;
+    </div>
+    <p class="text-xs text-gray-500 mt-4 italic">
+      <span data-en>In red: the high-coupling points. A SharePoint access token expires, the web connector drops, or the model inside the .pbix corrupts — and there is no report. The chained refresh (Dataflow + dataset) is what produces the ~19 minutes.</span>
+      <span data-es>En rojo: los puntos de alto acoplamiento. Un token de acceso de SharePoint caduca, el conector web se cae, o el modelo dentro del .pbix se corrompe, y no hay reporte. El refresco encadenado (Dataflow + dataset) es lo que produce los ~19 minutos.</span>
+    </p>
+  </div>
+
+  <!-- arrow -->
+  <div class="flex justify-center mb-8">
+    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:var(--moss)">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+    </div>
+  </div>
+
+  <!-- TO-BE -->
+  <div class="rounded-2xl shadow-md p-7 card-hover" style="background:var(--forest)">
+    <div class="flex items-center gap-3 mb-1 flex-wrap">
+      <span class="inline-flex items-center gap-2 text-sm font-bold px-3 py-1 rounded-full" style="background:#E2EFD6;color:#2C5F2D">● <span data-en>STEM proposal</span><span data-es>Propuesta STEM</span></span>
+      <h3 class="serif text-2xl font-bold text-white"><span data-en>To-Be — a single source of truth</span><span data-es>To-Be — una sola fuente de verdad</span></h3>
+    </div>
+    <p class="text-sm mb-6" style="color:#cfe0c4">
+      <span data-en>The same sources are ingested in an automated way into a governed SQL Data Warehouse. Power BI stops loading and transforming: it just connects to the clean model. A change at the source is fixed once, in the Data Warehouse.</span>
+      <span data-es>Las mismas fuentes se ingieren de forma automatizada hacia un Data Warehouse SQL gobernado. Power BI deja de cargar y transformar: solo se conecta al modelo limpio. Un cambio en el origen se corrige una vez, en el Data Warehouse.</span>
+    </p>
+    <div class="mermaid bg-white rounded-xl p-4">
+%%{init: {'theme':'base','themeVariables':{'fontFamily':'Inter','fontSize':'14px','primaryColor':'#E2EFD6','primaryBorderColor':'#2C5F2D','lineColor':'#5C8A3C','primaryTextColor':'#16311F'}}}%%
+graph LR
+  B1["GHS_BI ERP DB<br/>GHVeggies"] --> ING["Automated ingestion<br/>Python · ELT"]:::ok
+  B2["GHS_BI ERP DB<br/>Ganfer / GSO"] --> ING
+  B3["SharePoint<br/>Excel · CSV · Lists"] --> ING
+  ING --> DWH["DWH_GHVeggies<br/>SQL Server 2022<br/>RAW · STG · MART"]:::core
+  DWH --> SEM["Governed<br/>semantic layer"]:::ok
+  SEM --> R1["Report A .pbix"]:::ok
+  SEM --> R2["Report B .pbix"]:::ok
+  SEM --> R3["Report C .pbix"]:::ok
+  SEM --> LLM["Natural-language<br/>AI query"]:::ok
+  classDef ok fill:#E2EFD6,stroke:#2C5F2D,stroke-width:2px,color:#1E4429;
+  classDef core fill:#15311E,stroke:#15311E,stroke-width:2px,color:#ffffff;
+    </div>
+    <p class="text-xs mt-4 italic" style="color:#A8C686">
+      <span data-en>Reports become lightweight: they all consume the same model. Adding a new one does not reload the system, and for the first time natural-language querying over governed data is enabled.</span>
+      <span data-es>Los reportes se vuelven ligeros: todos consumen el mismo modelo. Agregar uno nuevo no recarga el sistema, y por primera vez se habilita la consulta en lenguaje natural sobre el dato gobernado.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============ SLIDE 2 — RATIONALE ============ -->
+<section id="slide2" class="slide" style="background:var(--pale-2)">
+<div class="max-w-7xl mx-auto px-6 py-16">
+  <div class="flex items-center gap-4 mb-3">
+    <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--pale)">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 17l-6.5 3.5 2-7L2 9h7z"/></svg>
+    </div>
+    <div>
+      <div class="text-xs tracking-[0.2em] uppercase font-bold" style="color:var(--moss)">Slide 2</div>
+      <h2 class="serif text-3xl font-bold" style="color:var(--forest)"><span data-en>Why SharePoint is not a database</span><span data-es>Por qué SharePoint no es una base de datos</span></h2>
+    </div>
+  </div>
+  <p class="text-gray-600 mb-10 max-w-3xl">
+    <span data-en>SharePoint stores files very well. But using it as a data engine for leadership reports is building on sand: it works until a token expires, a header changes, or a file grows too large.</span>
+    <span data-es>SharePoint guarda archivos muy bien. Pero usarlo como motor de datos para reportes de dirección es construir sobre arena: funciona hasta que un token caduca, un encabezado cambia, o el archivo crece de más.</span>
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-6">
+
+    <div class="bg-white rounded-2xl p-7 shadow-md card-hover">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:var(--pale)">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.7 1 6.3 2.7L21 8"/><path d="M21 3v5h-5"/></svg>
+      </div>
+      <h3 class="serif text-xl font-bold mb-2" style="color:var(--forest)"><span data-en>Refresh stability</span><span data-es>Estabilidad de actualización</span></h3>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        <span data-en>Today a report stops updating because a SharePoint access token expired — a security credential that Microsoft 365 silently rotates — or because the web connector dropped. Nobody notices until the meeting. A SharePoint token is a temporary key that the platform reissues on its own schedule; when it changes, the report is locked out and the data goes stale without any error in sight. The Data Warehouse removes that fragility: loading becomes a controlled, monitored process with an immediate alert if anything fails, before it ever reaches a dashboard. Updating stops depending on the luck of the session.</span>
+        <span data-es>Hoy un reporte deja de actualizar porque un token de acceso de SharePoint caducó —una credencial de seguridad que Microsoft 365 renueva en silencio— o porque el conector web se cayó. Nadie lo nota hasta la junta. Un token de SharePoint es una llave temporal que la plataforma reemite por su cuenta; cuando cambia, el reporte queda bloqueado y el dato se queda viejo sin que aparezca ningún error. El Data Warehouse elimina esa fragilidad: la carga es un proceso controlado y monitoreado, con aviso inmediato si algo falla, antes de que llegue a un tablero. La actualización deja de depender de la suerte de la sesión.</span>
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-7 shadow-md card-hover">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:var(--pale)">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      </div>
+      <h3 class="serif text-xl font-bold mb-2" style="color:var(--forest)"><span data-en>Governance and single source of truth</span><span data-es>Gobernanza y fuente única de verdad</span></h3>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        <span data-en>Today the business logic — how each KPI is calculated — lives locked inside each individual .pbix file. If that person leaves or the file is lost, the definition of the number is lost with it. In the Data Warehouse the rules live in one central, auditable, backed-up place. Every report reads the same truth, not each file's own interpretation.</span>
+        <span data-es>Hoy la lógica del negocio —cómo se calcula cada KPI— vive secuestrada dentro de cada archivo .pbix individual. Si esa persona se va o el archivo se pierde, se pierde con él la definición del número. En el Data Warehouse las reglas viven en un lugar central, auditable y respaldado. Todos los reportes leen la misma verdad, no la interpretación de cada archivo.</span>
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-7 shadow-md card-hover">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:var(--pale)">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/><circle cx="8" cy="6" r="2" fill="#2C5F2D"/><circle cx="16" cy="18" r="2" fill="#2C5F2D"/></svg>
+      </div>
+      <h3 class="serif text-xl font-bold mb-2" style="color:var(--forest)"><span data-en>Decoupling the visual layer</span><span data-es>Desacoplamiento de la visualización</span></h3>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        <span data-en>Today if someone changes a column in a source Excel, every report that depended on it breaks in a chain, and the team spends days repairing. With the Data Warehouse in the middle, that change is absorbed and fixed once, in SQL. The visual layer never even notices. One repair point instead of ten.</span>
+        <span data-es>Hoy si alguien cambia una columna en un Excel de origen, se rompen en cadena todos los reportes que dependían de él, y el equipo pasa días reparando. Con el Data Warehouse en medio, ese cambio se absorbe y se corrige una sola vez, en SQL. La capa de visualización ni se entera. Un punto de reparación en lugar de diez.</span>
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-7 shadow-md card-hover">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:var(--pale)">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 16V9M12 16V6M16 16v-3"/></svg>
+      </div>
+      <h3 class="serif text-xl font-bold mb-2" style="color:var(--forest)"><span data-en>Historical scalability</span><span data-es>Escalabilidad histórica</span></h3>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        <span data-en>Power BI chokes as history grows: memory is limited and not expandable. A SQL engine is built precisely to index and query large historical volumes without degrading. We can keep years of operations and query them in seconds, without the dashboard becoming slow or running out of memory. The system grows with the business, not against it.</span>
+        <span data-es>Power BI se asfixia cuando el histórico crece: la memoria es limitada y no expandible. Un motor SQL está hecho precisamente para indexar y consultar grandes volúmenes históricos sin degradarse. Podemos guardar años de operación y consultarlos en segundos, sin que el tablero se vuelva lento ni se quede sin memoria. El sistema crece con el negocio, no contra él.</span>
+      </p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ============ SLIDE 3 — WHAT WE NEED ============ -->
+<section id="slide3" class="slide max-w-7xl mx-auto px-6 py-16">
+  <div class="flex items-center gap-4 mb-3">
+    <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--pale)">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    </div>
+    <div>
+      <div class="text-xs tracking-[0.2em] uppercase font-bold" style="color:var(--moss)">Slide 3</div>
+      <h2 class="serif text-3xl font-bold" style="color:var(--forest)"><span data-en>Enablement from Data Analytics / IT</span><span data-es>Habilitación de Data Analytics / TI</span></h2>
+    </div>
+  </div>
+  <p class="text-gray-600 mb-10 max-w-3xl">
+    <span data-en>To run this migration in production, we require the following actions coordinated strictly with the data infrastructure team. These are not business asks — they are technical enablement only your team can grant.</span>
+    <span data-es>Para ejecutar esta migración en producción, requerimos las siguientes acciones coordinadas estrictamente con el equipo de infraestructura de datos. No son peticiones de negocio: son habilitaciones técnicas que solo su equipo puede otorgar.</span>
+  </p>
+
+  <div class="space-y-5">
+
+    <!-- 1 -->
+    <div class="bg-white rounded-2xl p-7 shadow-md card-hover flex gap-5 items-start">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--pale)">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="8" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><circle cx="7" cy="8" r="1" fill="#2C5F2D"/><circle cx="7" cy="17" r="1" fill="#2C5F2D"/></svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-3 mb-1">
+          <span class="serif text-2xl font-black" style="color:var(--moss)">1</span>
+          <h3 class="serif text-xl font-bold" style="color:var(--forest)"><span data-en>Storage and schema on GHS_BI server</span><span data-es>Almacenamiento y esquema en el servidor GHS_BI</span></h3>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          <span data-en>Confirm dedicated storage on the on-premise SQL Server 2022 host (192.168.**.54, where the GHS ERP read database GHS_BI already resides) and authorize creating the main schema under the name DWH_GHVeggies. This consolidates the repository in the same ecosystem where the operational transactional data already lives, minimizing latency and avoiding additional cloud licensing.</span>
+          <span data-es>Confirmar almacenamiento dedicado en el host SQL Server 2022 on-premise (192.168.**.54, donde ya reside la base de lectura del ERP GHS, GHS_BI) y autorizar la creación del esquema principal bajo el nombre DWH_GHVeggies. Esto consolida el repositorio en el mismo ecosistema donde ya vive el dato transaccional operativo, minimizando latencia y evitando licencias adicionales de nube.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- 2 — CRÍTICO -->
+    <div class="rounded-2xl p-7 shadow-md card-hover flex gap-5 items-start" style="background:#FBE6E3;border:1.5px solid #C0392B">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:#fff">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-3 mb-1 flex-wrap">
+          <span class="serif text-2xl font-black" style="color:#C0392B">2</span>
+          <h3 class="serif text-xl font-bold" style="color:#8A2A1E"><span data-en>System identities for M365 access</span><span data-es>Identidades de sistema para acceso a M365</span></h3>
+          <span class="text-xs font-bold px-2 py-1 rounded-full" style="background:#C0392B;color:#fff"><span data-en>CRITICAL</span><span data-es>CRÍTICO</span></span>
+        </div>
+        <p class="text-sm leading-relaxed" style="color:#5e2018">
+          <span data-en>This is the point that causes the most outages and demands the most firmness. We need two permanent system identities, both exempt from password rotation. <strong>First, a Service Account in Microsoft Entra ID</strong> for cross-tenant pipeline authentication: relying on a personal user is the main cause of Dataflow failures today, because every M365 password reset blocks the entire analytical pipeline corporate-wide. <strong>Second, an App Registration in Microsoft Entra ID</strong> (with a client secret or certificate) granted the application permission <strong>Sites.Read.All</strong> on Microsoft Graph, with admin consent on both SharePoint tenants — GHVeggies and Ganfer. Without these, the system will keep failing intermittently no matter how well the warehouse is built. This is not a technical luxury; it is the difference between a reliable system and one that breaks every few weeks.</span>
+          <span data-es>Este es el punto que más caídas causa y el que más firmeza requiere. Necesitamos dos identidades de sistema permanentes, ambas exentas de rotación de contraseñas. <strong>Primero, una Service Account en Microsoft Entra ID</strong> para la autenticación de la tubería entre tenants: depender de un usuario personal es hoy la causa principal de fallos en los Dataflows, porque cada reseteo de contraseña de M365 bloquea toda la tubería analítica a nivel corporativo. <strong>Segundo, un App Registration en Microsoft Entra ID</strong> (con client secret o certificado) con el permiso de aplicación <strong>Sites.Read.All</strong> sobre Microsoft Graph, con admin consent en los dos tenants de SharePoint —GHVeggies y Ganfer. Sin esto, el sistema seguirá fallando de forma intermitente sin importar qué tan bien esté construido el Data Warehouse. No es un lujo técnico; es la diferencia entre un sistema confiable y uno que se cae cada pocas semanas.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="bg-white rounded-2xl p-7 shadow-md card-hover flex gap-5 items-start">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--pale)">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-3 mb-1">
+          <span class="serif text-2xl font-black" style="color:var(--moss)">3</span>
+          <h3 class="serif text-xl font-bold" style="color:var(--forest)"><span data-en>Execution permissions on DWH_GHVeggies</span><span data-es>Permisos de ejecución sobre DWH_GHVeggies</span></h3>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          <span data-en>Grant read and write permissions on the DWH_GHVeggies schema for the orchestration tooling (Python and scheduled routines), so the automated load processes can run without permission bottlenecks during development. We will provide the exact minimum access level required; what we need from your side is the authorization to operate within that governed schema on a defined schedule.</span>
+          <span data-es>Otorgar permisos de lectura y escritura sobre el esquema DWH_GHVeggies para las herramientas de orquestación (Python y rutinas programadas), de modo que los procesos de carga automatizada corran sin cuellos de botella por permisos durante el desarrollo. Nosotros entregamos el nivel mínimo de acceso exacto requerido; lo que necesitamos de su parte es la autorización para operar dentro de ese esquema gobernado en un horario definido.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="bg-white rounded-2xl p-7 shadow-md card-hover flex gap-5 items-start">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--pale)">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2C5F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-3 mb-1">
+          <span class="serif text-2xl font-black" style="color:var(--moss)">4</span>
+          <h3 class="serif text-xl font-bold" style="color:var(--forest)"><span data-en>Joint certification window (Shadow Mode)</span><span data-es>Ventana de certificación conjunta (Shadow Mode)</span></h3>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          <span data-en>We will not switch off the legacy architecture until the new Data Warehouse tables match the current reports at 100%. We need to agree on a transition and co-validation window with the Data Analytics team. The go-live must run in parallel — Shadow Mode — and be signed off by both teams, guaranteeing zero disruption to the company's KPIs.</span>
+          <span data-es>No apagaremos la arquitectura legacy hasta que las nuevas tablas del Data Warehouse coincidan al 100% con los reportes actuales. Necesitamos acordar una ventana de transición y co-validación con el equipo de Data Analytics. La liberación a producción debe correr en paralelo —Shadow Mode— y ser firmada por ambos equipos, garantizando cero disrupción en los KPIs de la empresa.</span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- cierre -->
+  <div class="mt-12 rounded-2xl p-8 text-center" style="background:var(--forest)">
+    <h3 class="serif text-2xl font-bold text-white mb-2"><span data-en>Ready for technical deployment</span><span data-es>Preparados para el despliegue técnico</span></h3>
+    <p class="max-w-2xl mx-auto text-sm" style="color:#cfe0c4">
+      <span data-en>The operational logic and the DWH_GHVeggies directory structure are already defined, and the first domain — Packing — is already validated against the source. With SQL Server access, infrastructure and the service accounts granted, the Business Intelligence team is ready to begin the ingestions.</span>
+      <span data-es>La lógica operativa y la estructura del directorio DWH_GHVeggies ya están definidas, y el primer dominio —Empaque— ya está validado contra el origen. Con los accesos a SQL Server, la infraestructura y las cuentas de servicio otorgadas, el equipo de Business Intelligence está listo para iniciar las ingestas.</span>
+    </p>
+  </div>
+</section>
+
+<footer class="text-center py-8 text-xs text-gray-500">
+  Business Intelligence · GHVeggies · Querétaro · Project STEM
+</footer>
+
+<script>
+  mermaid.initialize({ startOnLoad: true, securityLevel: 'loose' });
+
+  // language toggle
+  document.getElementById('langToggle').addEventListener('click', function(){
+    const html = document.documentElement;
+    html.lang = (html.lang === 'es') ? 'en' : 'es';
+  });
+
+  // nav active on scroll
+  const links = document.querySelectorAll('.nav-link');
+  const sections = ['slide1','slide2','slide3'].map(id => document.getElementById(id));
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (s.getBoundingClientRect().top <= 120) cur = s.id; });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+  });
+</script>
+</body>
+</html>
