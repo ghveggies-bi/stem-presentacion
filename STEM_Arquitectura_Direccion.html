@@ -27,6 +27,15 @@
   .slide{scroll-margin-top:80px}
   ::-webkit-scrollbar{width:10px}
   ::-webkit-scrollbar-thumb{background:#A8C686;border-radius:5px}
+  /* print / PDF */
+  @media print{
+    header,footer,.pdf-btn,.lang-btn{display:none!important}
+    body{background:#fff!important}
+    .slide{page-break-before:always;scroll-margin-top:0}
+    #slide1{page-break-before:avoid}
+    .card-hover:hover{transform:none!important;box-shadow:none!important}
+    .mermaid svg{max-width:100%!important}
+  }
   /* idioma */
   [data-es]{display:none}
   html[lang="es"] [data-en]{display:none}
@@ -58,6 +67,10 @@
       </nav>
       <button id="langToggle" class="lang-btn text-xs font-bold px-3 py-1.5 rounded-full border" style="border-color:var(--moss-light);color:var(--moss-light)">
         <span data-en>ES</span><span data-es>EN</span>
+      </button>
+      <button onclick="window.print()" class="pdf-btn lang-btn text-xs font-bold px-3 py-1.5 rounded-full border flex items-center gap-1.5" style="border-color:var(--moss-light);color:var(--moss-light)" title="Download as PDF">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        PDF
       </button>
     </div>
   </div>
