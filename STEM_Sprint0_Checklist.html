@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STEM · Sprint 0 — Validación interactiva</title>
+<title>STEM · Tracker de Áreas — Avance a SQL</title>
 <style>
 :root{
   --bg:#f3f5f2; --panel:#ffffff; --ink:#1c241e; --muted:#5d6b60;
@@ -12,6 +12,7 @@
   --low:#2f8f4e; --low-bg:#e6f4ea; --med:#c98a14; --med-bg:#fbf1dc;
   --high:#c0392b; --high-bg:#fbe6e3;
   --done:#2e5e3a; --done-bg:#e6f1e9;
+  --f1:#2f8f4e; --f1-bg:#e6f4ea; --f2:#c98a14; --f2-bg:#fbf1dc;
   --shadow:0 1px 3px rgba(20,40,25,.08),0 1px 2px rgba(20,40,25,.04);
   --radius:12px;
 }
@@ -21,135 +22,92 @@
   --accent:#7db98b; --soft:#1f2a20;
   --low:#6fcf8b; --low-bg:#16301f; --med:#e3b85a; --med-bg:#33280f; --high:#e87a6e; --high-bg:#331c19;
   --done:#7db98b; --done-bg:#1c2c20;
+  --f1:#6fcf8b; --f1-bg:#16301f; --f2:#e3b85a; --f2-bg:#33280f;
   --shadow:0 1px 3px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;background:var(--bg);color:var(--ink);
-  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1240px;margin:0 auto;padding:24px 20px 64px}
-
-/* Header */
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
 .brand{display:flex;align-items:center;gap:14px}
-.mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--forest),var(--moss));
-  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.5px;box-shadow:var(--shadow)}
+.mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--forest),var(--moss));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.5px;box-shadow:var(--shadow)}
 .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);font-weight:700}
 h1{font-size:22px;margin:2px 0 0;font-weight:800;letter-spacing:-.01em}
 .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
-button{font-family:inherit;font-size:13px;font-weight:600;border-radius:9px;border:1px solid var(--line);
-  background:var(--panel);color:var(--ink);padding:9px 14px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+button{font-family:inherit;font-size:13px;font-weight:600;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 14px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px}
 button:hover{border-color:var(--moss);transform:translateY(-1px)}
 button.primary{background:var(--forest);border-color:var(--forest);color:#fff}
 button.primary:hover{background:var(--forest-2)}
 button.danger:hover{border-color:var(--high);color:var(--high)}
 
-/* KPIs */
 .kpis{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;margin:8px 0 18px}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
 .kpi .lab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
 .kpi .val{font-size:26px;font-weight:800;margin-top:4px;letter-spacing:-.02em}
 .kpi .val small{font-size:14px;color:var(--muted);font-weight:600}
 .bar{height:10px;border-radius:6px;background:var(--soft);overflow:hidden;margin-top:12px}
-.bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .4s ease}
-.riskdots{display:flex;gap:14px;margin-top:8px;font-size:12px;font-weight:600}
-.dot{display:inline-flex;align-items:center;gap:5px}
-.dot b{width:9px;height:9px;border-radius:50%}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .4s ease}
 
-/* Avance por persona */
-.people-h{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:4px 2px 10px}
-.people{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
-.person{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
-.person .top{display:flex;align-items:center;gap:11px;margin-bottom:12px}
-.person .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--forest),var(--moss));
-  color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
-.person .who{font-weight:800;font-size:15px;line-height:1.15}
-.person .role{font-size:11px;color:var(--muted);font-weight:600}
-.person .pctbig{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-left:auto}
-.person .pctbig small{font-size:13px;color:var(--muted);font-weight:600}
-.person .pbar{height:9px;border-radius:6px;background:var(--soft);overflow:hidden}
-.person .pbar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .4s ease}
-.person .meta{display:flex;justify-content:space-between;margin-top:9px;font-size:11.5px;color:var(--muted);font-weight:600}
-.person .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
-.person .tag{font-size:10px;font-weight:700;padding:3px 7px;border-radius:5px;background:var(--soft);color:var(--forest);letter-spacing:.03em}
-.person .tag.full{background:var(--done-bg)}
+/* conexiones */
+.conns{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:18px;box-shadow:var(--shadow)}
+.conns .ct{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;margin-bottom:10px}
+.conns .row{display:flex;flex-wrap:wrap;gap:8px}
+.ctag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:var(--soft)}
+.ctag b{font-weight:800}
+.ctag .cdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
-/* Section */
-.section{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  margin-bottom:16px;box-shadow:var(--shadow);overflow:hidden}
-.sec-head{display:flex;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;user-select:none}
-.sec-head:hover{background:var(--soft)}
-.sec-code{font-size:11px;font-weight:800;color:#fff;background:var(--forest);border-radius:6px;padding:4px 9px;letter-spacing:.04em;flex-shrink:0}
-.sec-title{font-weight:700;font-size:15px}
-.sec-note{font-size:12px;color:var(--muted)}
-.sec-owner{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
-  padding:3px 8px;border-radius:20px;background:var(--soft);color:var(--forest);flex-shrink:0}
-.sec-meta{margin-left:auto;display:flex;align-items:center;gap:14px}
-.minibar{width:120px;height:7px;border-radius:5px;background:var(--soft);overflow:hidden}
-.minibar > i{display:block;height:100%;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .3s}
-.sec-pct{font-size:12.5px;font-weight:700;width:46px;text-align:right}
-.chev{transition:.2s;color:var(--muted)}
-.section.collapsed .chev{transform:rotate(-90deg)}
-.section.collapsed .sec-body{display:none}
-
-/* Filtro */
 .filterbar{display:flex;align-items:center;gap:8px;margin:0 0 14px;flex-wrap:wrap}
 .filterbar .flab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
-.fbtn{font-size:12px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--line);
-  background:var(--panel);color:var(--muted);cursor:pointer;transition:.15s}
+.fbtn{font-size:12px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;transition:.15s}
 .fbtn:hover{border-color:var(--moss)}
 .fbtn.on{background:var(--forest);border-color:var(--forest);color:#fff}
 
-/* Table */
-.tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl th{background:var(--soft);text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;
-  letter-spacing:.06em;color:var(--muted);font-weight:700;border-bottom:1px solid var(--line);position:sticky;top:0}
-.tbl td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-.tbl tr:last-child td{border-bottom:none}
-.tbl tr.done td{background:var(--done-bg)}
-.c-field{font-weight:700;min-width:130px}
-.c-crit{min-width:200px}
-.muted{color:var(--muted)}
+.section{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
+.sec-head{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;user-select:none;flex-wrap:wrap}
+.sec-head:hover{background:var(--soft)}
+.sec-code{font-size:11px;font-weight:800;color:#fff;background:var(--forest);border-radius:6px;padding:4px 9px;letter-spacing:.04em;flex-shrink:0}
+.sec-title{font-weight:700;font-size:15px}
+.sec-sub{font-size:11.5px;color:var(--muted)}
+.badge{font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.badge.conn{background:var(--soft);color:var(--forest)}
+.badge.f1{background:var(--f1-bg);color:var(--f1)}
+.badge.f2{background:var(--f2-bg);color:var(--f2)}
+.badge.fmt{background:var(--soft);color:var(--muted)}
+.badge.ia{background:#ece4fb;color:#6b4 caa}
+.badge.ia{background:#efe9fb;color:#6b46c1}
+.badge.done{background:var(--done-bg);color:var(--done)}
+.sec-meta{margin-left:auto;display:flex;align-items:center;gap:12px}
+.minibar{width:110px;height:7px;border-radius:5px;background:var(--soft);overflow:hidden}
+.minibar>i{display:block;height:100%;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .3s}
+.sec-pct{font-size:12.5px;font-weight:700;width:42px;text-align:right}
+.chev{transition:.2s;color:var(--muted)}
+.section.collapsed .chev{transform:rotate(-90deg)}
+.section.collapsed .sec-body{display:none}
+.sec-body{padding:4px 0 8px}
+.note{padding:8px 16px;font-size:12px;color:var(--muted);font-style:italic;border-bottom:1px solid var(--line)}
 
-/* Toggle */
-.toggle{position:relative;width:46px;height:26px;flex-shrink:0;display:inline-block}
+.ms{display:flex;align-items:center;gap:12px;padding:9px 16px;border-bottom:1px solid var(--line)}
+.ms:last-child{border-bottom:none}
+.ms.done{background:var(--done-bg)}
+.ms .mslab{flex:1;font-size:13px}
+.ms .msn{font-size:10.5px;font-weight:800;color:var(--muted);width:18px;text-align:center;flex-shrink:0}
+.toggle{position:relative;width:44px;height:25px;flex-shrink:0;display:inline-block}
 .toggle input{opacity:0;width:0;height:0}
 .slider{position:absolute;inset:0;background:var(--line);border-radius:26px;transition:.2s;cursor:pointer}
-.slider:before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
-.toggle input:checked + .slider{background:var(--done)}
-.toggle input:checked + .slider:before{transform:translateX(20px)}
-.statelab{display:block;font-size:10.5px;font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:.04em}
-.statelab.on{color:var(--done)} .statelab.off{color:var(--muted)}
-.c-state{width:92px;text-align:center}
+.slider:before{content:"";position:absolute;width:19px;height:19px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.toggle input:checked+.slider{background:var(--done)}
+.toggle input:checked+.slider:before{transform:translateX(19px)}
 
-/* Notes + risk */
-.notes{width:100%;min-width:150px;border:1px solid var(--line);border-radius:8px;background:var(--bg);
-  color:var(--ink);font-family:inherit;font-size:12.5px;padding:7px 9px;resize:vertical;min-height:38px}
-.notes:focus{outline:none;border-color:var(--moss)}
-.risk{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12.5px;
-  font-weight:700;cursor:pointer;width:100%}
-.risk:focus{outline:none;border-color:var(--moss)}
-.risk[data-r="Bajo"]{background:var(--low-bg);color:var(--low);border-color:var(--low)}
-.risk[data-r="Medio"]{background:var(--med-bg);color:var(--med);border-color:var(--med)}
-.risk[data-r="Alto"]{background:var(--high-bg);color:var(--high);border-color:var(--high)}
-.c-notes{width:200px} .c-risk{width:108px}
-
-.saved{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);
-  background:var(--forest);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;
-  box-shadow:var(--shadow);transition:.3s;opacity:0;pointer-events:none;z-index:50}
+.excluded{background:var(--panel);border:1px dashed var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:6px;font-size:12.5px;color:var(--muted)}
+.excluded b{color:var(--ink)}
+.saved{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--forest);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;box-shadow:var(--shadow);transition:.3s;opacity:0;pointer-events:none;z-index:50}
 .saved.show{transform:translateX(-50%) translateY(0);opacity:1}
 footer{margin-top:28px;color:var(--muted);font-size:11.5px;text-align:center}
 
 @media(max-width:880px){
   .kpis{grid-template-columns:1fr 1fr}
-  .people{grid-template-columns:1fr}
   .sec-meta .minibar{display:none}
-  .tbl thead{display:none}
-  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
-  .tbl tr{border-bottom:8px solid var(--bg);padding:6px 0}
-  .tbl td{border:none;padding:6px 14px}
-  .tbl td:before{content:attr(data-l);display:block;font-size:10px;text-transform:uppercase;
-    letter-spacing:.06em;color:var(--muted);font-weight:700;margin-bottom:3px}
 }
 </style>
 </head>
@@ -159,334 +117,279 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;text-align:center}
     <div class="brand">
       <div class="mark">ST</div>
       <div>
-        <div class="eyebrow">Proyecto STEM · Sprint 0</div>
-        <h1>Validación interactiva de entregables</h1>
-        <div class="sub">22–30 jun 2026 · GHVeggies BI · El progreso se guarda en este navegador</div>
+        <div class="eyebrow">Proyecto STEM · Tracker de Áreas</div>
+        <h1>Avance de áreas hacia SQL (Nivel 1)</h1>
+        <div class="sub">Cada % sale del avance real de cada área por su archivo (CTS) y su ruta a SQL · GHVeggies BI</div>
       </div>
     </div>
     <div class="actions">
-      <button id="theme" title="Cambiar tema">◐ Tema</button>
-      <button id="export" class="primary">⬇ Exportar progreso</button>
+      <button id="theme">◐ Tema</button>
+      <button id="export" class="primary">⬇ Exportar avance</button>
       <button id="reset" class="danger">↺ Reiniciar</button>
     </div>
   </header>
 
   <div class="kpis">
     <div class="kpi">
-      <div class="lab">Avance general del Sprint 0</div>
-      <div class="val"><span id="pctAll">0</span>% <small>· <span id="doneAll">0</span>/<span id="totAll">0</span> criterios</small></div>
+      <div class="lab">Avance global de áreas a Nivel 1</div>
+      <div class="val"><span id="pctAll">0</span>% <small>· <span id="doneAll">0</span>/<span id="totAll">0</span> hitos</small></div>
       <div class="bar"><i id="barAll"></i></div>
     </div>
     <div class="kpi">
-      <div class="lab">Secciones completas</div>
-      <div class="val"><span id="secDone">0</span><small>/8</small></div>
+      <div class="lab">Áreas en Nivel 1 completo</div>
+      <div class="val"><span id="areasDone">0</span><small>/<span id="areasTot">0</span></small></div>
     </div>
     <div class="kpi">
-      <div class="lab">Riesgos marcados</div>
-      <div class="riskdots">
-        <span class="dot"><b style="background:var(--high)"></b><span id="rHigh">0</span> Alto</span>
-        <span class="dot"><b style="background:var(--med)"></b><span id="rMed">0</span> Medio</span>
-        <span class="dot"><b style="background:var(--low)"></b><span id="rLow">0</span> Bajo</span>
-      </div>
+      <div class="lab">Conectadas a Power BI</div>
+      <div class="val"><span id="pbiDone">0</span><small>/<span id="areasTot2">0</span></small></div>
     </div>
     <div class="kpi">
-      <div class="lab">Filas con evidencia</div>
-      <div class="val"><span id="evid">0</span><small>/<span id="totAll2">0</span></small></div>
+      <div class="lab">Fase 1 / Fase 2</div>
+      <div class="val"><span id="f1c">0</span><small> / <span id="f2c">0</span></small></div>
     </div>
   </div>
 
-  <div class="people-h">Avance por persona</div>
-  <div class="people" id="people"></div>
+  <div class="conns">
+    <div class="ct">Tipos de conexión a origen</div>
+    <div class="row" id="connRow"></div>
+  </div>
 
   <div class="filterbar">
-    <span class="flab">Filtrar por dueño:</span>
-    <button class="fbtn on" data-f="all">Todos</button>
-    <button class="fbtn" data-f="Fernando">Fernando</button>
-    <button class="fbtn" data-f="Avelina">Avelina</button>
-    <button class="fbtn" data-f="Armando">Armando</button>
+    <span class="flab">Filtrar:</span>
+    <button class="fbtn on" data-f="all">Todas</button>
+    <button class="fbtn" data-f="f1">Fase 1</button>
+    <button class="fbtn" data-f="f2">Fase 2</button>
+    <button class="fbtn" data-f="ia">Candidatas IA</button>
+    <button class="fbtn" data-f="pend">Pendientes</button>
   </div>
 
   <div id="root"></div>
 
-  <footer>
-    Documentación STEM · Sprint 0 · Datos almacenados localmente (localStorage). Usa "Exportar progreso" para respaldar.
-  </footer>
+  <div class="excluded" id="excluded"></div>
+
+  <footer>Tracker STEM · avance por área almacenado localmente (localStorage). Usa "Exportar avance" para respaldar.</footer>
 </div>
 <div class="saved" id="toast">Guardado ✓</div>
 
 <script>
-const KEY = "stem_sprint0_v2";
-const RISKS = ["Bajo","Medio","Alto"];
+const KEY="stem_areas_v1";
 
-// Dueños del proyecto y sus iniciales/rol
-const OWNERS = {
-  Fernando: {ini:"F",  role:"Datos y automatización"},
-  Avelina:  {ini:"A",  role:"Voz del negocio"},
-  Armando:  {ini:"AG", role:"Arquitectura y modelo"}
-};
-
-const DATA = [
- {code:"F001", owner:"Fernando", title:"Matriz de Conectividad", note:"Dueño: Fernando · Día 1",
-  rows:[
-   ["ID de fuente","Identificador único, sin duplicados en la matriz","Columna ID poblada al 100%","IDs reutilizados o vacíos"],
-   ["Sistema / origen","Nombre del sistema (Power BI, SharePoint, Ridder, SQL, SISSO, Calidad)","Valor de catálogo cerrado","Texto libre inconsistente"],
-   ["Ruta / endpoint","URL o ruta completa y resoluble","Captura de acceso o link validado","~20 links SharePoint sin validar"],
-   ["Método de acceso","Graph API / REST / pyodbc / manual declarado","Método anotado por fuente","Asumir REST ACS (deprecado)"],
-   ["Estado de acceso","OK / Bloqueado / Pendiente con justificación","Resultado de prueba de conexión","7 sin acceso (6 SISSO, 1 Calidad)"],
-   ["Credencial / cuenta","Cuenta de servicio o usuario responsable nombrado","Referencia a credencial (no el secreto)","Credencial personal no transferible"],
-   ["Tenant","ghveggies o agrogemso identificado","Tenant marcado por fuente","Confundir los dos tenants"],
-  ]},
- {code:"F002", owner:"Fernando", title:"CTS Master Spec v1", note:"Dueño: Fernando · cierre de semana",
-  rows:[
-   ["Encabezado del documento","Versión, fecha, autor y alcance presentes","Bloque de control de versión visible","Versión sin actualizar"],
-   ["Definición de CTS","Compliant Template Standard descrito sin ambigüedad","Sección de definición aprobada","Definiciones tácitas no escritas"],
-   ["Catálogo de campos","Cada campo con nombre, tipo y descripción","Tabla de campos completa","Tipos de dato sin declarar"],
-   ["Reglas de formato","Formatos esperados por campo (fecha, número, texto)","Reglas enlazadas a F003","Reglas que contradicen F003"],
-   ["Frecuencia de actualización","Definida por fuente o marcada como pendiente","Columna frecuencia poblada","Frecuencias indefinidas sin marcar"],
-   ["Trazabilidad a Voz del Negocio","Cada CTS mapeado a ≥1 pregunta de A001","Referencia cruzada A001","CTS sin demanda de negocio"],
-   ["Alcance Fase 2 explícito","SISSO y Calidad marcados como Fase 2","Nota de exclusión visible","Mezclar Fase 1 y Fase 2"],
-  ]},
- {code:"F003", owner:"Fernando", title:"Inventario de Formatos", note:"Dueño: Fernando · semana · alerta: sin dueño por fuente",
-  rows:[
-   ["Nombre del formato","Nombre real del archivo o plantilla","Listado contra origen","Plantillas no inventariadas"],
-   ["Tipo / extensión","xlsx, csv, lista, vpax, etc.","Extensión registrada","Asumir .vpax = Model.bim (es DaxModel.json)"],
-   ["Estructura de columnas","Encabezados y orden documentados","Captura de estructura","Estructura volátil sin congelar"],
-   ["Dueño / capturista","Persona nombrada (no rol genérico)","Nombre individual asignado","Capturistas no nombrados aún"],
-   ["Volumen / tamaño","Filas o MB aproximados (ej. Ridder ~50MB/día)","Conteo o peso registrado","Subestimar volumen para el modelo"],
-   ["Fuente de verdad (14 pestañas)","Decidir cuál pestaña de Empaque_KPIS es la buena","Pestaña activa marcada vs respaldos","Cargar de una pestaña R/Histórico"],
-   ["¿Entra al DW?","Sí / No / Fase 2 decidido por fuente","Columna de decisión poblada","Dejar la decisión ambigua"],
-  ]},
- {code:"F004", owner:"Fernando", title:"Backlog CTS — plantilla poblable", note:"Dueño: Fernando · cierre de semana",
-  rows:[
-   ["ID CTS","Identificador único por ítem del backlog","Columna ID sin huecos","IDs duplicados"],
-   ["Descripción del ítem","Descripción clara y accionable","Texto de ítem completo","Ítems ambiguos no ejecutables"],
-   ["Fuente origen (F001)","Trazable a una fuente de la matriz F001","Referencia cruzada a F001","Ítem sin fuente trazable"],
-   ["Clasificación","Compliant / Partial / Non-Compliant asignada","Clasificación de la matriz CTS","Clasificación en blanco"],
-   ["Prioridad","Alta / Media / Baja","Prioridad definida por ítem","Todo marcado Alta"],
-   ["DoD / criterio de cierre","Definición de Hecho explícita por ítem","Columna DoD poblada","Ítems sin DoD"],
-  ]},
- {code:"CTS", owner:"Fernando", title:"Matriz de clasificación CTS", note:"Compliant / Partial / Non-Compliant",
-  rows:[
-   ["Compliant","Cumple estructura, formato, dueño nombrado y frecuencia definida; entra al DW sin retrabajo","Validación contra F002/F003 sin desviaciones","Marcar Compliant sin probar el acceso"],
-   ["Partial","Cumple parcialmente; faltan campos, dueño o frecuencia, pero es recuperable en Sprint","Lista de desviaciones abiertas con responsable","Tratar Partial como Compliant"],
-   ["Non-Compliant","No cumple estándar o sin acceso; queda fuera de Fase 1 o pasa a Fase 2","Justificación de exclusión y destino (Fase 2)","Forzar al DW una fuente Non-Compliant"],
-  ]},
- {code:"A001", owner:"Avelina", title:"Validación — Voz del Negocio", note:"Dueño: Avelina · semana · meta ≥30 preguntas",
-  rows:[
-   ["ID de pregunta","Identificador único por pregunta","Numeración continua sin huecos","Preguntas duplicadas"],
-   ["Pregunta de negocio","Redactada como pregunta real de la operación","≥30 preguntas registradas","Preguntas inventadas, no de campo"],
-   ["Área","Empaque / Producción (catálogo cerrado)","Clasificación por área completa","Área en blanco o ambigua"],
-   ["Fuente de datos candidata","Fuente que respondería la pregunta","Mapeo a fuente de F001","Preguntas sin fuente posible"],
-   ["Grano implícito","Nivel de detalle que exige la pregunta","Grano anotado por pregunta","Grano más fino que el dato disponible"],
-   ["Prioridad de negocio","Alta / Media / Baja según el negocio","Priorización validada con stakeholder","Priorizar sin el dueño del área"],
-   ["Apta para LLM v1","Marcada para el banco de ≥15 del LLM","Subconjunto LLM identificado","Banco LLM sin validar respuestas"],
-  ]},
- {code:"A002", owner:"Avelina", title:"Validación — Captura de Procesos", note:"Dueño: Avelina · semana",
-  rows:[
-   ["Proceso","Nombre del proceso de captura o reporte","Lista de procesos por área","Procesos informales no documentados"],
-   ["Capturista","Persona nombrada que genera el dato","Nombre individual","Rol genérico sin nombre"],
-   ["Periodicidad","Diaria / semanal / por evento","Frecuencia declarada","Periodicidad supuesta, no confirmada"],
-   ["Herramienta / formato","Excel, lista, sistema origen","Herramienta enlazada a F003","Herramienta no inventariada"],
-   ["Punto de entrada del dato","Dónde y cuándo se captura","Descripción del paso de captura","Doble captura no detectada"],
-   ["Salida / destino","Reporte o tablero que consume el dato","Trazabilidad captura → consumo","Dato sin consumidor conocido"],
-   ["Riesgo de calidad","Errores conocidos del proceso","Nota de calidad por proceso","Asumir calidad sin validar en campo"],
-  ]},
- {code:"ARM002", owner:"Armando", title:"Grano de Fact_Empaque (negocio)", note:"Alerta: pendiente de validación de negocio (medio-alto)",
-  rows:[
-   ["Definición de grano","Una fila = semana × predio × variedad, firmado por negocio","Grano escrito y firmado por negocio","Grano asumido por BI, no por negocio"],
-   ["Dimensiones asociadas","D_Sitio, D_Semana, D_Variedad confirmadas","Lista de dimensiones validada","Dimensión faltante detectada tarde"],
-   ["Métricas / hechos","Medidas aditivas identificadas al grano","Catálogo de métricas aprobado","Mezclar métricas de distinto grano"],
-   ["Cobertura de sitios","JVA, PGA, GAF, BON, GSO, SON cubiertos","Confirmación por sitio","Grano que no aplica a todos los sitios"],
-   ["Contraste con A001","El grano responde las preguntas de empaque de Voz del Negocio","Mapeo grano ↔ preguntas A001","Grano que no responde el negocio"],
-   ["Aprobador de negocio","Stakeholder de Empaque (Victor Carrasco) valida","Aprobación registrada","Cerrar sin firma del área"],
-   ["Normalización de variedades","Validar duplicados (Cherubs Orgánico, Mini Pepino Org)","Tabla sucia→canónica firmada","Variedades duplicadas en el reporte"],
-  ]},
+/* Ruta estándar de cada área hacia Nivel 1 (6 hitos) */
+const MS=[
+  "CTS mínimo viable (archivo estandarizado)",
+  "Fuente / conexión confirmada",
+  "Modelo dimensional definido",
+  "Tabla creada en SQL",
+  "Poblada y validada vs origen",
+  "Conectada a Power BI (Nivel 1)"
 ];
 
-// ---- state ----
-let state = {};
-try{ const s = localStorage.getItem(KEY); if(s) state = JSON.parse(s); }catch(e){ state = {}; }
-let filter = "all";
+/* Tipos de conexión */
+const CONN={
+  ghv:   {lab:"SQL GHS_BI · DFGhveggies", color:"#2e5e3a"},
+  ganfer:{lab:"SQL GHS_BI · DFGanfer (VPN)", color:"#c98a14"},
+  ghs:   {lab:"SQL GHS_BI directo", color:"#3f7a4e"},
+  spx:   {lab:"SharePoint Excel/CSV", color:"#7da37f"},
+  spl:   {lab:"SharePoint List", color:"#5b8fb0"},
+  plan:  {lab:"Planner (Graph)", color:"#9b6dc4"},
+  ridder:{lab:"CSV Ridder → SQL", color:"#c0392b"}
+};
 
-function rk(sc,i){ return sc+"#"+i; }
-function get(sc,i){ return state[rk(sc,i)] || {done:false,notes:"",risk:""}; }
-function set(sc,i,patch){ state[rk(sc,i)] = Object.assign(get(sc,i),patch); save(); }
-function save(){
-  try{ localStorage.setItem(KEY, JSON.stringify(state)); toast(); }catch(e){ console.warn("localStorage no disponible",e); }
+/* Áreas. pre = índices de hitos ya cumplidos por default (estado real conocido). */
+const AREAS=[
+  {code:"EMP", name:"Empaque", fmt:6, conn:"ghv", phase:1, ia:true, lead:"Armando",
+    note:"Fact_Empaque vivo y validado (1,096 filas). Falta conectar Power BI por DirectQuery.", pre:[0,1,2,3,4]},
+  {code:"EGH", name:"Empaque GHS", fmt:2, conn:"ghs", phase:1, ia:false, lead:"Armando",
+    note:"2 formatos ya en SQL GHS_BI.", pre:[1,3]},
+  {code:"DSH", name:"Dashboard", fmt:6, conn:"spx", phase:1, ia:false, lead:"Fernando", note:"", pre:[]},
+  {code:"SEE", name:"SEED", fmt:1, conn:"plan", phase:1, ia:false, lead:"Avelina",
+    note:"Extraíble de Planner vía Microsoft Graph.", pre:[]},
+  {code:"FIN", name:"Finanzas", fmt:6, conn:"spx", phase:1, ia:false, lead:"Fernando", note:"", pre:[]},
+  {code:"INC", name:"Invernadero · Cumplimiento actividades culturales", fmt:6, conn:"spx", phase:1, ia:false, lead:"Fernando", note:"", pre:[]},
+  {code:"INE", name:"Invernadero · Eficiencia mano de obra", fmt:6, conn:"ridder", phase:2, ia:false, lead:"Fernando",
+    note:"Depende de los 6 CSV de Ridder. ETL nuevo a SQL — mini-proyecto Fase 2.", pre:[]},
+  {code:"CRD", name:"CropData", fmt:6, conn:"spx", phase:1, ia:true, lead:"Fernando",
+    note:"Candidata fuerte para la primera prueba de IA (dominio producción).", pre:[]},
+  {code:"CAH", name:"Capital Humano", fmt:6, conn:"spx", phase:1, ia:false, lead:"Fernando", note:"", pre:[]},
+  {code:"CAL", name:"Calidad", fmt:6, conn:"spx", phase:1, ia:true, lead:"Fernando",
+    note:"Candidata a IA. Antes Fase 2; entra a Nivel 1 por decisión de alcance.", pre:[]},
+  {code:"CAW", name:"Calidad Waste", fmt:2, conn:"spx", phase:1, ia:false, lead:"Fernando", note:"", pre:[]},
+  {code:"MIP", name:"MIP", fmt:6, conn:"spx", phase:1, ia:false, lead:"Fernando", note:"", pre:[]},
+  {code:"GAS", name:"Gas", fmt:6, conn:"spx", phase:1, ia:true, lead:"Fernando",
+    note:"Candidata a IA.", pre:[]},
+  {code:"MTP", name:"Mantenimiento Preventivo", fmt:6, conn:"spl", phase:1, ia:false, lead:"Fernando",
+    note:"Origen en SharePoint List.", pre:[]},
+  {code:"MTC", name:"Mantenimiento Correctivo", fmt:6, conn:"spl", phase:1, ia:false, lead:"Fernando",
+    note:"Origen en SharePoint List.", pre:[]},
+  {code:"SIS", name:"SISSO", fmt:6, conn:"ganfer", phase:2, ia:false, lead:"Fernando",
+    note:"Otro tenant, cálculos propios. Probablemente queda igual — dependiente de red/VPN.", pre:[]}
+];
+
+/* Áreas que no se mueven (no cuentan en el %) */
+const NOMOVE=["Forecast","Finanzas · Triángulo de valor"];
+
+/* ---- estado ---- */
+let state={};
+try{const s=localStorage.getItem(KEY); if(s) state=JSON.parse(s);}catch(e){state={};}
+let filter="all";
+
+function rk(c,i){return c+"#"+i;}
+function get(area,i){
+  const k=rk(area.code,i);
+  if(k in state) return state[k];
+  return area.pre.includes(i); // default conocido
 }
-let toastT;
-function toast(){
-  const t=document.getElementById("toast"); t.classList.add("show");
-  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),1100);
+function set(area,i,v){state[rk(area.code,i)]=v; save();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state)); toast();}catch(e){}}
+let tt;
+function toast(){const t=document.getElementById("toast"); t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),1000);}
+
+function areaPct(a){let d=0; for(let i=0;i<MS.length;i++) if(get(a,i)) d++; return Math.round(d/MS.length*100);}
+function areaDone(a){let d=0; for(let i=0;i<MS.length;i++) if(get(a,i)) d++; return d;}
+
+/* ---- render conexiones ---- */
+function renderConns(){
+  const row=document.getElementById("connRow"); row.innerHTML="";
+  Object.keys(CONN).forEach(k=>{
+    const n=AREAS.filter(a=>a.conn===k).length;
+    if(!n) return;
+    const el=document.createElement("span"); el.className="ctag";
+    el.innerHTML=`<span class="cdot" style="background:${CONN[k].color}"></span>${CONN[k].lab} <b>· ${n}</b>`;
+    row.appendChild(el);
+  });
 }
 
-// ---- render secciones ----
+/* ---- render áreas ---- */
+function passFilter(a){
+  if(filter==="all") return true;
+  if(filter==="f1") return a.phase===1;
+  if(filter==="f2") return a.phase===2;
+  if(filter==="ia") return a.ia;
+  if(filter==="pend") return areaPct(a)<100;
+  return true;
+}
 function render(){
   const root=document.getElementById("root"); root.innerHTML="";
-  DATA.forEach(sec=>{
-    if(filter!=="all" && sec.owner!==filter) return;
-    const wrap=document.createElement("div"); wrap.className="section"; wrap.dataset.code=sec.code;
+  AREAS.forEach(a=>{
+    if(!passFilter(a)) return;
+    const wrap=document.createElement("div"); wrap.className="section collapsed"; wrap.dataset.code=a.code;
+    const pct=areaPct(a);
+    const fb=a.phase===1?'<span class="badge f1">Fase 1</span>':'<span class="badge f2">Fase 2</span>';
+    const ia=a.ia?'<span class="badge ia">IA</span>':'';
+    const full=pct===100?'<span class="badge done">Nivel 1 ✓</span>':'';
     const head=document.createElement("div"); head.className="sec-head";
     head.innerHTML=`
-      <span class="sec-code">${sec.code}</span>
-      <span class="sec-owner">${sec.owner}</span>
-      <div><div class="sec-title">${sec.title}</div><div class="sec-note">${sec.note}</div></div>
+      <span class="sec-code">${a.code}</span>
+      <div>
+        <div class="sec-title">${a.name}</div>
+        <div class="sec-sub">${a.fmt} formato(s) · lead ${a.lead}</div>
+      </div>
+      <span class="badge conn"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${CONN[a.conn].color};margin-right:5px"></span>${CONN[a.conn].lab}</span>
+      ${fb}${ia}<span class="badge fmt">${a.fmt} fmt</span>${full}
       <div class="sec-meta">
-        <div class="minibar"><i data-mini="${sec.code}"></i></div>
-        <span class="sec-pct" data-pct="${sec.code}">0%</span>
+        <div class="minibar"><i data-mini="${a.code}" style="width:${pct}%"></i></div>
+        <span class="sec-pct" data-pct="${a.code}">${pct}%</span>
         <span class="chev">▾</span>
       </div>`;
     head.addEventListener("click",()=>wrap.classList.toggle("collapsed"));
     wrap.appendChild(head);
 
     const body=document.createElement("div"); body.className="sec-body";
-    const tbl=document.createElement("table"); tbl.className="tbl";
-    tbl.innerHTML=`<thead><tr>
-      <th>Campo requerido</th><th>Criterio de aceptación</th><th>Evidencia requerida</th>
-      <th>Riesgo común</th><th>Estado</th><th>Evidencia / Notas</th><th>Riesgo</th></tr></thead>`;
-    const tb=document.createElement("tbody");
-    sec.rows.forEach((r,i)=>{
-      const st=get(sec.code,i);
-      const tr=document.createElement("tr"); if(st.done) tr.classList.add("done"); tr.dataset.row=i;
-      const riskOpts=`<option value="">—</option>`+RISKS.map(x=>`<option value="${x}" ${st.risk===x?"selected":""}>${x}</option>`).join("");
-      tr.innerHTML=`
-        <td class="c-field" data-l="Campo">${r[0]}</td>
-        <td class="c-crit" data-l="Criterio">${r[1]}</td>
-        <td class="muted" data-l="Evidencia req.">${r[2]}</td>
-        <td class="muted" data-l="Riesgo común">${r[3]}</td>
-        <td class="c-state" data-l="Estado">
-          <label class="toggle"><input type="checkbox" ${st.done?"checked":""} data-act="done"><span class="slider"></span></label>
-          <span class="statelab ${st.done?"on":"off"}">${st.done?"Completado":"Pendiente"}</span>
-        </td>
-        <td class="c-notes" data-l="Notas"><textarea class="notes" data-act="notes" placeholder="Evidencia o nota…">${st.notes||""}</textarea></td>
-        <td class="c-risk" data-l="Riesgo"><select class="risk" data-act="risk" data-r="${st.risk||""}">${riskOpts}</select></td>`;
-
-      tr.querySelector('[data-act="done"]').addEventListener("change",e=>{
-        set(sec.code,i,{done:e.target.checked});
-        tr.classList.toggle("done",e.target.checked);
-        const lab=tr.querySelector(".statelab");
-        lab.textContent=e.target.checked?"Completado":"Pendiente";
-        lab.className="statelab "+(e.target.checked?"on":"off");
-        refreshKpis();
+    if(a.note){const n=document.createElement("div"); n.className="note"; n.textContent=a.note; body.appendChild(n);}
+    MS.forEach((label,i)=>{
+      const done=get(a,i);
+      const ms=document.createElement("div"); ms.className="ms"+(done?" done":"");
+      ms.innerHTML=`
+        <span class="msn">${i+1}</span>
+        <span class="mslab">${label}</span>
+        <label class="toggle"><input type="checkbox" ${done?"checked":""}><span class="slider"></span></label>`;
+      ms.querySelector("input").addEventListener("change",e=>{
+        set(a,i,e.target.checked);
+        ms.classList.toggle("done",e.target.checked);
+        refresh();
       });
-      tr.querySelector('[data-act="notes"]').addEventListener("input",e=>{
-        set(sec.code,i,{notes:e.target.value}); refreshKpis();
-      });
-      tr.querySelector('[data-act="risk"]').addEventListener("change",e=>{
-        set(sec.code,i,{risk:e.target.value}); e.target.dataset.r=e.target.value; refreshKpis();
-      });
-      tb.appendChild(tr);
+      body.appendChild(ms);
     });
-    tbl.appendChild(tb); body.appendChild(tbl); wrap.appendChild(body); root.appendChild(wrap);
+    wrap.appendChild(body); root.appendChild(wrap);
   });
-  refreshKpis();
+  // excluidas
+  document.getElementById("excluded").innerHTML=
+    `<b>Áreas que no se mueven (excluidas del avance):</b> ${NOMOVE.join(" · ")}. `+
+    `Se documentan pero no afectan el porcentaje, porque no entran a SQL en este proyecto.`;
+  refresh();
 }
 
-// ---- avance por persona ----
-function renderPeople(){
-  const cont=document.getElementById("people"); cont.innerHTML="";
-  Object.keys(OWNERS).forEach(name=>{
-    const secs=DATA.filter(s=>s.owner===name);
-    let total=0,done=0,fullSecs=0;
-    const tags=secs.map(s=>{
-      let st=0,sd=0;
-      s.rows.forEach((_,i)=>{st++;total++; if(get(s.code,i).done){sd++;done++;}});
-      const full=st&&sd===st; if(full)fullSecs++;
-      return {code:s.code, full};
-    });
-    const pct=total?Math.round(done/total*100):0;
-    const o=OWNERS[name];
-    const card=document.createElement("div"); card.className="person";
-    card.innerHTML=`
-      <div class="top">
-        <div class="av">${o.ini}</div>
-        <div><div class="who">${name}</div><div class="role">${o.role}</div></div>
-        <div class="pctbig">${pct}<small>%</small></div>
-      </div>
-      <div class="pbar"><i style="width:${pct}%"></i></div>
-      <div class="meta"><span>${done}/${total} criterios</span><span>${fullSecs}/${secs.length} entregables completos</span></div>
-      <div class="tags">${tags.map(t=>`<span class="tag ${t.full?"full":""}">${t.code}</span>`).join("")}</div>`;
-    cont.appendChild(card);
+function refresh(){
+  let tot=0,done=0,areasDone=0,pbi=0,f1=0,f2=0;
+  AREAS.forEach(a=>{
+    tot+=MS.length;
+    const d=areaDone(a); done+=d;
+    if(d===MS.length) areasDone++;
+    if(get(a,5)) pbi++;
+    if(a.phase===1) f1++; else if(a.phase===2) f2++;
+    const pe=document.querySelector(`[data-pct="${a.code}"]`);
+    const me=document.querySelector(`[data-mini="${a.code}"]`);
+    const pct=areaPct(a);
+    if(pe) pe.textContent=pct+"%";
+    if(me) me.style.width=pct+"%";
   });
-}
-
-function refreshKpis(){
-  let total=0,done=0,evid=0,secDone=0,rHigh=0,rMed=0,rLow=0;
-  DATA.forEach(sec=>{
-    let st=0,sd=0;
-    sec.rows.forEach((r,i)=>{
-      const v=get(sec.code,i); total++; st++;
-      if(v.done){done++;sd++;}
-      if(v.notes && v.notes.trim()) evid++;
-      if(v.risk==="Alto")rHigh++; else if(v.risk==="Medio")rMed++; else if(v.risk==="Bajo")rLow++;
-    });
-    const pct=st?Math.round(sd/st*100):0;
-    const pe=document.querySelector(`[data-pct="${sec.code}"]`);
-    const me=document.querySelector(`[data-mini="${sec.code}"]`);
-    if(pe)pe.textContent=pct+"%"; if(me)me.style.width=pct+"%";
-    if(pct===100)secDone++;
-  });
-  const pct=total?Math.round(done/total*100):0;
+  const pct=tot?Math.round(done/tot*100):0;
   document.getElementById("pctAll").textContent=pct;
   document.getElementById("barAll").style.width=pct+"%";
   document.getElementById("doneAll").textContent=done;
-  document.getElementById("totAll").textContent=total;
-  document.getElementById("totAll2").textContent=total;
-  document.getElementById("secDone").textContent=secDone;
-  document.getElementById("evid").textContent=evid;
-  document.getElementById("rHigh").textContent=rHigh;
-  document.getElementById("rMed").textContent=rMed;
-  document.getElementById("rLow").textContent=rLow;
-  renderPeople();
+  document.getElementById("totAll").textContent=tot;
+  document.getElementById("areasDone").textContent=areasDone;
+  document.getElementById("areasTot").textContent=AREAS.length;
+  document.getElementById("areasTot2").textContent=AREAS.length;
+  document.getElementById("pbiDone").textContent=pbi;
+  document.getElementById("f1c").textContent=f1;
+  document.getElementById("f2c").textContent=f2;
 }
 
-// ---- filtro por dueño ----
-document.querySelectorAll(".fbtn").forEach(b=>{
-  b.addEventListener("click",()=>{
+/* ---- filtros ---- */
+document.querySelectorAll(".fbtn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
     document.querySelectorAll(".fbtn").forEach(x=>x.classList.remove("on"));
-    b.classList.add("on"); filter=b.dataset.f; render();
+    btn.classList.add("on"); filter=btn.dataset.f; render();
   });
 });
 
-// ---- actions ----
+/* ---- export ---- */
 document.getElementById("export").addEventListener("click",()=>{
-  const out={project:"STEM Sprint 0",exported_at:new Date().toISOString(),por_persona:{},checklists:[]};
-  // avance por persona
-  Object.keys(OWNERS).forEach(name=>{
-    const secs=DATA.filter(s=>s.owner===name);
-    let total=0,done=0;
-    secs.forEach(s=>s.rows.forEach((_,i)=>{total++; if(get(s.code,i).done)done++;}));
-    out.por_persona[name]={avance_pct:total?Math.round(done/total*100):0,criterios:done,total};
+  const out={project:"STEM · Tracker de Áreas",exported_at:new Date().toISOString(),areas:[],por_conexion:{},por_fase:{f1:0,f2:0}};
+  AREAS.forEach(a=>{
+    out.areas.push({
+      code:a.code,area:a.name,formatos:a.fmt,conexion:CONN[a.conn].lab,
+      fase:a.phase,candidata_ia:a.ia,lead:a.lead,avance_pct:areaPct(a),
+      hitos:MS.map((m,i)=>({hito:m,cumplido:get(a,i)}))
+    });
+    out.por_conexion[CONN[a.conn].lab]=(out.por_conexion[CONN[a.conn].lab]||0)+1;
+    if(a.phase===1) out.por_fase.f1++; else if(a.phase===2) out.por_fase.f2++;
   });
-  DATA.forEach(sec=>{
-    const rows=sec.rows.map((r,i)=>{const v=get(sec.code,i);
-      return {campo:r[0],criterio:r[1],estado:v.done?"Completado":"Pendiente",notas:v.notes||"",riesgo:v.risk||""};});
-    const done=rows.filter(x=>x.estado==="Completado").length;
-    out.checklists.push({code:sec.code,owner:sec.owner,title:sec.title,avance_pct:Math.round(done/rows.length*100),rows});
-  });
-  const tot=DATA.reduce((a,s)=>a+s.rows.length,0);
-  const dn=DATA.reduce((a,s)=>a+s.rows.filter((_,i)=>get(s.code,i).done).length,0);
-  out.avance_general_pct=Math.round(dn/tot*100);
+  let tot=0,dn=0; AREAS.forEach(a=>{tot+=MS.length; dn+=areaDone(a);});
+  out.avance_global_pct=Math.round(dn/tot*100);
+  out.areas_nivel1_completo=AREAS.filter(a=>areaPct(a)===100).length;
+  out.no_se_mueven=NOMOVE;
   const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download=`STEM_Sprint0_progreso_${new Date().toISOString().slice(0,10)}.json`;
-  a.click(); URL.revokeObjectURL(a.href);
+  const el=document.createElement("a");
+  el.href=URL.createObjectURL(blob);
+  el.download=`STEM_avance_areas_${new Date().toISOString().slice(0,10)}.json`;
+  el.click(); URL.revokeObjectURL(el.href);
 });
 
 document.getElementById("reset").addEventListener("click",()=>{
-  if(confirm("Esto borra todo el progreso guardado en este navegador (estados, notas y riesgos). ¿Continuar?")){
+  if(confirm("Esto borra el avance guardado en este navegador. ¿Continuar?")){
     localStorage.removeItem(KEY); state={}; render();
   }
 });
-
 document.getElementById("theme").addEventListener("click",()=>{
   const cur=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
   document.documentElement.setAttribute("data-theme",cur);
-  try{ localStorage.setItem(KEY+"_theme",cur); }catch(e){}
+  try{localStorage.setItem(KEY+"_theme",cur);}catch(e){}
 });
-(function(){ try{ const t=localStorage.getItem(KEY+"_theme"); if(t) document.documentElement.setAttribute("data-theme",t);}catch(e){} })();
+(function(){try{const t=localStorage.getItem(KEY+"_theme"); if(t) document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
 
+renderConns();
 render();
 </script>
 </body>
