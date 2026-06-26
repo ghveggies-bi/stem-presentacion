@@ -438,7 +438,7 @@ function renderAreas(){
     });
     wrap.appendChild(body);root.appendChild(wrap);
   });
-  document.getElementById("excluded").innerHTML=`<b>Áreas que no se mueven (excluidas del avance):</b> ${NOMOVE.join(" · ")}. Se mantienen igual y no entran a SQL en este proyecto.`;
+  document.getElementById("excluded").innerHTML=`<b>Excluidas de CTS (sí entran a SQL, sin estandarización):</b> ${NOMOVE.join(" · ")}. Su estructura se migra a SQL pero no aplica proceso CTS en este proyecto.`;
 }
 
 let pview="area";
