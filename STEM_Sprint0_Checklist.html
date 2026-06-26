@@ -283,8 +283,26 @@ const CONN={
   spx:{lab:"SharePoint Excel/CSV",color:"#7da37f"},
   spl:{lab:"SharePoint List",color:"#5b8fb0"},
   plan:{lab:"Planner (Graph)",color:"#9b6dc4"},
-  ridder:{lab:"CSV Ridder → SQL",color:"#c0392b"}
+  ridder:{lab:"CSV Ridder → SQL",color:"#c0392b"},
+  doc:{lab:"Entregable Sprint 0",color:"#6b46c1"}
 };
+
+const MS_A001=[
+  "Visita a plantas programada",
+  "Preguntas recopiladas (≥15)",
+  "≥30 preguntas clasificadas por área",
+  "Fuente de datos candidata por pregunta",
+  "Validadas con dueños del negocio",
+  "Entregadas como spec del DWH y LLM"
+];
+const MS_A002=[
+  "Procesos clave identificados por área",
+  "Flujos documentados (diagramas)",
+  "KPIs rotos y faltantes identificados",
+  "Revisados con dueños de área",
+  "Entregados al equipo técnico",
+  "Incorporados al diseño del modelo"
+];
 
 /* etapas del embudo según hito más avanzado */
 const STAGES=[
@@ -302,10 +320,16 @@ const SPRINT_BANDS=[
 ];
 
 const AREAS=[
+  {code:"A001",name:"Voz del Negocio",fmt:0,conn:"doc",phase:1,ia:true,lead:"Avelina",
+    note:"Spec funcional del DWH y del LLM. ≥30 preguntas reales clasificadas por área con fuente candidata.",
+    pre:[0,1],ms:MS_A001},
+  {code:"A002",name:"Captura de Procesos",fmt:0,conn:"doc",phase:1,ia:false,lead:"Avelina",
+    note:"Mapeo de procesos operativos por área. Referencia para el diseño dimensional y validación en campo.",
+    pre:[],ms:MS_A002},
   {code:"EMP",name:"Empaque",fmt:6,conn:"ghv",phase:1,ia:true,lead:"Armando",note:"Fact_Empaque vivo y validado (1,096 filas). Falta conectar Power BI por DirectQuery.",pre:[0,1,2,3,4]},
   {code:"EGH",name:"Empaque GHS",fmt:2,conn:"ghs",phase:1,ia:false,lead:"Armando",note:"2 formatos ya en SQL GHS_BI.",pre:[1,3]},
   {code:"DSH",name:"Dashboard",fmt:6,conn:"spx",phase:1,ia:false,lead:"Fernando",note:"",pre:[]},
-  {code:"SEE",name:"SEED",fmt:1,conn:"plan",phase:1,ia:false,lead:"Avelina",note:"Extraíble de Planner vía Microsoft Graph.",pre:[]},
+  {code:"SEE",name:"SEED",fmt:1,conn:"plan",phase:1,ia:false,lead:"Fernando",note:"Extraíble de Planner vía Microsoft Graph.",pre:[]},
   {code:"FIN",name:"Finanzas",fmt:6,conn:"spx",phase:1,ia:false,lead:"Fernando",note:"Se actualiza con presupuesto y sus forecasts; SÍ entra al avance.",pre:[]},
   {code:"INC",name:"Invernadero · Cumplimiento act. culturales",fmt:6,conn:"spx",phase:1,ia:false,lead:"Fernando",note:"",pre:[]},
   {code:"INE",name:"Invernadero · Eficiencia mano de obra",fmt:6,conn:"ridder",phase:2,ia:false,lead:"Fernando",note:"Depende de los 6 CSV de Ridder. ETL nuevo a SQL — mini-proyecto Fase 2.",pre:[]},
@@ -350,8 +374,9 @@ function get(a,i){const k=rk(a.code,i);if(k in state)return state[k];return a.pr
 function set(a,i,v){state[rk(a.code,i)]=v;save();}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));toast();}catch(e){}}
 let tt;function toast(){const t=document.getElementById("toast");t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1000);}
-function aDone(a){let d=0;for(let i=0;i<MS.length;i++)if(get(a,i))d++;return d;}
-function aPct(a){return Math.round(aDone(a)/MS.length*100);}
+function msOf(a){return a.ms||MS;}
+function aDone(a){const m=msOf(a);let d=0;for(let i=0;i<m.length;i++)if(get(a,i))d++;return d;}
+function aPct(a){const m=msOf(a);return Math.round(aDone(a)/m.length*100);}
 function stageOf(a){
   if(get(a,5))return 3;
   if(get(a,3)&&get(a,4))return 2;
@@ -398,7 +423,7 @@ function renderAreas(){
     wrap.appendChild(head);
     const body=document.createElement("div");body.className="sec-body";
     if(a.note){const n=document.createElement("div");n.className="note";n.textContent=a.note;body.appendChild(n);}
-    MS.forEach((label,i)=>{
+    msOf(a).forEach((label,i)=>{
       const done=get(a,i);
       const ms=document.createElement("div");ms.className="ms"+(done?" done":"");
       ms.innerHTML=`<span class="msn">${i+1}</span><span class="mslab">${label}</span><label class="toggle"><input type="checkbox" ${done?"checked":""}><span class="slider"></span></label>`;
@@ -416,7 +441,7 @@ function renderPeople(){
   Object.keys(PEOPLE).forEach(name=>{
     const areas=AREAS.filter(a=>a.lead===name);
     let tot=0,done=0,full=0;
-    areas.forEach(a=>{tot+=MS.length;done+=aDone(a);if(aPct(a)===100)full++;});
+    areas.forEach(a=>{tot+=msOf(a).length;done+=aDone(a);if(aPct(a)===100)full++;});
     const pct=tot?Math.round(done/tot*100):0;const o=PEOPLE[name];
     const fullname=name==="Armando"?"Armando Gaytán":name==="Fernando"?"Fernando De Santiago":"Avelina Paz";
     const card=document.createElement("div");card.className="person";
@@ -430,7 +455,7 @@ function renderPeople(){
       inner+=`<div class="parea-list">`;
       areas.forEach(a=>{
         inner+=`<div class="parea"><div class="parea-h"><span class="parea-code">${a.code}</span><span class="parea-name">${a.name.split(" · ")[0]}</span><span class="parea-pct">${aPct(a)}%</span></div><div class="parea-ms">`;
-        MS.forEach((m,i)=>{
+        msOf(a).forEach((m,i)=>{
           const d=get(a,i);
           inner+=`<span class="mschip ${d?'done':''}">${d?'✓':(i+1)+'.'} ${m.split(" (")[0]}</span>`;
         });
@@ -454,7 +479,7 @@ function renderCollab(){
   const g=document.getElementById("collabGrid");g.innerHTML="";
   Object.keys(PEOPLE).forEach(name=>{
     const areas=AREAS.filter(a=>a.lead===name);
-    let tot=0,done=0;areas.forEach(a=>{tot+=MS.length;done+=aDone(a);});
+    let tot=0,done=0;areas.forEach(a=>{tot+=msOf(a).length;done+=aDone(a);});
     const pct=tot?Math.round(done/tot*100):0;const o=PEOPLE[name];
     const fullname=name==="Armando"?"Armando Gaytán":name==="Fernando"?"Fernando De Santiago":"Avelina Paz";
     const el=document.createElement("div");el.className="ccard";
@@ -521,7 +546,7 @@ function renderPlan(){
 
 function refreshKpis(){
   let tot=0,done=0,areasDone=0,pbi=0,f1=0,f2=0;
-  AREAS.forEach(a=>{tot+=MS.length;const d=aDone(a);done+=d;if(d===MS.length)areasDone++;if(get(a,5))pbi++;if(a.phase===1)f1++;else f2++;});
+  AREAS.forEach(a=>{const m=msOf(a);tot+=m.length;const d=aDone(a);done+=d;if(aPct(a)===100)areasDone++;if(get(a,5)&&!a.ms)pbi++;if(a.phase===1)f1++;else f2++;});
   const pct=tot?Math.round(done/tot*100):0;
   document.getElementById("pctAll").textContent=pct;
   document.getElementById("barAll").style.width=pct+"%";
@@ -568,9 +593,9 @@ document.getElementById("export").addEventListener("click",()=>{
     out.por_conexion[CONN[a.conn].lab]=(out.por_conexion[CONN[a.conn].lab]||0)+1;
     if(a.phase===1)out.por_fase.f1++;else out.por_fase.f2++;
   });
-  Object.keys(PEOPLE).forEach(n=>{let t=0,d=0;AREAS.filter(a=>a.lead===n).forEach(a=>{t+=MS.length;d+=aDone(a);});out.por_persona[n]={avance_pct:t?Math.round(d/t*100):0};});
+  Object.keys(PEOPLE).forEach(n=>{let t=0,d=0;AREAS.filter(a=>a.lead===n).forEach(a=>{t+=msOf(a).length;d+=aDone(a);});out.por_persona[n]={avance_pct:t?Math.round(d/t*100):0};});
   STAGES.forEach((s,i)=>{out.por_etapa[s.name]=AREAS.filter(a=>stageOf(a)===i).length;});
-  let tot=0,dn=0;AREAS.forEach(a=>{tot+=MS.length;dn+=aDone(a);});
+  let tot=0,dn=0;AREAS.forEach(a=>{tot+=msOf(a).length;dn+=aDone(a);});
   out.avance_general_pct=Math.round(dn/tot*100);
   out.areas_nivel1_completo=AREAS.filter(a=>aPct(a)===100).length;
   out.no_se_mueven=NOMOVE;
