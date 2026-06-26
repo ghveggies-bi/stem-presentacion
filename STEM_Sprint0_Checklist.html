@@ -323,9 +323,6 @@ const AREAS=[
   {code:"A001",name:"Voz del Negocio",fmt:0,conn:"doc",phase:1,ia:true,lead:"Avelina",
     note:"Spec funcional del DWH y del LLM. ≥30 preguntas reales clasificadas por área con fuente candidata.",
     pre:[0,1],ms:MS_A001},
-  {code:"A002",name:"Captura de Procesos",fmt:0,conn:"doc",phase:1,ia:false,lead:"Avelina",
-    note:"Mapeo de procesos operativos por área. Referencia para el diseño dimensional y validación en campo.",
-    pre:[],ms:MS_A002},
   {code:"EMP",name:"Empaque",fmt:6,conn:"ghv",phase:1,ia:true,lead:"Armando",note:"Fact_Empaque vivo y validado (1,096 filas). Falta conectar Power BI por DirectQuery.",pre:[0,1,2,3,4]},
   {code:"EGH",name:"Empaque GHS",fmt:2,conn:"ghs",phase:1,ia:false,lead:"Armando",note:"2 formatos ya en SQL GHS_BI.",pre:[1,3]},
   {code:"DSH",name:"Dashboard",fmt:6,conn:"spx",phase:1,ia:false,lead:"Fernando",note:"",pre:[]},
@@ -343,6 +340,15 @@ const AREAS=[
   {code:"MTC",name:"Mantenimiento Correctivo",fmt:6,conn:"spl",phase:1,ia:false,lead:"Fernando",note:"Origen en SharePoint List.",pre:[]},
   {code:"SIS",name:"SISSO",fmt:6,conn:"ganfer",phase:2,ia:false,lead:"Fernando",note:"Otro tenant, cálculos propios. Probablemente queda igual — dependiente de red/VPN.",pre:[]}
 ];
+/* Captura de Procesos: una entrada por cada área SQL */
+[["EMP","Empaque"],["EGH","Empaque GHS"],["DSH","Dashboard"],["SEE","SEED"],
+ ["FIN","Finanzas"],["INC","Invernadero · Cumplimiento"],["INE","Invernadero · Eficiencia"],
+ ["CRD","CropData"],["CAH","Capital Humano"],["CAL","Calidad"],["CAW","Calidad Waste"],
+ ["MIP","MIP"],["GAS","Gas"],["MTP","Mant. Preventivo"],["MTC","Mant. Correctivo"],["SIS","SISSO"]
+].forEach(([c,n])=>AREAS.push({code:"CP_"+c,name:"Captura · "+n,fmt:0,conn:"doc",
+  phase:c==="SIS"||c==="INE"?2:1,ia:false,lead:"Avelina",
+  note:"Mapeo de procesos de "+n+". Referencia para diseño dimensional y validación en campo.",
+  pre:[],ms:MS_A002}));
 const NOMOVE=["Forecast","Finanzas · Triángulo de valor"];
 
 const PEOPLE={
