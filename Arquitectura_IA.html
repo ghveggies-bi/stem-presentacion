@@ -19,13 +19,20 @@
   body{font-family:'Inter',sans-serif;color:#16311F;background:#F6F8F3;overflow-x:hidden}
   h1,h2,h3,.serif{font-family:'Playfair Display',serif}
 
-  /* idioma */
-  [data-es]{display:none}
-  html[lang="es"] [data-en]{display:none}
-  html[lang="es"] [data-es]{display:initial}
-  [data-es-block]{display:none}
-  html[lang="es"] [data-en-block]{display:none}
-  html[lang="es"] [data-es-block]{display:block}
+  /* ===== IDIOMA (Solución Grid para renderizar Mermaid oculto) ===== */
+  /* Para textos (inline) */
+  [data-es] { display: none !important; }
+  html[lang="es"] [data-en] { display: none !important; }
+  html[lang="es"] [data-es] { display: inline !important; }
+  
+  /* Para bloques de diagramas (Empalme de cuadrícula) */
+  .lang-grid { display: grid; width: 100%; }
+  .lang-grid > div { grid-column: 1; grid-row: 1; transition: opacity 0.4s ease; }
+  
+  [data-es-block] { opacity: 0; pointer-events: none; visibility: hidden; z-index: 0; }
+  html[lang="es"] [data-en-block] { opacity: 0; pointer-events: none; visibility: hidden; z-index: 0; }
+  html[lang="es"] [data-es-block] { opacity: 1; pointer-events: auto; visibility: visible; z-index: 1; }
+  
   .lang-btn{transition:.2s}
   .lang-btn:hover{background:rgba(255,255,255,.18)}
 
@@ -118,8 +125,8 @@
       <span data-es>Democratizar la operación mediante Inteligencia Artificial</span>
     </h1>
     <p class="max-w-3xl mx-auto text-lg text-gray-600">
-      <span data-en>We aim to evolve from navigating complex dashboards toward a <strong>Virtual OpEx Agent</strong> — an interface where supervisors, coordinators, and managers can query the pulse of the greenhouse in natural language, getting instant answers about efficiencies, RIDDER, and weather reports.</span>
-      <span data-es>Buscamos evolucionar de la navegación compleja en tableros hacia un <strong>Agente Virtual OpEx</strong>. Una interfaz donde supervisores, coordinadores y gerentes puedan consultar el pulso del invernadero en lenguaje natural, obteniendo respuestas inmediatas sobre eficiencias, RIDDER y reportes de clima.</span>
+      <span data-en>We aim to evolve from navigating complex dashboards toward a <strong>Virtual OpEx Agent</strong> — an interface where supervisors, coordinators, and managers can query the pulse of the greenhouse in natural language, getting instant answers about efficiencies, RIDDER, weather reports, among other reports.</span>
+      <span data-es>Buscamos evolucionar de la navegación compleja en tableros hacia un <strong>Agente Virtual OpEx</strong>. Una interfaz donde supervisores, coordinadores y gerentes puedan consultar el pulso del invernadero en lenguaje natural, obteniendo respuestas inmediatas sobre eficiencias, RIDDER, reportes de clima, entre otros reportes.</span>
     </p>
   </div>
 
@@ -196,7 +203,10 @@
   </div>
 
   <div class="bg-white rounded-3xl p-6 shadow-xl overflow-x-auto dynamic-card flow-border reveal-up">
-    <div class="mermaid" data-en-block>
+    
+    <!-- CONTENEDOR GRID PARA LAS GRÁFICAS -->
+    <div class="lang-grid">
+      <div class="mermaid" data-en-block>
 %%{init: {'theme':'base','themeVariables':{'fontFamily':'Inter','fontSize':'14px','primaryColor':'#EDF2E8','primaryBorderColor':'#7BA05B','lineColor':'#5C8A3C','primaryTextColor':'#16311F'}}}%%
 graph LR
   subgraph Sources
@@ -209,12 +219,14 @@ graph LR
 
   DWH --> PBI["Output 1: Power BI<br/>(Executive Dashboards)"]:::ok
   DWH --> AI["Output 2: Virtual OpEx Agent<br/>Real-time decisions, no dashboards"]:::ai
+  AI --> W["2.1 WhatsApp / Teams<br/>Casual, conversational Q&A"]:::ai
+  AI --> N["2.2 Automated reports (n8n)<br/>Pre-designed charts and summaries"]:::ai
 
   classDef core fill:#15311E,stroke:#15311E,stroke-width:2px,color:#ffffff,rx:10px,ry:10px;
   classDef ok fill:#E2EFD6,stroke:#2C5F2D,stroke-width:2px,color:#1E4429,rx:10px,ry:10px;
   classDef ai fill:#2C5F2D,stroke:#15311E,stroke-width:3px,color:#ffffff,rx:10px,ry:10px;
-    </div>
-    <div class="mermaid" data-es-block>
+      </div>
+      <div class="mermaid" data-es-block>
 %%{init: {'theme':'base','themeVariables':{'fontFamily':'Inter','fontSize':'14px','primaryColor':'#EDF2E8','primaryBorderColor':'#7BA05B','lineColor':'#5C8A3C','primaryTextColor':'#16311F'}}}%%
 graph LR
   subgraph Orígenes
@@ -227,11 +239,15 @@ graph LR
 
   DWH --> PBI["Salida 1: Power BI<br/>(Dashboards Ejecutivos)"]:::ok
   DWH --> AI["Salida 2: Agente Virtual OpEx<br/>Decisiones en tiempo real, sin tableros"]:::ai
+  AI --> W["2.1 WhatsApp / Teams<br/>Consulta casual y conversacional"]:::ai
+  AI --> N["2.2 Reportes automáticos (n8n)<br/>Gráficas y resúmenes prediseñados"]:::ai
 
   classDef core fill:#15311E,stroke:#15311E,stroke-width:2px,color:#ffffff,rx:10px,ry:10px;
   classDef ok fill:#E2EFD6,stroke:#2C5F2D,stroke-width:2px,color:#1E4429,rx:10px,ry:10px;
   classDef ai fill:#2C5F2D,stroke:#15311E,stroke-width:3px,color:#ffffff,rx:10px,ry:10px;
+      </div>
     </div>
+    
     <div class="flex items-center justify-center gap-2 mt-5">
       <span class="live-dot"></span>
       <span class="text-xs font-bold uppercase tracking-wider" style="color:var(--forest-2)">
@@ -239,6 +255,10 @@ graph LR
         <span data-es>La Salida 2 es la prioridad estratégica — IA en producción, no una demo de tablero</span>
       </span>
     </div>
+    <p class="text-xs text-gray-500 mt-3 text-center max-w-2xl mx-auto">
+      <span data-en><strong>2.1</strong> is casual and conversational — the user asks whatever they need, in WhatsApp or Teams. <strong>2.2</strong> is the opposite discipline: pre-designed reports with established charts, delivered automatically on schedule via n8n. Two consumption styles, one governed source.</span>
+      <span data-es><strong>2.1</strong> es casual y conversacional — el usuario pregunta lo que necesita, en WhatsApp o Teams. <strong>2.2</strong> es la disciplina opuesta: reportes prediseñados con gráficas ya establecidas, entregados automáticamente y con horario vía n8n. Dos estilos de consumo, una sola fuente gobernada.</span>
+    </p>
   </div>
 </section>
 
@@ -250,15 +270,18 @@ graph LR
       <p class="text-green-100/80 max-w-2xl mx-auto"><span data-en>To move forward aligned with the organization's technology strategy, we request your consultative expertise and enablement on the following strategic fronts.</span><span data-es>Para avanzar alineados a la estrategia tecnológica de la organización, solicitamos su expertise consultivo y habilitación en los siguientes frentes estratégicos.</span></p>
     </div>
 
-    <div class="grid md:grid-cols-4 gap-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <!-- Card 1: COPILOT STUDIO & 365 -->
+      <!-- Card 1: COPILOT + CLAUDE -->
       <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer reveal-up">
         <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-white/20">
-          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.2L21.6 12l-7.2 2.4L12 22l-2.4-7.6L2 12l7.6-2.8z"/></svg>
         </div>
-        <h3 class="serif text-lg font-bold mb-2"><span data-en>Copilot Studio & 365 Rollout</span><span data-es>Despliegue Copilot Studio & 365</span></h3>
-        <p class="text-sm text-green-50/80"><span data-en>Leveraging the licenses already granted, we will connect the agent directly to SQL. This eliminates "hallucinations" through grounded generative responses and enables fast omnichannel deployment (Teams and Web Portal).</span><span data-es>Aprovechando las licencias otorgadas, conectaremos el agente directo a SQL. Esto elimina "alucinaciones" mediante respuestas generativas acotadas y permite un despliegue omnicanal rápido (Teams y Portal Web).</span></p>
+        <h3 class="serif text-lg font-bold mb-2"><span data-en>AI Stack: Copilot Studio & Claude</span><span data-es>Stack de IA: Copilot Studio &amp; Claude</span></h3>
+        <p class="text-sm text-green-50/80">
+          <span data-en><strong>Claude has already proven itself as the co-architect of this initiative</strong> — it supported the SQL DDL, the ETL templates, the governance tracker, and this very portal. <strong>Copilot Studio turns that foundation into the agent</strong>: connected directly to SQL, it eliminates hallucinations through grounded responses and deploys omnichannel (Teams and Web) on licenses already paid for. One builds, the other delivers. Formalizing both extends what already works — code and documentation flow out; the governed environment stays intact.</span>
+          <span data-es><strong>Claude ya demostró ser el coarquitecto de esta iniciativa</strong> — apoyó en la generación del DDL en SQL, las plantillas de ETL, el tracker de gobernanza y este mismo portal. <strong>Copilot Studio convierte esa base en el agente</strong>: conectado directo a SQL, elimina alucinaciones mediante respuestas acotadas y se despliega omnicanal (Teams y Web) sobre licencias ya pagadas. Uno construye, el otro entrega. Formalizar ambos extiende lo que ya funciona — lo que sale es código y documentación; el entorno gobernado queda intacto.</span>
+        </p>
       </div>
 
       <!-- Card 2: Cuentas de Servicio -->
@@ -268,8 +291,8 @@ graph LR
         </div>
         <h3 class="serif text-lg font-bold mb-2"><span data-en>Service Accounts</span><span data-es>Cuentas de Servicio</span></h3>
         <p class="text-sm text-green-50/80">
-          <span data-en>Configuration of system credentials tied to the account <strong>agaytan@ghveggies.com</strong>. This shields the connection against individual-user password rotation policies.</span>
-          <span data-es>Configuración de credenciales de sistema ligadas a la cuenta <strong>agaytan@ghveggies.com</strong>. Esto blinda la conexión contra políticas de rotación de contraseñas de usuarios individuales.</span>
+          <span data-en>We request a system credential tied to the corporate account <strong>pbi@ghveggies.com</strong>, configured in <strong>Microsoft Entra ID</strong> as a service account exempt from password rotation policies. This shields the connection: no expiring individual-user password can ever take the pipeline down.</span>
+          <span data-es>Solicitamos una credencial de sistema ligada a la cuenta corporativa <strong>pbi@ghveggies.com</strong>, configurada en <strong>Microsoft Entra ID</strong> como cuenta de servicio exenta de las políticas de rotación de contraseñas. Esto blinda la conexión: ninguna contraseña individual que caduque puede tirar la tubería.</span>
         </p>
       </div>
 
@@ -291,6 +314,18 @@ graph LR
         <p class="text-sm text-green-50/80"><span data-en>Joint execution of tests to ensure the model responds fluidly, certifying a safe, non-disruptive path to production.</span><span data-es>Ejecución conjunta de pruebas para asegurar que el modelo responda fluidamente y certificar el paso a producción de manera segura y sin impacto negativo.</span></p>
       </div>
 
+      <!-- Card 5: Capacitación en IA -->
+      <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer reveal-up">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-white/20">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3 class="serif text-lg font-bold mb-2"><span data-en>AI Training for the Team</span><span data-es>Capacitación en IA para el equipo</span></h3>
+        <p class="text-sm text-green-50/80">
+          <span data-en>We request sponsorship for targeted training that de-risks the rollout: <strong>agent building with Copilot Studio</strong> (Microsoft official learning path), <strong>prompt engineering</strong> for reliable business responses, <strong>enterprise AI governance and security</strong>, and <strong>workflow automation with n8n and APIs</strong>. Skills stay in-house — the team operates the agent instead of depending on external consultants.</span>
+          <span data-es>Solicitamos patrocinio para capacitación puntual que reduce el riesgo del despliegue: <strong>construcción de agentes con Copilot Studio</strong> (ruta oficial de Microsoft Learn), <strong>ingeniería de prompts</strong> para respuestas de negocio confiables, <strong>gobernanza y seguridad de IA empresarial</strong>, y <strong>automatización de flujos con n8n y APIs</strong>. El conocimiento queda en casa — el equipo opera el agente en lugar de depender de consultores externos.</span>
+        </p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -309,13 +344,13 @@ graph LR
     html.lang = (html.lang === 'es') ? 'en' : 'es';
   });
 
-  // revelado al hacer scroll (no depende del cursor)
+  // revelado al hacer scroll
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.15});
   document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
 
-  // tecleo automático continuo, cicla las preguntas de ejemplo (ambos idiomas)
+  // tecleo automático de ejemplos
   const QUESTIONS = {
     en: [
       "Which crop shows the highest labor-hour problem today?",
