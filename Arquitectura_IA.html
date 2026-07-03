@@ -305,16 +305,7 @@ graph LR
         <p class="text-sm text-green-50/80"><span data-en>Enable the Data Gateway on the on-premise SQL server and assign strictly Read-Only permissions to the Agent over certified views, guaranteeing security.</span><span data-es>Habilitar el Data Gateway en el servidor SQL on-premise y asignar permisos estrictamente de solo lectura (Read-Only) al Agente sobre las vistas certificadas, garantizando la seguridad.</span></p>
       </div>
 
-      <!-- Card 4: Certificación -->
-      <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer reveal-up">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-white/20">
-          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        </div>
-        <h3 class="serif text-lg font-bold mb-2"><span data-en>Certification Window</span><span data-es>Ventana de Certificación</span></h3>
-        <p class="text-sm text-green-50/80"><span data-en>Joint execution of tests to ensure the model responds fluidly, certifying a safe, non-disruptive path to production.</span><span data-es>Ejecución conjunta de pruebas para asegurar que el modelo responda fluidamente y certificar el paso a producción de manera segura y sin impacto negativo.</span></p>
-      </div>
-
-      <!-- Card 5: Capacitación en IA -->
+      <!-- Card 4: Capacitación en IA -->
       <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer reveal-up">
         <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-white/20">
           <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
@@ -353,16 +344,16 @@ graph LR
   // tecleo automático de ejemplos
   const QUESTIONS = {
     en: [
-      "Which crop shows the highest labor-hour problem today?",
-      "Show me the ranking of the most efficient labor-hours in bajada.",
-      "How many rows have we completed in the anillo activity, and what's the target?",
-      "Give me a summary of last night's weather alarms."
+      "What is the harvest projection for peppers and tomatoes this week?",
+      "Which greenhouse is recording the lowest temperatures today?",
+      "Compare this week's packing yield against the target.",
+      "Show me the ranking of the most efficient labor-hours in cutting."
     ],
     es: [
-      "¿Qué cultivo presenta el mayor problema en jornales el día de hoy?",
-      "Muéstrame el ranking de los jornales más eficientes en bajada.",
-      "¿Cuántos surcos llevamos de la actividad de anillo y cuál es el target?",
-      "Extrae un resumen de las alarmas de clima de anoche."
+      "¿Cuál es la proyección de cosecha de pimientos y tomates para esta semana?",
+      "¿Qué invernadero registra las temperaturas más bajas hoy?",
+      "Compara el rendimiento de empaque de esta semana contra el target.",
+      "Muéstrame el ranking de los jornales más eficientes en corte."
     ]
   };
   const typeEl = document.getElementById('typeLine');
