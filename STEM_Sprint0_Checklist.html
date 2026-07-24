@@ -3,27 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STEM · Tracker de Avance por Áreas</title>
+<title>STEM · Roadmap y Avance</title>
 <style>
 :root{--bg:#f3f5f2;--panel:#fff;--ink:#1c241e;--muted:#5d6b60;--line:#dde3dd;--forest:#2e5e3a;--forest-2:#3f7a4e;--moss:#7da37f;--soft:#eaf1ec;--low:#2f8f4e;--low-bg:#e6f4ea;--med:#c98a14;--med-bg:#fbf1dc;--high:#c0392b;--high-bg:#fbe6e3;--done:#2e5e3a;--done-bg:#e6f1e9;--f1:#2f8f4e;--f1-bg:#e6f4ea;--f2:#c98a14;--f2-bg:#fbf1dc;--ia:#6b46c1;--ia-bg:#efe9fb;--ws1:#5b8fb0;--ws2:#c98a14;--ws3:#6b46c1;--pend:#b06b5f;--pend-bg:#fbeeec;--shadow:0 1px 3px rgba(20,40,25,.08),0 1px 2px rgba(20,40,25,.04);--radius:12px;}
 [data-theme="dark"]{--bg:#11160f;--panel:#19211a;--ink:#e7ede7;--muted:#9bab9d;--line:#2a352b;--forest:#7db98b;--forest-2:#6fae7e;--moss:#8fb892;--soft:#1f2a20;--low:#6fcf8b;--low-bg:#16301f;--med:#e3b85a;--med-bg:#33280f;--high:#e87a6e;--high-bg:#331c19;--done:#7db98b;--done-bg:#1c2c20;--f1:#6fcf8b;--f1-bg:#16301f;--f2:#e3b85a;--f2-bg:#33280f;--ia:#b794e8;--ia-bg:#2a2140;--ws1:#7badcf;--ws2:#e3b85a;--ws3:#b794e8;--pend:#d99b8f;--pend-bg:#2e1f1c;--shadow:0 1px 3px rgba(0,0,0,.4);}
-.cts-sel{font-family:inherit;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);padding:5px 8px;cursor:pointer}
-.cts-sel:hover{border-color:var(--moss)}
-.mrow{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:8px;box-shadow:var(--shadow);flex-wrap:wrap}
-.mrow .mcode{font-size:11px;font-weight:800;color:#fff;background:var(--forest);border-radius:6px;padding:3px 8px;flex-shrink:0}
-.mrow .mname{font-weight:700;font-size:13px;min-width:150px}
-.mchips{display:flex;gap:6px;flex-wrap:wrap}
-.wschip{font-size:11px;font-weight:800;padding:4px 10px;border-radius:7px}
-.wschip.ok{background:var(--low-bg);color:var(--low)}
-.wschip.pend{background:var(--pend-bg);color:var(--pend)}
-.wschip.part{background:var(--med-bg);color:var(--med)}
-.wschip.na{background:var(--soft);color:var(--muted)}
-.mrow .mtot{margin-left:auto;font-weight:800;font-size:15px}
-.mrow .mtot.ok{color:var(--low)}.mrow .mtot.pend{color:var(--pend)}
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1240px;margin:0 auto;padding:24px 20px 64px}
-header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 20px 60px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
 .brand{display:flex;align-items:center;gap:14px}
 .mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--forest),var(--moss));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;box-shadow:var(--shadow)}
 .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);font-weight:700}
@@ -35,26 +22,65 @@ button:hover{border-color:var(--moss);transform:translateY(-1px)}
 button.primary{background:var(--forest);border-color:var(--forest);color:#fff}
 button.primary:hover{background:var(--forest-2)}
 button.danger:hover{border-color:var(--high);color:var(--high)}
-.kpis{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;margin:8px 0 18px}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
-.kpi .lab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
-.kpi .val{font-size:26px;font-weight:800;margin-top:4px;letter-spacing:-.02em}
-.kpi .val small{font-size:14px;color:var(--muted);font-weight:600}
-.bar{height:10px;border-radius:6px;background:var(--soft);overflow:hidden;margin-top:12px}
+.kpis{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:12px;margin:6px 0 12px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.kpi .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
+.kpi .val{font-size:25px;font-weight:800;margin-top:3px;letter-spacing:-.02em}
+.kpi .val small{font-size:13px;color:var(--muted);font-weight:600}
+.kpi .hint{font-size:11px;color:var(--muted);margin-top:3px}
+.bar{height:9px;border-radius:6px;background:var(--soft);overflow:hidden;margin-top:9px}
 .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .4s ease}
-.collab{margin:-6px 0 18px}
-.collab-toggle{font-size:12.5px;font-weight:700;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;width:100%;text-align:left;cursor:pointer;transition:.15s}
-.collab-toggle:hover{border-color:var(--moss);color:var(--ink)}
-.collab-grid{display:none;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.collab-grid.open{display:grid}
-.ccard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;box-shadow:var(--shadow);display:flex;align-items:center;gap:11px}
-.ccard .av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
-.ccard .cn{font-weight:700;font-size:13px;line-height:1.1}.ccard .cr{font-size:10.5px;color:var(--muted)}
-.ccard .cp{margin-left:auto;font-weight:800;font-size:18px;color:var(--forest)}
-.tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:5px;margin-bottom:18px;width:fit-content;flex-wrap:wrap}
-.tab{border:none;background:none;font-size:13px;font-weight:700;color:var(--muted);padding:9px 18px;border-radius:24px;cursor:pointer;transition:.18s}
+.striptop{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.chipk{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:7px 12px;font-size:11.5px;font-weight:600;color:var(--muted);box-shadow:var(--shadow)}
+.chipk b{color:var(--ink);font-weight:800}
+.tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:5px;margin-bottom:16px;width:fit-content;flex-wrap:wrap}
+.tab{border:none;background:none;font-size:13px;font-weight:700;color:var(--muted);padding:9px 17px;border-radius:24px;cursor:pointer;transition:.18s}
 .tab:hover{color:var(--ink)}.tab.on{background:var(--forest);color:#fff}
 .view{display:none}.view.on{display:block}
+
+/* ===== ROADMAP ===== */
+.rmbands{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);margin-bottom:14px}
+.bandrow{display:grid;grid-template-columns:150px 1fr 62px;align-items:center;gap:12px;margin-bottom:9px}
+.bandrow:last-child{margin-bottom:0}
+.bandlab{font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.bandtrack{height:14px;border-radius:8px;background:var(--soft);overflow:hidden;position:relative}
+.bandtrack>i{display:block;height:100%;border-radius:8px;transition:width .5s}
+.bandpct{font-size:15px;font-weight:800;text-align:right}
+.banddelta{font-size:11.5px;color:var(--muted);margin-top:9px;padding-top:9px;border-top:1px solid var(--line)}
+.banddelta b{color:var(--pend)}
+
+.rmwrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px 0 4px;overflow-x:auto}
+.rmline{position:relative;height:430px;min-width:1120px}
+.rmaxis{position:absolute;left:6%;right:6%;top:50%;height:3px;background:var(--line);border-radius:3px}
+.rmaxis>i{display:block;height:100%;background:linear-gradient(90deg,var(--forest),var(--moss));border-radius:3px;width:0;transition:width .5s}
+.today{position:absolute;top:50%;transform:translate(-50%,-50%);z-index:6;display:flex;flex-direction:column;align-items:center}
+.today .tdot{width:15px;height:15px;border-radius:50%;background:var(--forest);border:3px solid var(--panel);box-shadow:0 0 0 2px var(--forest)}
+.today .tlab{position:absolute;top:20px;white-space:nowrap;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--forest);background:var(--panel);padding:2px 7px;border-radius:20px;border:1px solid var(--forest)}
+.flag{position:absolute;transform:translateX(-50%);width:196px;display:flex;flex-direction:column;align-items:center;z-index:4}
+.flag.up{bottom:50%}
+.flag.down{top:50%;flex-direction:column-reverse}
+.fpole{width:2px;height:26px;background:var(--line)}
+.fdot{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;border:2.5px solid var(--panel);z-index:5}
+.fcard{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 12px;box-shadow:var(--shadow);transition:.2s}
+.fcard:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(20,40,25,.14)}
+.fdate{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.ftitle{font-size:12.5px;font-weight:700;line-height:1.25;margin:3px 0 7px}
+.fbar{height:6px;border-radius:5px;background:var(--soft);overflow:hidden}
+.fbar>i{display:block;height:100%;border-radius:5px;transition:width .4s}
+.fmeta{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:6px}
+.fpct{font-size:12px;font-weight:800}
+.fown{display:flex;gap:3px}
+.fo{font-size:8.5px;font-weight:800;padding:2px 5px;border-radius:4px;color:#fff}
+.fstat{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;border-radius:20px;margin-top:6px;display:inline-block}
+.st-ok{background:var(--low-bg);color:var(--low)}
+.st-run{background:var(--med-bg);color:var(--med)}
+.st-pend{background:var(--pend-bg);color:var(--pend)}
+.st-risk{background:var(--high-bg);color:var(--high)}
+.rmlegend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;padding:10px 16px 4px;font-size:11px;color:var(--muted);font-weight:600}
+.rmlegend span{display:flex;align-items:center;gap:5px}
+.lgd{width:9px;height:9px;border-radius:50%}
+
+/* ===== resto ===== */
 .filterbar{display:flex;align-items:center;gap:8px;margin:0 0 14px;flex-wrap:wrap}
 .filterbar .flab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
 .fbtn,.pbtn{font-size:12px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;transition:.15s}
@@ -66,9 +92,8 @@ button.danger:hover{border-color:var(--high);color:var(--high)}
 .sec-title{font-weight:700;font-size:15px}.sec-sub{font-size:11.5px;color:var(--muted)}
 .badge{font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:20px;white-space:nowrap}
 .badge.conn{background:var(--soft);color:var(--forest)}.badge.f1{background:var(--f1-bg);color:var(--f1)}
-.badge.f2{background:var(--f2-bg);color:var(--f2)}.badge.fmt{background:var(--soft);color:var(--muted)}
-.badge.ia{background:var(--ia-bg);color:var(--ia)}.badge.done{background:var(--done-bg);color:var(--done)}
-.badge.nocts{background:var(--med-bg);color:var(--med)}
+.badge.f2{background:var(--f2-bg);color:var(--f2)}.badge.ia{background:var(--ia-bg);color:var(--ia)}
+.badge.done{background:var(--done-bg);color:var(--done)}.badge.nocts{background:var(--med-bg);color:var(--med)}
 .sec-meta{margin-left:auto;display:flex;align-items:center;gap:12px}
 .minibar{width:110px;height:7px;border-radius:5px;background:var(--soft);overflow:hidden}
 .minibar>i{display:block;height:100%;background:linear-gradient(90deg,var(--forest),var(--moss));transition:width .3s}
@@ -91,6 +116,8 @@ button.danger:hover{border-color:var(--high);color:var(--high)}
 .slider{position:absolute;inset:0;background:var(--line);border-radius:26px;transition:.2s;cursor:pointer}
 .slider:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
 .toggle input:checked+.slider{background:var(--done)}.toggle input:checked+.slider:before{transform:translateX(18px)}
+.cts-sel{font-family:inherit;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);padding:5px 8px;cursor:pointer}
+.cts-sel:hover{border-color:var(--moss)}
 .person{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);margin-bottom:12px}
 .person .top{display:flex;align-items:center;gap:11px;margin-bottom:12px}
 .person .av{width:38px;height:38px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
@@ -102,13 +129,17 @@ button.danger:hover{border-color:var(--high);color:var(--high)}
 .pareas{margin-top:12px;display:flex;flex-wrap:wrap;gap:5px}
 .ptag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--soft);color:var(--forest)}
 .ptag.full{background:var(--done-bg);color:var(--done)}
-.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.stage{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border-top:4px solid var(--moss)}
-.stage h4{margin:0 0 2px;font-size:13px;font-weight:800}.stage .scount{font-size:30px;font-weight:800}
-.stage .sdesc{font-size:11px;color:var(--muted);margin-bottom:10px}
-.stage .slist{display:flex;flex-direction:column;gap:5px}
-.stage .sitem{font-size:11.5px;padding:5px 8px;border-radius:7px;background:var(--soft);font-weight:600}
-.stage.s0{border-top-color:#c0c8c0}.stage.s1{border-top-color:#a8c686}.stage.s2{border-top-color:#7da37f}.stage.s3{border-top-color:var(--forest)}
+.mrow{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:8px;box-shadow:var(--shadow);flex-wrap:wrap}
+.mrow .mcode{font-size:11px;font-weight:800;color:#fff;background:var(--forest);border-radius:6px;padding:3px 8px;flex-shrink:0}
+.mrow .mname{font-weight:700;font-size:13px;min-width:150px}
+.mchips{display:flex;gap:6px;flex-wrap:wrap}
+.wschip{font-size:11px;font-weight:800;padding:4px 10px;border-radius:7px}
+.wschip.ok{background:var(--low-bg);color:var(--low)}
+.wschip.pend{background:var(--pend-bg);color:var(--pend)}
+.wschip.part{background:var(--med-bg);color:var(--med)}
+.wschip.na{background:var(--soft);color:var(--muted)}
+.mrow .mtot{margin-left:auto;font-weight:800;font-size:15px}
+.mrow .mtot.ok{color:var(--low)}.mrow .mtot.pend{color:var(--pend)}
 .wsview{display:flex;flex-direction:column;gap:14px}
 .wscard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);border-left:5px solid var(--moss)}
 .wscard .wstop{display:flex;align-items:center;gap:10px;margin-bottom:4px}
@@ -122,86 +153,108 @@ button.danger:hover{border-color:var(--high);color:var(--high)}
 .conns .row{display:flex;flex-wrap:wrap;gap:8px}
 .ctag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:var(--soft)}
 .ctag b{font-weight:800}.ctag .cdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.planwrap{margin-top:26px;text-align:center}
-.planlink{font-size:11px;color:var(--muted);opacity:.45;cursor:pointer;user-select:none;border:none;background:none;letter-spacing:.04em}
-.planlink:hover{opacity:.9;color:var(--forest)}
-.planbox{display:none;margin-top:14px;text-align:left;background:var(--panel);border:1px solid var(--forest);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
-.planbox.open{display:block}
-.planbox h3{margin:0 0 4px;font-size:15px;color:var(--forest)}.planbox .pmeta{font-size:11.5px;color:var(--muted);margin-bottom:14px}
-.planrow{display:grid;grid-template-columns:1.4fr 1fr 2.2fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:12.5px;align-items:center}
-.planrow:last-child{border-bottom:none}.planrow .pk{font-weight:700}
-.pchip{display:inline-block;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px}
-.pchip.ok{background:var(--low-bg);color:var(--low)}.pchip.risk{background:var(--high-bg);color:var(--high)}.pchip.warn{background:var(--med-bg);color:var(--med)}
 .saved{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--forest);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;box-shadow:var(--shadow);transition:.3s;opacity:0;pointer-events:none;z-index:50}
 .saved.show{transform:translateX(-50%) translateY(0);opacity:1}
-footer{margin-top:28px;color:var(--muted);font-size:11.5px;text-align:center}
-@media(max-width:880px){.kpis{grid-template-columns:1fr 1fr}.funnel{grid-template-columns:1fr 1fr}.collab-grid{grid-template-columns:1fr}.sec-meta .minibar{display:none}.planrow{grid-template-columns:1fr}}
+footer{margin-top:26px;color:var(--muted);font-size:11.5px;text-align:center}
+@media(max-width:980px){.kpis{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="brand"><div class="mark">ST</div>
-      <div><div class="eyebrow">Proyecto STEM · Avance por Áreas</div>
-        <h1>Tracker de avance a SQL (Nivel 1)</h1>
-        <div class="sub">Cada % sale de los hitos reales de cada área, agrupados en 3 workstreams · GHVeggies BI</div></div></div>
+      <div><div class="eyebrow">Proyecto STEM · DWH_GHVeggies</div>
+        <h1>Roadmap y avance a SQL</h1>
+        <div class="sub">Entrega comprometida <b>18 de septiembre de 2026</b> · corte de datos 24-jul</div></div></div>
     <div class="actions"><button id="theme">◐ Tema</button><button id="export" class="primary">⬇ Exportar avance</button><button id="reset" class="danger">↺ Reiniciar</button></div>
   </header>
+
   <div class="kpis">
-    <div class="kpi"><div class="lab">Avance general del proyecto</div><div class="val"><span id="pctAll">0</span>% <small>· <span id="doneAll">0</span>/<span id="totAll">0</span> hitos</small></div><div class="bar"><i id="barAll"></i></div></div>
-    <div class="kpi"><div class="lab">Áreas en Nivel 1 completo</div><div class="val"><span id="areasDone">0</span><small>/<span id="areasTot">0</span></small></div></div>
-    <div class="kpi"><div class="lab">Conectadas a Power BI</div><div class="val"><span id="pbiDone">0</span><small>/<span id="areasTot2">0</span></small></div></div>
-    <div class="kpi"><div class="lab">Áreas por fase</div><div class="val" style="display:flex;gap:16px;align-items:baseline"><span><span id="f1c">0</span> <small>Fase 1</small></span><span style="color:var(--line)">|</span><span><span id="f2c">0</span> <small>Fase 2</small></span></div></div>
+    <div class="kpi"><div class="lab">Avance general</div><div class="val"><span id="pctAll">0</span>%</div><div class="bar"><i id="barAll"></i></div><div class="hint"><span id="doneAll">0</span> de <span id="totAll">0</span> hitos cerrados</div></div>
+    <div class="kpi"><div class="lab">Días para la entrega</div><div class="val" id="daysLeft">0</div><div class="hint" id="daysHint">—</div></div>
+    <div class="kpi"><div class="lab">Ritmo requerido</div><div class="val" id="rate">0</div><div class="hint">hitos por día hábil restante</div></div>
+    <div class="kpi"><div class="lab">Avance vs. calendario</div><div class="val" style="font-size:20px"><span id="vsA">0</span>% <small>de avance</small> · <span id="vsB">0</span>% <small>del tiempo</small></div><div class="hint" id="vsHint">—</div></div>
   </div>
-  <div class="collab"><button class="collab-toggle" id="collabToggle"><span id="collabChev">▸</span> Avance por responsable · el detalle vive en la pestaña Responsables</button><div class="collab-grid" id="collabGrid"></div></div>
+
+  <div class="striptop">
+    <span class="chipk">Áreas en Nivel 1 <b id="k1">0/18</b> · primera meta: Empaque 31-jul</span>
+    <span class="chipk">Conectadas a Power BI <b id="k2">0</b></span>
+    <span class="chipk">Fase 1 <b id="k3">0</b> · Fase 2 <b id="k4">0</b></span>
+    <span class="chipk">Armando <b id="k5">0%</b> · Fernando <b id="k6">0%</b> · Avelina <b id="k7">0%</b></span>
+  </div>
+
   <div class="tabs">
-    <button class="tab on" data-v="areas">Áreas</button>
+    <button class="tab on" data-v="roadmap">Roadmap</button>
+    <button class="tab" data-v="areas">Áreas</button>
     <button class="tab" data-v="personas">Responsables</button>
     <button class="tab" data-v="sprints">Sprints</button>
     <button class="tab" data-v="workstreams">Workstreams</button>
   </div>
-  <div class="view on" id="v-areas">
+
+  <div class="view on" id="v-roadmap">
+    <div class="rmbands">
+      <div class="bandrow"><span class="bandlab">Avance real</span><div class="bandtrack"><i id="bandAv" style="background:linear-gradient(90deg,var(--forest),var(--moss))"></i></div><span class="bandpct" id="bandAvP" style="color:var(--forest)">0%</span></div>
+      <div class="bandrow"><span class="bandlab">Tiempo consumido</span><div class="bandtrack"><i id="bandTi" style="background:var(--pend)"></i></div><span class="bandpct" id="bandTiP" style="color:var(--pend)">0%</span></div>
+      <div class="banddelta" id="deltaTxt">—</div>
+    </div>
+    <div class="rmwrap">
+      <div class="rmline" id="rmline"></div>
+      <div class="rmlegend">
+        <span><i class="lgd" style="background:var(--low)"></i> Completo</span>
+        <span><i class="lgd" style="background:var(--med)"></i> En curso</span>
+        <span><i class="lgd" style="background:var(--pend)"></i> Sin iniciar</span>
+        <span><i class="lgd" style="background:var(--high)"></i> Vencido</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="view" id="v-areas">
     <div class="filterbar"><span class="flab">Filtrar:</span>
       <button class="fbtn on" data-f="all">Todas</button>
       <button class="fbtn" data-f="f1">Fase 1</button>
       <button class="fbtn" data-f="f2">Fase 2</button>
       <button class="fbtn" data-f="ia">Candidatas IA</button>
       <button class="fbtn" data-f="pend">Pendientes</button>
-      <button class="fbtn" data-f="ws1">WS1 Diseño</button>
-      <button class="fbtn" data-f="ws2">WS2 ETL/DWH</button>
-      <button class="fbtn" data-f="ws3">WS3 Power BI</button>
+      <button class="fbtn" data-f="ws1">WS1</button>
+      <button class="fbtn" data-f="ws2">WS2</button>
+      <button class="fbtn" data-f="ws3">WS3</button>
     </div>
     <div id="root"></div>
     <div class="excluded" id="excluded"></div>
   </div>
+
   <div class="view" id="v-personas">
     <div class="filterbar"><span class="flab">Ver:</span><button class="pbtn on" data-pv="area">Por área</button><button class="pbtn" data-pv="hito">Por hito</button></div>
     <div id="peopleRoot"></div>
   </div>
+
   <div class="view" id="v-sprints">
-    <p style="font-size:12.5px;color:var(--muted);margin:0 0 14px">Avance por área y workstream. <span style="color:var(--low);font-weight:700">Verde</span> = completo · <span style="color:var(--pend);font-weight:700">rojo</span> = pendiente · ámbar = en curso.</p>
-    <div class="funnel" id="funnelRoot"></div>
+    <p style="font-size:12.5px;color:var(--muted);margin:0 0 14px">Avance por área y workstream. <span style="color:var(--low);font-weight:700">Verde</span> completo · <span style="color:var(--med);font-weight:700">ámbar</span> en curso · <span style="color:var(--pend);font-weight:700">rojo</span> pendiente.</p>
+    <div id="funnelRoot"></div>
   </div>
+
   <div class="view" id="v-workstreams">
-    <p style="font-size:12.5px;color:var(--muted);margin:0 0 14px">Avance global de cada workstream a través de todas las áreas.</p>
+    <p style="font-size:12.5px;color:var(--muted);margin:0 0 14px">Avance global de cada workstream a través de las 18 áreas.</p>
     <div class="wsview" id="wsRoot"></div>
   </div>
+
   <div class="conns"><div class="ct">Tipos de conexión a origen</div><div class="row" id="connRow"></div></div>
-  <div class="planwrap"><button class="planlink" id="planLink">· avance vs plan (equipo) ·</button>
-    <div class="planbox" id="planBox"><h3>Avance vs Plan de Trabajo</h3><div class="pmeta">Vista interna del equipo directo. Inicio 22 jun · Cierre 14 ago 2026 · 8 semanas.</div><div id="planRows"></div></div></div>
-  <footer>Tracker STEM · avance por área almacenado localmente (localStorage). Usa "Exportar avance" para respaldar.</footer>
+  <footer>Tracker STEM · avance almacenado localmente (localStorage). Usa "Exportar avance" para respaldar.</footer>
 </div>
 <div class="saved" id="toast">Guardado ✓</div>
 <script>
-const KEY="stem_ws_v2";
+const KEY="stem_ws_v3";
+const START=new Date("2026-07-24T00:00:00");
+const PSTART=new Date("2026-06-22T00:00:00");
+const END=new Date("2026-09-18T00:00:00");
 const FN={Avelina:"Avelina Paz",Fernando:"Fernando De Santiago",Armando:"Armando Gaytán"};
 const OC={Avelina:"#5b8fb0",Fernando:"#c98a14",Armando:"#2e5e3a"};
+const INI={Avelina:"AP",Fernando:"FD",Armando:"AG"};
 const PEOPLE={
-  Armando:{ini:"AG",role:"Arquitectura, modelo dimensional y gobernanza"},
-  Fernando:{ini:"FD",role:"Ingeniería de datos, ETL y carga"},
+  Armando:{ini:"AG",role:"Arquitectura, modelo dimensional, extracción y gobernanza"},
+  Fernando:{ini:"FD",role:"Ingeniería de datos, carga y transformación"},
   Avelina:{ini:"AP",role:"Voz del negocio, validación y consumo"}
 };
-/* WS con etapas y dueño POR HITO */
 const WS=[
   {id:"WS1",name:"Descubrimiento y Diseño",color:"var(--ws1)",ms:[
     {t:"Voz del Negocio",d:"Preguntas clave y métricas definidas",owner:"Avelina"},
@@ -212,7 +265,7 @@ const WS=[
   ]},
   {id:"WS2",name:"Ingeniería de Datos y ETL-DWH",color:"var(--ws2)",noMove:true,ms:[
     {t:"Permisos y Autenticación",d:"App Registration, Token Graph API / REST",owner:"Armando",stage:"Etapa 1 · Ingesta Automatizada (Python / APIs)"},
-    {t:"Script de extracción Python",d:"Desarrollado y testeado",owner:"Fernando",stage:"Etapa 1 · Ingesta Automatizada (Python / APIs)"},
+    {t:"Script de extracción Python",d:"Desarrollado y testeado (Armando con apoyo de Fernando)",owner:"Armando",stage:"Etapa 1 · Ingesta Automatizada (Python / APIs)"},
     {t:"Volcado a Capa RAW",d:"Carga 1:1 en SQL",owner:"Fernando",stage:"Etapa 1 · Ingesta Automatizada (Python / APIs)"},
     {t:"Capa STG",d:"Limpieza, casteo y manejo de desviaciones",owner:"Fernando",stage:"Etapa 2 · Procesamiento SQL"},
     {t:"Capa MART",d:"Diseño en estrella e índices CCI (límite 16GB RAM)",owner:"Armando",stage:"Etapa 2 · Procesamiento SQL"}
@@ -224,28 +277,43 @@ const WS=[
 ];
 const FLAT=[];WS.forEach((w,wi)=>w.ms.forEach(m=>FLAT.push({wi,t:m.t,d:m.d,owner:m.owner,stage:m.stage||null,pbi:!!m.pbi,noMove:!!m.noMove||!!w.noMove,select:m.select||null})));
 const PBI_IDX=FLAT.findIndex(f=>f.pbi);
+const IDX={VOZ:0,MAP:1,SRC:2,CTS:3,DIM:4,PER:5,PY:6,RAW:7,STG:8,MART:9,SEM:10,DAX:11};
 const CONN={ghv:{lab:"SQL GHS_BI · DFGhveggies",color:"#2e5e3a"},ganfer:{lab:"SQL GHS_BI · DFGanfer (VPN)",color:"#c98a14"},ghs:{lab:"SQL GHS_BI directo",color:"#3f7a4e"},spx:{lab:"SharePoint Excel/CSV",color:"#7da37f"},spl:{lab:"SharePoint List",color:"#5b8fb0"},plan:{lab:"Planner (Graph)",color:"#9b6dc4"},ridder:{lab:"CSV Ridder → SQL",color:"#c0392b"},nocts:{lab:"Sin transformación (no CTS)",color:"#c98a14"}};
-const STAGES=[{name:"Por arrancar",desc:"Sin hitos cumplidos"},{name:"Diseño (WS1)",desc:"Voz, sourcing o modelo"},{name:"En SQL (WS2)",desc:"Ingesta o procesamiento"},{name:"Nivel 1 completo",desc:"Conectada a Power BI"}];
+
+/* ==== ESTADO CARGADO DEL EXPORT 2026-07-24 ==== */
 const AREAS=[
-  {code:"EMP",name:"Empaque",fmt:6,conn:"ghv",phase:1,ia:true,note:"Fact_Empaque vivo y validado (1,096 filas). Falta DirectQuery + DAX.",pre:[0,1,2,4,5,6,7,8,9],preSel:{3:"Completo"}},
-  {code:"EGH",name:"Empaque GHS",fmt:2,conn:"ghs",phase:1,ia:false,note:"2 formatos ya en SQL GHS_BI.",pre:[2,7,8]},
-  {code:"DSH",name:"Dashboard",fmt:6,conn:"spx",phase:1,ia:false,note:"",pre:[]},
-  {code:"SEE",name:"SEED",fmt:1,conn:"plan",phase:1,ia:false,note:"Extraíble de Planner vía Microsoft Graph.",pre:[]},
-  {code:"FIN",name:"Finanzas",fmt:6,conn:"spx",phase:1,ia:false,note:"Se actualiza con presupuesto y forecasts; SÍ entra al avance.",pre:[]},
-  {code:"INC",name:"Invernadero · Cumplimiento act. culturales",fmt:6,conn:"spx",phase:1,ia:false,note:"",pre:[]},
-  {code:"INE",name:"Invernadero · Eficiencia mano de obra",fmt:6,conn:"ridder",phase:2,ia:false,note:"Depende de 6 CSV de Ridder. ETL nuevo — Fase 2.",pre:[]},
-  {code:"CRD",name:"CropData",fmt:6,conn:"spx",phase:1,ia:true,note:"Candidata fuerte para primera prueba de IA.",pre:[]},
-  {code:"CAH",name:"Capital Humano",fmt:6,conn:"spx",phase:1,ia:false,note:"",pre:[]},
-  {code:"CAL",name:"Calidad",fmt:6,conn:"spx",phase:1,ia:true,note:"Candidata a IA. Entra a Nivel 1 por decisión de alcance.",pre:[]},
-  {code:"CAW",name:"Calidad Waste",fmt:2,conn:"spx",phase:1,ia:false,note:"",pre:[]},
-  {code:"MIP",name:"MIP",fmt:6,conn:"spx",phase:1,ia:false,note:"",pre:[]},
-  {code:"GAS",name:"Gas",fmt:6,conn:"spx",phase:1,ia:true,note:"Candidata a IA.",pre:[]},
-  {code:"MTP",name:"Mantenimiento Preventivo",fmt:6,conn:"spl",phase:1,ia:false,note:"Origen en SharePoint List.",pre:[]},
-  {code:"MTC",name:"Mantenimiento Correctivo",fmt:6,conn:"spl",phase:1,ia:false,note:"Origen en SharePoint List.",pre:[]},
-  {code:"SIS",name:"SISSO",fmt:6,conn:"ganfer",phase:2,ia:false,note:"Otro tenant, cálculos propios. Dependiente de red/VPN.",pre:[]},
-  {code:"FCT",name:"Forecast",fmt:0,conn:"nocts",phase:1,ia:false,noMove:true,note:"Sin transformación ni CTS. SÍ entra a Power BI; SÍ se hace Voz, inventario y mapeo.",pre:[]},
-  {code:"FTV",name:"Finanzas · Triángulo de valor",fmt:0,conn:"nocts",phase:1,ia:false,noMove:true,note:"Sin transformación ni CTS. SÍ entra a Power BI; SÍ se hace Voz, inventario y mapeo.",pre:[]}
+  {code:"EMP",name:"Empaque",fmt:6,conn:"ghv",phase:1,ia:true,note:"Fact_Empaque vivo y validado. Falta DirectQuery + DAX — es la primera área que debe llegar a Nivel 1.",pre:[0,1,2,4,5,6,7,8,9],preSel:{3:"Completo"}},
+  {code:"EGH",name:"Empaque GHS",fmt:2,conn:"ghs",phase:1,ia:false,note:"RAW y STG hechos; falta definir Estatus CTS y modelo.",pre:[0,1,2,7,8]},
+  {code:"DSH",name:"Dashboard",fmt:6,conn:"spx",phase:1,ia:false,note:"Falta Mapeo de Proceso (meta 31-jul).",pre:[0,2]},
+  {code:"SEE",name:"SEED",fmt:1,conn:"plan",phase:1,ia:false,note:"Extraíble de Planner vía Microsoft Graph.",pre:[0,1,2],preSel:{3:"Mínimo"}},
+  {code:"FIN",name:"Finanzas",fmt:6,conn:"spx",phase:1,ia:false,note:"Falta Mapeo de Proceso (meta 31-jul).",pre:[0,2],preSel:{3:"Mínimo"}},
+  {code:"INC",name:"Invernadero · Cumplimiento act. culturales",fmt:6,conn:"spx",phase:1,ia:false,note:"",pre:[0,1,2]},
+  {code:"INE",name:"Invernadero · Eficiencia mano de obra",fmt:6,conn:"ridder",phase:2,ia:false,note:"Depende de 6 CSV de Ridder.",pre:[0,1,2],preSel:{3:"Fase 2"}},
+  {code:"CRD",name:"CropData",fmt:6,conn:"spx",phase:1,ia:true,note:"Candidata fuerte para primera prueba de IA.",pre:[0,1,2]},
+  {code:"CAH",name:"Capital Humano",fmt:6,conn:"spx",phase:1,ia:false,note:"",pre:[0,1,2]},
+  {code:"CAL",name:"Calidad",fmt:6,conn:"spx",phase:1,ia:true,note:"Candidata a IA.",pre:[0,1,2]},
+  {code:"CAW",name:"Calidad Waste",fmt:2,conn:"spx",phase:1,ia:false,note:"",pre:[0,1,2]},
+  {code:"MIP",name:"MIP",fmt:6,conn:"spx",phase:1,ia:false,note:"",pre:[0,1,2],preSel:{3:"Mínimo"}},
+  {code:"GAS",name:"Gas",fmt:6,conn:"spx",phase:1,ia:true,note:"Candidata a IA.",pre:[0,1,2]},
+  {code:"MTP",name:"Mantenimiento Preventivo",fmt:6,conn:"spl",phase:1,ia:false,note:"Origen en SharePoint List.",pre:[0,1,2]},
+  {code:"MTC",name:"Mantenimiento Correctivo",fmt:6,conn:"spl",phase:1,ia:false,note:"Origen en SharePoint List.",pre:[0,1,2],preSel:{3:"Mínimo"}},
+  {code:"SIS",name:"SISSO",fmt:6,conn:"ganfer",phase:2,ia:false,note:"Otro tenant, dependiente de red/VPN.",pre:[0,1,2],preSel:{3:"Fase 2"}},
+  {code:"FCT",name:"Forecast",fmt:0,conn:"nocts",phase:1,ia:false,noMove:true,note:"Sin transformación ni CTS. Sí entra a Power BI.",pre:[0,1,2]},
+  {code:"FTV",name:"Finanzas · Triángulo de valor",fmt:0,conn:"nocts",phase:1,ia:false,noMove:true,note:"Sin transformación ni CTS. Falta Mapeo de Proceso (meta 31-jul).",pre:[0,2]}
 ];
+
+/* ==== HITOS DEL ROADMAP ==== */
+const MILES=[
+  {date:"2026-07-31",title:"Mapeo de Proceso 100% + Empaque en Nivel 1",idx:[IDX.MAP],extra:[{code:"EMP",i:IDX.SEM},{code:"EMP",i:IDX.DAX}],own:["Avelina","Armando"]},
+  {date:"2026-08-07",title:"Estatus CTS definido en todas las áreas",idx:[IDX.CTS],own:["Armando"]},
+  {date:"2026-08-14",title:"Diseño Dimensional + Permisos resueltos",idx:[IDX.DIM,IDX.PER],own:["Armando"]},
+  {date:"2026-08-21",title:"Extracción Python + Volcado a RAW",idx:[IDX.PY,IDX.RAW],own:["Armando","Fernando"]},
+  {date:"2026-08-28",title:"Capa STG + Capa MART completas",idx:[IDX.STG,IDX.MART],own:["Fernando","Armando"]},
+  {date:"2026-09-04",title:"Modelo Semántico en Power BI",idx:[IDX.SEM],own:["Avelina"]},
+  {date:"2026-09-11",title:"Gobernanza DAX + Shadow Mode",idx:[IDX.DAX],own:["Armando"]},
+  {date:"2026-09-18",title:"Entrega final · todas las áreas en Nivel 1",idx:"ALL",own:["Armando","Fernando","Avelina"]}
+];
+
 let state={};try{const s=localStorage.getItem(KEY);if(s)state=JSON.parse(s);}catch(e){state={};}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));toast();}catch(e){}}
 let tt;function toast(){const t=document.getElementById("toast");t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1000);}
@@ -257,48 +325,116 @@ function aDone(a){let d=0;appliesTo(a).forEach(i=>{if(get(a,i))d++;});return d;}
 function aTot(a){return appliesTo(a).length;}
 function aPct(a){return Math.round(aDone(a)/aTot(a)*100);}
 function isPBI(a){return get(a,PBI_IDX);}
-function stageOf(a){if(isPBI(a))return 3;const w2=FLAT.map((f,i)=>f.wi===1?i:-1).filter(i=>i>=0);if(!a.noMove&&w2.some(i=>get(a,i)))return 2;const w1=FLAT.map((f,i)=>f.wi===0?i:-1).filter(i=>i>=0);if(w1.some(i=>get(a,i)))return 1;return 0;}
+function totals(){let t=0,d=0;AREAS.forEach(a=>{t+=aTot(a);d+=aDone(a);});return{t,d};}
+function bizDays(from,to){let n=0;const c=new Date(from);while(c<to){const w=c.getDay();if(w!==0&&w!==6)n++;c.setDate(c.getDate()+1);}return n;}
+function fmtD(d){return d.toLocaleDateString("es-MX",{day:"2-digit",month:"short"});}
+
 let filter="all",pview="area";
+
+/* ===== ROADMAP ===== */
+function mileProgress(m){
+  let t=0,d=0;
+  if(m.idx==="ALL"){const x=totals();return{done:x.d,total:x.t};}
+  AREAS.forEach(a=>{m.idx.forEach(i=>{if(appliesTo(a).includes(i)){t++;if(get(a,i))d++;}});});
+  (m.extra||[]).forEach(e=>{const a=AREAS.find(x=>x.code===e.code);if(a&&appliesTo(a).includes(e.i)){t++;if(get(a,e.i))d++;}});
+  return{done:d,total:t};
+}
+function renderRoadmap(){
+  const line=document.getElementById("rmline");line.innerHTML="";
+  const today=new Date();today.setHours(0,0,0,0);
+  const span=END-START;
+  const axis=document.createElement("div");axis.className="rmaxis";
+  const tPos=Math.max(0,Math.min(1,(today-START)/span));
+  axis.innerHTML=`<i style="width:${tPos*100}%"></i>`;line.appendChild(axis);
+
+  MILES.forEach((m,k)=>{
+    const md=new Date(m.date+"T00:00:00");
+    const p=6+((md-START)/span)*88;
+    const pr=mileProgress(m);
+    const pct=pr.total?Math.round(pr.done/pr.total*100):0;
+    const overdue=today>md&&pct<100;
+    let cls,col;
+    if(pct===100){cls="st-ok";col="var(--low)";}
+    else if(overdue){cls="st-risk";col="var(--high)";}
+    else if(pct>0){cls="st-run";col="var(--med)";}
+    else{cls="st-pend";col="var(--pend)";}
+    const lab=pct===100?"Completo":(overdue?"Vencido":(pct>0?"En curso":"Sin iniciar"));
+    const dot=document.createElement("div");dot.className="fdot";dot.style.left=p+"%";dot.style.background=col;line.appendChild(dot);
+    const f=document.createElement("div");
+    f.className="flag "+(k%2===0?"up":"down");f.style.left=p+"%";
+    f.innerHTML=`<div class="fcard" style="border-left:3px solid ${col}">
+        <div class="fdate" style="color:${col}">${fmtD(md)} · 2026</div>
+        <div class="ftitle">${m.title}</div>
+        <div class="fbar"><i style="width:${pct}%;background:${col}"></i></div>
+        <div class="fmeta"><span class="fpct" style="color:${col}">${pct}%</span>
+          <span class="fown">${m.own.map(o=>`<span class="fo" style="background:${OC[o]}" title="${FN[o]}">${INI[o]}</span>`).join("")}</span></div>
+        <span class="fstat ${cls}">${lab} · ${pr.done}/${pr.total}</span>
+      </div><div class="fpole" style="background:${col}"></div>`;
+    line.appendChild(f);
+  });
+
+  const td=document.createElement("div");td.className="today";td.style.left=(6+tPos*88)+"%";
+  td.innerHTML=`<div class="tdot"></div><div class="tlab">Hoy · ${fmtD(today)}</div>`;line.appendChild(td);
+
+  const x=totals();const av=Math.round(x.d/x.t*100);
+  const ti=Math.round(Math.max(0,Math.min(1,(today-PSTART)/(END-PSTART)))*100);
+  document.getElementById("bandAv").style.width=av+"%";
+  document.getElementById("bandTi").style.width=ti+"%";
+  document.getElementById("bandAvP").textContent=av+"%";
+  document.getElementById("bandTiP").textContent=ti+"%";
+  const gap=av-ti;
+  document.getElementById("deltaTxt").innerHTML = gap>=0
+    ? `Vas <b style="color:var(--low)">${gap} puntos por delante</b> del calendario. Proyecto completo: 22-jun a 18-sep (88 días).`
+    : `Vas <b>${Math.abs(gap)} puntos por detrás</b> del calendario. Proyecto completo: 22-jun a 18-sep (88 días).`;
+}
+
+/* ===== resto de vistas ===== */
 function renderConns(){const row=document.getElementById("connRow");row.innerHTML="";Object.keys(CONN).forEach(k=>{const n=AREAS.filter(a=>a.conn===k).length;if(!n)return;const el=document.createElement("span");el.className="ctag";el.innerHTML=`<span class="cdot" style="background:${CONN[k].color}"></span>${CONN[k].lab} <b>· ${n}</b>`;row.appendChild(el);});}
 function passF(a){if(filter==="all")return true;if(filter==="f1")return a.phase===1;if(filter==="f2")return a.phase===2;if(filter==="ia")return a.ia;if(filter==="pend")return aPct(a)<100;if(filter==="ws1"||filter==="ws2"||filter==="ws3"){const wi={ws1:0,ws2:1,ws3:2}[filter];if(wi===1&&a.noMove)return false;const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0&&appliesTo(a).includes(i));return idx.some(i=>!get(a,i));}return true;}
 function ownerChip(o){return `<span class="owner" style="background:${OC[o]}">${FN[o]}</span>`;}
 function renderAreas(){const root=document.getElementById("root");root.innerHTML="";AREAS.forEach(a=>{if(!passF(a))return;const wrap=document.createElement("div");wrap.className="section collapsed";const pct=aPct(a);const fb=a.phase===1?'<span class="badge f1">Fase 1</span>':'<span class="badge f2">Fase 2</span>';const ia=a.ia?'<span class="badge ia">IA</span>':'';const nc=a.noMove?'<span class="badge nocts">Sin CTS</span>':'';const full=pct===100?'<span class="badge done">Nivel 1 ✓</span>':'';const head=document.createElement("div");head.className="sec-head";head.innerHTML=`<span class="sec-code">${a.code}</span><div><div class="sec-title">${a.name}</div><div class="sec-sub">${a.fmt?a.fmt+" formato(s) · ":""}${aDone(a)}/${aTot(a)} hitos</div></div><span class="badge conn"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${CONN[a.conn].color};margin-right:5px"></span>${CONN[a.conn].lab}</span>${fb}${ia}${nc}${full}<div class="sec-meta"><div class="minibar"><i style="width:${pct}%"></i></div><span class="sec-pct">${pct}%</span><span class="chev">▾</span></div>`;head.addEventListener("click",()=>wrap.classList.toggle("collapsed"));wrap.appendChild(head);const body=document.createElement("div");body.className="sec-body";if(a.note){const n=document.createElement("div");n.className="note";n.textContent=a.note;body.appendChild(n);}
   WS.forEach((w,wi)=>{const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0);const applies=idx.filter(i=>appliesTo(a).includes(i));if(!applies.length)return;let wd=0;applies.forEach(i=>{if(get(a,i))wd++;});const wpct=Math.round(wd/applies.length*100);const g=document.createElement("div");g.className="ws-group";g.innerHTML=`<div class="ws-head"><span class="ws-dot" style="background:${w.color}"></span>${w.id} · ${w.name}<span class="ws-pct" style="color:${w.color}">${wpct}%</span></div>`;let curStage=null;applies.forEach(i=>{const f=FLAT[i];if(f.stage&&f.stage!==curStage){curStage=f.stage;const sh=document.createElement("div");sh.className="stage-head";sh.textContent=curStage;g.appendChild(sh);}const done=get(a,i);const ms=document.createElement("div");ms.className="ms"+(done?" done":"");let ctrl;if(f.select){const cur=getVal(a,i);ctrl=`<select class="cts-sel">${'<option value="">— sin definir —</option>'+f.select.map(o=>`<option value="${o}" ${cur===o?"selected":""}>${o}</option>`).join("")}</select>`;}else{ctrl=`<label class="toggle"><input type="checkbox" ${done?"checked":""}><span class="slider"></span></label>`;}ms.innerHTML=`<span class="mslab"><b>${f.t}:</b> ${f.d}</span>${ownerChip(f.owner)}${ctrl}`;if(f.select){ms.querySelector("select").addEventListener("change",e=>{set(a,i,e.target.value);refreshAll();});}else{ms.querySelector("input").addEventListener("change",e=>{set(a,i,e.target.checked);refreshAll();});}g.appendChild(ms);});body.appendChild(g);});
   wrap.appendChild(body);root.appendChild(wrap);});
-  document.getElementById("excluded").innerHTML=`<b>Forecast y Finanzas · Triángulo de valor:</b> no tienen transformación ni CTS, pero SÍ entran a Power BI y SÍ se les hace Voz del Negocio, inventario y mapeo. Aparecen como áreas solo con los hitos que les aplican (WS1 + conexión a Power BI; sin WS2 ni DAX).`;}
-function renderPeople(){const root=document.getElementById("peopleRoot");root.innerHTML="";Object.keys(PEOPLE).forEach(name=>{let tot=0,done=0;AREAS.forEach(a=>{appliesTo(a).forEach(i=>{if(FLAT[i].owner===name){tot++;if(get(a,i))done++;}});});const pct=tot?Math.round(done/tot*100):0;const o=PEOPLE[name];const card=document.createElement("div");card.className="person";let inner=`<div class="top"><div class="av" style="background:linear-gradient(135deg,${OC[name]},var(--moss))">${o.ini}</div><div><div class="who">${FN[name]}</div><div class="role">${o.role}</div></div><div class="pctbig">${pct}<small>%</small></div></div><div class="pbar"><i style="width:${pct}%"></i></div><div class="meta"><span>${done}/${tot} hitos a su cargo</span><span>en ${AREAS.length} áreas</span></div>`;
+  document.getElementById("excluded").innerHTML=`<b>Forecast y Finanzas · Triángulo de valor:</b> sin transformación ni CTS, pero SÍ entran a Power BI y SÍ llevan Voz del Negocio, mapeo e inventario. Solo aplican 5 hitos (WS1 sin CTS + Modelo Semántico).`;}
+function renderPeople(){const root=document.getElementById("peopleRoot");root.innerHTML="";Object.keys(PEOPLE).forEach(name=>{let tot=0,done=0;AREAS.forEach(a=>{appliesTo(a).forEach(i=>{if(FLAT[i].owner===name){tot++;if(get(a,i))done++;}});});const pct=tot?Math.round(done/tot*100):0;const o=PEOPLE[name];const card=document.createElement("div");card.className="person";let inner=`<div class="top"><div class="av" style="background:linear-gradient(135deg,${OC[name]},var(--moss))">${o.ini}</div><div><div class="who">${FN[name]}</div><div class="role">${o.role}</div></div><div class="pctbig">${pct}<small>%</small></div></div><div class="pbar"><i style="width:${pct}%"></i></div><div class="meta"><span>${done}/${tot} hitos a su cargo · <b>${tot-done} pendientes</b></span><span>en ${AREAS.length} áreas</span></div>`;
   if(pview==="area"){inner+=`<div class="pareas">`;AREAS.forEach(a=>{let t=0,d=0;appliesTo(a).forEach(i=>{if(FLAT[i].owner===name){t++;if(get(a,i))d++;}});if(!t)return;const p=Math.round(d/t*100);inner+=`<span class="ptag ${p===100?'full':''}">${a.code} ${p}%</span>`;});inner+=`</div>`;}
   else{inner+=`<div class="pareas" style="flex-direction:column;align-items:stretch;gap:8px">`;FLAT.forEach((f,i)=>{if(f.owner!==name)return;let t=0,d=0;AREAS.forEach(a=>{if(appliesTo(a).includes(i)){t++;if(get(a,i))d++;}});const p=t?Math.round(d/t*100):0;inner+=`<div><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700"><span>${WS[f.wi].id} · ${f.t}</span><span>${p}% · ${d}/${t}</span></div><div class="pbar" style="margin-top:3px"><i style="width:${p}%"></i></div></div>`;});inner+=`</div>`;}
   card.innerHTML=inner;root.appendChild(card);});}
-function renderCollab(){const g=document.getElementById("collabGrid");g.innerHTML="";Object.keys(PEOPLE).forEach(name=>{let tot=0,done=0;AREAS.forEach(a=>{appliesTo(a).forEach(i=>{if(FLAT[i].owner===name){tot++;if(get(a,i))done++;}});});const pct=tot?Math.round(done/tot*100):0;const o=PEOPLE[name];const el=document.createElement("div");el.className="ccard";el.innerHTML=`<div class="av" style="background:linear-gradient(135deg,${OC[name]},var(--moss))">${o.ini}</div><div><div class="cn">${FN[name]}</div><div class="cr">${done}/${tot} hitos a su cargo</div></div><div class="cp">${pct}%</div>`;g.appendChild(el);});}
 function wsPctFor(a,wi){const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0&&appliesTo(a).includes(i));if(!idx.length)return null;let d=0;idx.forEach(i=>{if(get(a,i))d++;});return Math.round(d/idx.length*100);}
-function renderFunnel(){const root=document.getElementById("funnelRoot");root.innerHTML="";AREAS.forEach(a=>{const row=document.createElement("div");row.className="mrow";let chips="";WS.forEach((w,wi)=>{const p=wsPctFor(a,wi);if(p===null){chips+=`<span class="wschip na">${w.id} N/A</span>`;return;}const cls=p===100?"ok":(p>0?"part":"pend");chips+=`<span class="wschip ${cls}">${w.id} ${p}%</span>`;});const tot=aPct(a);const totcls=tot===100?"ok":"pend";row.innerHTML=`<span class="mcode">${a.code}</span><span class="mname">${a.name.split(" · ")[0]}</span><div class="mchips">${chips}</div><span class="mtot ${totcls}">${tot}%</span>`;root.appendChild(row);});}
-function renderWS(){const root=document.getElementById("wsRoot");root.innerHTML="";WS.forEach((w,wi)=>{const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0);let tot=0,done=0;AREAS.forEach(a=>{idx.forEach(i=>{if(appliesTo(a).includes(i)){tot++;if(get(a,i))done++;}});});const pct=tot?Math.round(done/tot*100):0;const owners=[...new Set(w.ms.map(m=>m.owner))].map(o=>FN[o]).join(", ");const el=document.createElement("div");el.className="wscard";el.style.borderLeftColor=w.color;el.innerHTML=`<div class="wstop"><h4>${w.id} · ${w.name}</h4><span class="wspct" style="color:${w.color}">${pct}%</span></div><div class="wsbar"><i style="width:${pct}%;background:${w.color}"></i></div><div class="wssub">${done}/${tot} hitos a través de ${AREAS.length} áreas · ${w.ms.length} hitos por área${w.noMove?" (no aplica a Forecast/Triángulo)":""} · Responsables: ${owners}</div>`;root.appendChild(el);});}
-const PLAN=[
-  {k:"Voz del Negocio (WS1)",target:"2026-06-27",s:"warn",n:"Meta ≥30 preguntas. Avelina Paz.",done:()=>false},
-  {k:"Data Sourcing / inventario",target:"2026-06-27",s:"warn",n:"Mapeo de orígenes por área. Fernando.",done:()=>false},
-  {k:"Empaque a Nivel 1",target:"2026-06-27",s:"ok",n:"Fact_Empaque validado; falta DirectQuery.",done:()=>{const a=AREAS.find(x=>x.code==="EMP");return a&&isPBI(a);}},
-  {k:"D_Semana / D_Dia",target:"2026-07-04",s:"warn",n:"Script generado; pendiente ejecutar en SQL.",done:()=>false},
-  {k:"Método CTS a Fernando (molde)",target:"2026-07-04",s:"warn",n:"Script base + template STG. Línea de ensamblaje.",done:()=>false},
-  {k:"Migración local → GHS_BI prod",target:"2026-07-11",s:"risk",n:"Depende de TI / Data Analytics. Riesgo alto.",done:()=>false},
-  {k:"App Registration / Graph",target:"2026-07-11",s:"risk",n:"Pendiente TI. Bloquea ingesta WS2 Etapa 1.",done:()=>false},
-  {k:"Áreas Ganfer/GSO",target:"2026-07-18",s:"risk",n:"Dependiente de VPN/Gateway. Infraestructura.",done:()=>false},
-  {k:"Primera prueba IA (2–3 áreas)",target:"2026-07-25",s:"warn",n:"Objetivo S5. Requiere capa semántica.",done:()=>false},
-  {k:"Cierre — todas las áreas Nivel 1",target:"2026-08-14",s:"warn",n:"Viable con recorte de IA y CTS paralelizado.",done:()=>AREAS.every(a=>aPct(a)===100)},
-];
-function renderPlan(){const root=document.getElementById("planRows");root.innerHTML="";const today=new Date();today.setHours(0,0,0,0);PLAN.forEach(r=>{const tdate=new Date(r.target+"T00:00:00");const isDone=r.done();const isPast=today>tdate;const delay=isPast&&!isDone?Math.floor((today-tdate)/(864e5)):0;let chip,cls;if(isDone){chip="✓ Completado";cls="ok";}else if(delay>0){chip=delay+"d de retraso";cls="risk";}else{const dl=Math.floor((tdate-today)/(864e5));chip=dl===0?"Vence hoy":dl+"d restantes";cls=dl<=3?"warn":r.s;}const fd=tdate.toLocaleDateString("es-MX",{day:"2-digit",month:"short"});const el=document.createElement("div");el.className="planrow";el.innerHTML=`<span class="pk">${r.k}</span><span style="display:flex;flex-direction:column;gap:3px;align-items:flex-start"><span class="pchip ${cls}">${chip}</span><span style="font-size:10px;color:var(--muted)">Meta Gantt: ${fd}</span></span><span style="color:var(--muted)">${r.n}</span>`;root.appendChild(el);});}
-function refreshKpis(){let tot=0,done=0,ad=0,pbi=0,f1=0,f2=0;AREAS.forEach(a=>{tot+=aTot(a);done+=aDone(a);if(aPct(a)===100)ad++;if(isPBI(a))pbi++;if(a.phase===1)f1++;else f2++;});const pct=tot?Math.round(done/tot*100):0;document.getElementById("pctAll").textContent=pct;document.getElementById("barAll").style.width=pct+"%";document.getElementById("doneAll").textContent=done;document.getElementById("totAll").textContent=tot;document.getElementById("areasDone").textContent=ad;document.getElementById("areasTot").textContent=AREAS.length;document.getElementById("areasTot2").textContent=AREAS.length;document.getElementById("pbiDone").textContent=pbi;document.getElementById("f1c").textContent=f1;document.getElementById("f2c").textContent=f2;}
-function refreshAll(){renderAreas();renderPeople();renderCollab();renderFunnel();renderWS();refreshKpis();}
+function renderFunnel(){const root=document.getElementById("funnelRoot");root.innerHTML="";AREAS.forEach(a=>{const row=document.createElement("div");row.className="mrow";let chips="";WS.forEach((w,wi)=>{const p=wsPctFor(a,wi);if(p===null){chips+=`<span class="wschip na">${w.id} N/A</span>`;return;}const cls=p===100?"ok":(p>0?"part":"pend");chips+=`<span class="wschip ${cls}">${w.id} ${p}%</span>`;});const tot=aPct(a);row.innerHTML=`<span class="mcode">${a.code}</span><span class="mname">${a.name.split(" · ")[0]}</span><div class="mchips">${chips}</div><span class="mtot ${tot===100?'ok':'pend'}">${tot}%</span>`;root.appendChild(row);});}
+function renderWS(){const root=document.getElementById("wsRoot");root.innerHTML="";WS.forEach((w,wi)=>{const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0);let tot=0,done=0;AREAS.forEach(a=>{idx.forEach(i=>{if(appliesTo(a).includes(i)){tot++;if(get(a,i))done++;}});});const pct=tot?Math.round(done/tot*100):0;const owners=[...new Set(w.ms.map(m=>m.owner))].map(o=>FN[o]).join(", ");const el=document.createElement("div");el.className="wscard";el.style.borderLeftColor=w.color;el.innerHTML=`<div class="wstop"><h4>${w.id} · ${w.name}</h4><span class="wspct" style="color:${w.color}">${pct}%</span></div><div class="wsbar"><i style="width:${pct}%;background:${w.color}"></i></div><div class="wssub">${done}/${tot} hitos · <b>${tot-done} pendientes</b> · Responsables: ${owners}</div>`;root.appendChild(el);});}
+function refreshKpis(){
+  const x=totals();const pct=Math.round(x.d/x.t*100);
+  const today=new Date();today.setHours(0,0,0,0);
+  const dLeft=Math.max(0,Math.round((END-today)/864e5));
+  const bd=bizDays(today,END);
+  const pend=x.t-x.d;
+  document.getElementById("pctAll").textContent=pct;
+  document.getElementById("barAll").style.width=pct+"%";
+  document.getElementById("doneAll").textContent=x.d;
+  document.getElementById("totAll").textContent=x.t;
+  document.getElementById("daysLeft").textContent=dLeft;
+  document.getElementById("daysHint").textContent=bd+" días hábiles · entrega 18-sep-2026";
+  document.getElementById("rate").textContent=bd?(pend/bd).toFixed(1):"—";
+  const ti=Math.round(Math.max(0,Math.min(1,(today-PSTART)/(END-PSTART)))*100);
+  document.getElementById("vsA").textContent=pct;document.getElementById("vsB").textContent=ti;
+  const gap=pct-ti;
+  document.getElementById("vsHint").textContent = gap>=0 ? `${gap} puntos por delante del plan` : `${Math.abs(gap)} puntos por detrás del plan`;
+  let n1=0,pbi=0,f1=0,f2=0;AREAS.forEach(a=>{if(aPct(a)===100)n1++;if(isPBI(a))pbi++;if(a.phase===1)f1++;else f2++;});
+  document.getElementById("k1").textContent=n1+"/"+AREAS.length;
+  document.getElementById("k2").textContent=pbi;
+  document.getElementById("k3").textContent=f1;document.getElementById("k4").textContent=f2;
+  ["Armando","Fernando","Avelina"].forEach((n,j)=>{let t=0,d=0;AREAS.forEach(a=>appliesTo(a).forEach(i=>{if(FLAT[i].owner===n){t++;if(get(a,i))d++;}}));document.getElementById("k"+(5+j)).textContent=(t?Math.round(d/t*100):0)+"%";});
+}
+function refreshAll(){renderRoadmap();renderAreas();renderPeople();renderFunnel();renderWS();refreshKpis();}
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));document.querySelectorAll(".view").forEach(x=>x.classList.remove("on"));t.classList.add("on");document.getElementById("v-"+t.dataset.v).classList.add("on");}));
 document.querySelectorAll(".fbtn").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".fbtn").forEach(x=>x.classList.remove("on"));b.classList.add("on");filter=b.dataset.f;renderAreas();}));
 document.querySelectorAll(".pbtn").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".pbtn").forEach(x=>x.classList.remove("on"));b.classList.add("on");pview=b.dataset.pv;renderPeople();}));
-document.getElementById("collabToggle").addEventListener("click",()=>{const g=document.getElementById("collabGrid");g.classList.toggle("open");document.getElementById("collabChev").textContent=g.classList.contains("open")?"▾":"▸";});
-document.getElementById("planLink").addEventListener("click",()=>document.getElementById("planBox").classList.toggle("open"));
-document.getElementById("export").addEventListener("click",()=>{const out={project:"STEM · Tracker Workstreams",exported_at:new Date().toISOString(),areas:[],por_responsable:{},por_workstream:{}};AREAS.forEach(a=>{out.areas.push({code:a.code,area:a.name,fase:a.phase,sin_cts:!!a.noMove,avance_pct:aPct(a),etapa:STAGES[stageOf(a)].name,hitos:appliesTo(a).map(i=>({ws:WS[FLAT[i].wi].id,hito:FLAT[i].t,responsable:FN[FLAT[i].owner],cumplido:get(a,i)}))});});Object.keys(PEOPLE).forEach(n=>{let t=0,d=0;AREAS.forEach(a=>appliesTo(a).forEach(i=>{if(FLAT[i].owner===n){t++;if(get(a,i))d++;}}));out.por_responsable[FN[n]]={avance_pct:t?Math.round(d/t*100):0};});WS.forEach((w,wi)=>{const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0);let t=0,d=0;AREAS.forEach(a=>idx.forEach(i=>{if(appliesTo(a).includes(i)){t++;if(get(a,i))d++;}}));out.por_workstream[w.id]={avance_pct:t?Math.round(d/t*100):0};});let tot=0,dn=0;AREAS.forEach(a=>{tot+=aTot(a);dn+=aDone(a);});out.avance_general_pct=Math.round(dn/tot*100);out.areas_nivel1=AREAS.filter(a=>aPct(a)===100).length;const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});const el=document.createElement("a");el.href=URL.createObjectURL(blob);el.download=`STEM_avance_${new Date().toISOString().slice(0,10)}.json`;el.click();URL.revokeObjectURL(el.href);});
-document.getElementById("reset").addEventListener("click",()=>{if(confirm("Esto borra el avance guardado. ¿Continuar?")){localStorage.removeItem(KEY);state={};refreshAll();}});
+document.getElementById("export").addEventListener("click",()=>{const out={project:"STEM · Tracker Workstreams",exported_at:new Date().toISOString(),entrega:"2026-09-18",areas:[],por_responsable:{},por_workstream:{},hitos_roadmap:{}};AREAS.forEach(a=>{out.areas.push({code:a.code,area:a.name,fase:a.phase,sin_cts:!!a.noMove,avance_pct:aPct(a),hitos:appliesTo(a).map(i=>({ws:WS[FLAT[i].wi].id,hito:FLAT[i].t,responsable:FN[FLAT[i].owner],cumplido:get(a,i)}))});});Object.keys(PEOPLE).forEach(n=>{let t=0,d=0;AREAS.forEach(a=>appliesTo(a).forEach(i=>{if(FLAT[i].owner===n){t++;if(get(a,i))d++;}}));out.por_responsable[FN[n]]={avance_pct:t?Math.round(d/t*100):0};});WS.forEach((w,wi)=>{const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0);let t=0,d=0;AREAS.forEach(a=>idx.forEach(i=>{if(appliesTo(a).includes(i)){t++;if(get(a,i))d++;}}));out.por_workstream[w.id]={avance_pct:t?Math.round(d/t*100):0};});MILES.forEach(m=>{const p=mileProgress(m);out.hitos_roadmap[m.date]={hito:m.title,avance_pct:p.total?Math.round(p.done/p.total*100):0,done:p.done,total:p.total};});const x=totals();out.avance_general_pct=Math.round(x.d/x.t*100);out.areas_nivel1=AREAS.filter(a=>aPct(a)===100).length;const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});const el=document.createElement("a");el.href=URL.createObjectURL(blob);el.download=`STEM_avance_${new Date().toISOString().slice(0,10)}.json`;el.click();URL.revokeObjectURL(el.href);});
+document.getElementById("reset").addEventListener("click",()=>{if(confirm("Esto restaura el avance al corte del 24-jul. ¿Continuar?")){localStorage.removeItem(KEY);state={};refreshAll();}});
 document.getElementById("theme").addEventListener("click",()=>{const c=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",c);try{localStorage.setItem(KEY+"_theme",c);}catch(e){}});
 (function(){try{const t=localStorage.getItem(KEY+"_theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
-renderConns();refreshAll();renderPlan();
+renderConns();refreshAll();
 </script>
 </body>
 </html>
