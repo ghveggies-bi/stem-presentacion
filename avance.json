@@ -1,0 +1,1462 @@
+{
+  "project": "STEM · Tracker Workstreams",
+  "exported_at": "2026-07-24T15:18:26.558Z",
+  "entrega": "2026-09-18",
+  "areas": [
+    {
+      "code": "EMP",
+      "area": "Empaque",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 83,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "EGH",
+      "area": "Empaque GHS",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 50,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "DSH",
+      "area": "Dashboard",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 17,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "SEE",
+      "area": "SEED",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 33,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "FIN",
+      "area": "Finanzas",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "INC",
+      "area": "Invernadero · Cumplimiento act. culturales",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "INE",
+      "area": "Invernadero · Eficiencia mano de obra",
+      "fase": 2,
+      "sin_cts": false,
+      "avance_pct": 33,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "CRD",
+      "area": "CropData",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "CAH",
+      "area": "Capital Humano",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "CAL",
+      "area": "Calidad",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "CAW",
+      "area": "Calidad Waste",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "MIP",
+      "area": "MIP",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 33,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "GAS",
+      "area": "Gas",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "MTP",
+      "area": "Mantenimiento Preventivo",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 25,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "MTC",
+      "area": "Mantenimiento Correctivo",
+      "fase": 1,
+      "sin_cts": false,
+      "avance_pct": 33,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "SIS",
+      "area": "SISSO",
+      "fase": 2,
+      "sin_cts": false,
+      "avance_pct": 33,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Estatus CTS",
+          "responsable": "Armando Gaytán",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Permisos y Autenticación",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Script de extracción Python",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Volcado a Capa RAW",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa STG",
+          "responsable": "Fernando De Santiago",
+          "cumplido": false
+        },
+        {
+          "ws": "WS2",
+          "hito": "Capa MART",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Gobernanza DAX",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "FCT",
+      "area": "Forecast",
+      "fase": 1,
+      "sin_cts": true,
+      "avance_pct": 60,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        }
+      ]
+    },
+    {
+      "code": "FTV",
+      "area": "Finanzas · Triángulo de valor",
+      "fase": 1,
+      "sin_cts": true,
+      "avance_pct": 40,
+      "hitos": [
+        {
+          "ws": "WS1",
+          "hito": "Voz del Negocio",
+          "responsable": "Avelina Paz",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Mapeo de Proceso",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        },
+        {
+          "ws": "WS1",
+          "hito": "Data Sourcing",
+          "responsable": "Fernando De Santiago",
+          "cumplido": true
+        },
+        {
+          "ws": "WS1",
+          "hito": "Diseño Dimensional",
+          "responsable": "Armando Gaytán",
+          "cumplido": false
+        },
+        {
+          "ws": "WS3",
+          "hito": "Modelo Semántico",
+          "responsable": "Avelina Paz",
+          "cumplido": false
+        }
+      ]
+    }
+  ],
+  "por_responsable": {
+    "Armando Gaytán": {
+      "avance_pct": 12
+    },
+    "Fernando De Santiago": {
+      "avance_pct": 44
+    },
+    "Avelina Paz": {
+      "avance_pct": 61
+    }
+  },
+  "por_workstream": {
+    "WS1": {
+      "avance_pct": 68
+    },
+    "WS2": {
+      "avance_pct": 9
+    },
+    "WS3": {
+      "avance_pct": 0
+    }
+  },
+  "hitos_roadmap": {
+    "2026-07-31": {
+      "hito": "Mapeo de Proceso 100% + Empaque en Nivel 1",
+      "avance_pct": 75,
+      "done": 15,
+      "total": 20
+    },
+    "2026-08-07": {
+      "hito": "Estatus CTS definido en todas las áreas",
+      "avance_pct": 50,
+      "done": 8,
+      "total": 16
+    },
+    "2026-08-14": {
+      "hito": "Diseño Dimensional + Permisos resueltos",
+      "avance_pct": 6,
+      "done": 2,
+      "total": 34
+    },
+    "2026-08-21": {
+      "hito": "Extracción Python + Volcado a RAW",
+      "avance_pct": 9,
+      "done": 3,
+      "total": 32
+    },
+    "2026-08-28": {
+      "hito": "Capa STG + Capa MART completas",
+      "avance_pct": 9,
+      "done": 3,
+      "total": 32
+    },
+    "2026-09-04": {
+      "hito": "Modelo Semántico en Power BI",
+      "avance_pct": 0,
+      "done": 0,
+      "total": 18
+    },
+    "2026-09-11": {
+      "hito": "Gobernanza DAX + Shadow Mode",
+      "avance_pct": 0,
+      "done": 0,
+      "total": 16
+    },
+    "2026-09-18": {
+      "hito": "Entrega final · todas las áreas en Nivel 1",
+      "avance_pct": 33,
+      "done": 67,
+      "total": 202
+    }
+  },
+  "_state": {
+    "DSH#1": false,
+    "EGH#3": "Bloqueado",
+    "EGH#4": false,
+    "EGH#5": false,
+    "EGH#6": false
+  },
+  "avance_general_pct": 33,
+  "areas_nivel1": 0
+}
