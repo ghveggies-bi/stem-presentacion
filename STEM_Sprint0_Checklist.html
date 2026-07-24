@@ -166,8 +166,9 @@ footer{margin-top:26px;color:var(--muted);font-size:11.5px;text-align:center}
       <div><div class="eyebrow">Proyecto STEM · DWH_GHVeggies</div>
         <h1>Roadmap y avance a SQL</h1>
         <div class="sub">Entrega comprometida <b>18 de septiembre de 2026</b> · corte de datos 24-jul</div></div></div>
-    <div class="actions"><button id="theme">◐ Tema</button><button id="export" class="primary">⬇ Exportar avance</button><button id="reset" class="danger">↺ Reiniciar</button></div>
+    <div class="actions"><button id="theme">◐ Tema</button><button id="export" class="primary">⬆ Publicar avance</button><button id="reset" class="danger">↺ Reiniciar</button></div>
   </header>
+  <div class="chipk" id="pubStatus" style="width:fit-content;margin-bottom:10px">Cargando estado publicado…</div>
 
   <div class="kpis">
     <div class="kpi"><div class="lab">Avance general</div><div class="val"><span id="pctAll">0</span>%</div><div class="bar"><i id="barAll"></i></div><div class="hint"><span id="doneAll">0</span> de <span id="totAll">0</span> hitos cerrados</div></div>
@@ -318,8 +319,9 @@ let state={};try{const s=localStorage.getItem(KEY);if(s)state=JSON.parse(s);}cat
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));toast();}catch(e){}}
 let tt;function toast(){const t=document.getElementById("toast");t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1000);}
 function appliesTo(a){const idx=[];FLAT.forEach((f,i)=>{if(a.noMove&&f.noMove)return;idx.push(i);});return idx;}
-function getVal(a,i){const k=a.code+"#"+i;if(k in state)return state[k];return (a.preSel&&a.preSel[i])||"";}
-function get(a,i){const k=a.code+"#"+i;if(FLAT[i].select)return getVal(a,i)!=="";if(k in state)return state[k];return a.pre.includes(i);}
+let published={};let publishedMeta=null;
+function getVal(a,i){const k=a.code+"#"+i;if(k in state)return state[k];if(k in published)return published[k];return (a.preSel&&a.preSel[i])||"";}
+function get(a,i){const k=a.code+"#"+i;if(FLAT[i].select)return getVal(a,i)!=="";if(k in state)return state[k];if(k in published)return published[k];return a.pre.includes(i);}
 function set(a,i,v){state[a.code+"#"+i]=v;save();}
 function aDone(a){let d=0;appliesTo(a).forEach(i=>{if(get(a,i))d++;});return d;}
 function aTot(a){return appliesTo(a).length;}
@@ -430,11 +432,30 @@ function refreshAll(){renderRoadmap();renderAreas();renderPeople();renderFunnel(
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));document.querySelectorAll(".view").forEach(x=>x.classList.remove("on"));t.classList.add("on");document.getElementById("v-"+t.dataset.v).classList.add("on");}));
 document.querySelectorAll(".fbtn").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".fbtn").forEach(x=>x.classList.remove("on"));b.classList.add("on");filter=b.dataset.f;renderAreas();}));
 document.querySelectorAll(".pbtn").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".pbtn").forEach(x=>x.classList.remove("on"));b.classList.add("on");pview=b.dataset.pv;renderPeople();}));
-document.getElementById("export").addEventListener("click",()=>{const out={project:"STEM · Tracker Workstreams",exported_at:new Date().toISOString(),entrega:"2026-09-18",areas:[],por_responsable:{},por_workstream:{},hitos_roadmap:{}};AREAS.forEach(a=>{out.areas.push({code:a.code,area:a.name,fase:a.phase,sin_cts:!!a.noMove,avance_pct:aPct(a),hitos:appliesTo(a).map(i=>({ws:WS[FLAT[i].wi].id,hito:FLAT[i].t,responsable:FN[FLAT[i].owner],cumplido:get(a,i)}))});});Object.keys(PEOPLE).forEach(n=>{let t=0,d=0;AREAS.forEach(a=>appliesTo(a).forEach(i=>{if(FLAT[i].owner===n){t++;if(get(a,i))d++;}}));out.por_responsable[FN[n]]={avance_pct:t?Math.round(d/t*100):0};});WS.forEach((w,wi)=>{const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0);let t=0,d=0;AREAS.forEach(a=>idx.forEach(i=>{if(appliesTo(a).includes(i)){t++;if(get(a,i))d++;}}));out.por_workstream[w.id]={avance_pct:t?Math.round(d/t*100):0};});MILES.forEach(m=>{const p=mileProgress(m);out.hitos_roadmap[m.date]={hito:m.title,avance_pct:p.total?Math.round(p.done/p.total*100):0,done:p.done,total:p.total};});const x=totals();out.avance_general_pct=Math.round(x.d/x.t*100);out.areas_nivel1=AREAS.filter(a=>aPct(a)===100).length;const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});const el=document.createElement("a");el.href=URL.createObjectURL(blob);el.download=`STEM_avance_${new Date().toISOString().slice(0,10)}.json`;el.click();URL.revokeObjectURL(el.href);});
+document.getElementById("export").addEventListener("click",()=>{const out={project:"STEM · Tracker Workstreams",exported_at:new Date().toISOString(),entrega:"2026-09-18",areas:[],por_responsable:{},por_workstream:{},hitos_roadmap:{},_state:state};AREAS.forEach(a=>{out.areas.push({code:a.code,area:a.name,fase:a.phase,sin_cts:!!a.noMove,avance_pct:aPct(a),hitos:appliesTo(a).map(i=>({ws:WS[FLAT[i].wi].id,hito:FLAT[i].t,responsable:FN[FLAT[i].owner],cumplido:get(a,i)}))});});Object.keys(PEOPLE).forEach(n=>{let t=0,d=0;AREAS.forEach(a=>appliesTo(a).forEach(i=>{if(FLAT[i].owner===n){t++;if(get(a,i))d++;}}));out.por_responsable[FN[n]]={avance_pct:t?Math.round(d/t*100):0};});WS.forEach((w,wi)=>{const idx=FLAT.map((f,i)=>f.wi===wi?i:-1).filter(i=>i>=0);let t=0,d=0;AREAS.forEach(a=>idx.forEach(i=>{if(appliesTo(a).includes(i)){t++;if(get(a,i))d++;}}));out.por_workstream[w.id]={avance_pct:t?Math.round(d/t*100):0};});MILES.forEach(m=>{const p=mileProgress(m);out.hitos_roadmap[m.date]={hito:m.title,avance_pct:p.total?Math.round(p.done/p.total*100):0,done:p.done,total:p.total};});const x=totals();out.avance_general_pct=Math.round(x.d/x.t*100);out.areas_nivel1=AREAS.filter(a=>aPct(a)===100).length;const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});const el=document.createElement("a");el.href=URL.createObjectURL(blob);el.download="avance.json";el.click();URL.revokeObjectURL(el.href);alert("Se descargó avance.json. Súbelo a la misma carpeta del repo en GitHub, reemplazando el anterior, y confirma el commit. En unos segundos cualquiera que abra la página verá este avance.");});
 document.getElementById("reset").addEventListener("click",()=>{if(confirm("Esto restaura el avance al corte del 24-jul. ¿Continuar?")){localStorage.removeItem(KEY);state={};refreshAll();}});
 document.getElementById("theme").addEventListener("click",()=>{const c=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",c);try{localStorage.setItem(KEY+"_theme",c);}catch(e){}});
 (function(){try{const t=localStorage.getItem(KEY+"_theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
-renderConns();refreshAll();
+renderConns();
+async function init(){
+  const statusEl=document.getElementById("pubStatus");
+  try{
+    const res=await fetch("avance.json",{cache:"no-store"});
+    if(res.ok){
+      const data=await res.json();
+      published=data._state||{};
+      const when=data.exported_at?new Date(data.exported_at).toLocaleString("es-MX",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}):"fecha desconocida";
+      statusEl.textContent="✓ Viendo avance publicado · última actualización: "+when;
+      statusEl.style.color="var(--forest)";
+    } else {
+      statusEl.textContent="Sin avance.json publicado todavía — mostrando avance base del proyecto";
+    }
+  }catch(e){
+    statusEl.textContent="Sin avance.json publicado todavía — mostrando avance base del proyecto";
+  }
+  refreshAll();
+}
+init();
 </script>
 </body>
 </html>
