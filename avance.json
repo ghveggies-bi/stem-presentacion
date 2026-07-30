@@ -1,6 +1,6 @@
 {
   "project": "STEM · Tracker Workstreams",
-  "exported_at": "2026-07-24T15:18:26.558Z",
+  "exported_at": "2026-07-30T23:42:38.371Z",
   "entrega": "2026-09-18",
   "areas": [
     {
@@ -8,7 +8,7 @@
       "area": "Empaque",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 83,
+      "avance_pct": 75,
       "hitos": [
         {
           "ws": "WS1",
@@ -32,7 +32,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": true
+          "cumplido": false
         },
         {
           "ws": "WS1",
@@ -170,7 +170,7 @@
       "area": "Dashboard",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 17,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -182,7 +182,7 @@
           "ws": "WS1",
           "hito": "Mapeo de Proceso",
           "responsable": "Avelina Paz",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -194,7 +194,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -494,7 +494,7 @@
       "area": "Invernadero · Eficiencia mano de obra",
       "fase": 2,
       "sin_cts": false,
-      "avance_pct": 33,
+      "avance_pct": 25,
       "hitos": [
         {
           "ws": "WS1",
@@ -506,7 +506,7 @@
           "ws": "WS1",
           "hito": "Mapeo de Proceso",
           "responsable": "Avelina Paz",
-          "cumplido": true
+          "cumplido": false
         },
         {
           "ws": "WS1",
@@ -575,7 +575,7 @@
       "area": "CropData",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -599,7 +599,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -737,7 +737,7 @@
       "area": "Calidad",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -761,7 +761,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -818,7 +818,7 @@
       "area": "Calidad Waste",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -842,7 +842,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -1380,7 +1380,7 @@
   ],
   "por_responsable": {
     "Armando Gaytán": {
-      "avance_pct": 12
+      "avance_pct": 15
     },
     "Fernando De Santiago": {
       "avance_pct": 44
@@ -1391,7 +1391,7 @@
   },
   "por_workstream": {
     "WS1": {
-      "avance_pct": 68
+      "avance_pct": 72
     },
     "WS2": {
       "avance_pct": 9
@@ -1409,8 +1409,8 @@
     },
     "2026-08-07": {
       "hito": "Estatus CTS definido en todas las áreas",
-      "avance_pct": 50,
-      "done": 8,
+      "avance_pct": 69,
+      "done": 11,
       "total": 16
     },
     "2026-08-14": {
@@ -1445,18 +1445,25 @@
     },
     "2026-09-18": {
       "hito": "Entrega final · todas las áreas en Nivel 1",
-      "avance_pct": 33,
-      "done": 67,
+      "avance_pct": 35,
+      "done": 70,
       "total": 202
     }
   },
   "_state": {
-    "DSH#1": false,
+    "DSH#1": true,
     "EGH#3": "Bloqueado",
     "EGH#4": false,
     "EGH#5": false,
-    "EGH#6": false
+    "EGH#6": false,
+    "INE#1": false,
+    "FIN#3": "Completo",
+    "CRD#3": "Completo",
+    "CAW#3": "Completo",
+    "DSH#3": "Completo",
+    "CAL#3": "Completo",
+    "EMP#3": ""
   },
-  "avance_general_pct": 33,
+  "avance_general_pct": 35,
   "areas_nivel1": 0
 }
