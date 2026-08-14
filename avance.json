@@ -1,6 +1,6 @@
 {
   "project": "STEM · Tracker Workstreams",
-  "exported_at": "2026-07-30T23:42:38.371Z",
+  "exported_at": "2026-08-14T16:02:56.205Z",
   "entrega": "2026-09-18",
   "areas": [
     {
@@ -8,7 +8,7 @@
       "area": "Empaque",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 75,
+      "avance_pct": 67,
       "hitos": [
         {
           "ws": "WS1",
@@ -38,7 +38,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": true
+          "cumplido": false
         },
         {
           "ws": "WS2",
@@ -170,7 +170,7 @@
       "area": "Dashboard",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 33,
+      "avance_pct": 42,
       "hitos": [
         {
           "ws": "WS1",
@@ -200,7 +200,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -332,7 +332,7 @@
       "area": "Finanzas",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 50,
       "hitos": [
         {
           "ws": "WS1",
@@ -362,7 +362,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -374,13 +374,13 @@
           "ws": "WS2",
           "hito": "Script de extracción Python",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
           "hito": "Volcado a Capa RAW",
           "responsable": "Fernando De Santiago",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -575,7 +575,7 @@
       "area": "CropData",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 33,
+      "avance_pct": 42,
       "hitos": [
         {
           "ws": "WS1",
@@ -605,7 +605,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -656,7 +656,7 @@
       "area": "Capital Humano",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 42,
       "hitos": [
         {
           "ws": "WS1",
@@ -680,13 +680,13 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -737,7 +737,7 @@
       "area": "Calidad",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 33,
+      "avance_pct": 42,
       "hitos": [
         {
           "ws": "WS1",
@@ -767,7 +767,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -818,7 +818,7 @@
       "area": "Calidad Waste",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 33,
+      "avance_pct": 42,
       "hitos": [
         {
           "ws": "WS1",
@@ -848,7 +848,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -899,7 +899,7 @@
       "area": "MIP",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 33,
+      "avance_pct": 42,
       "hitos": [
         {
           "ws": "WS1",
@@ -929,7 +929,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -980,7 +980,7 @@
       "area": "Gas",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -1004,7 +1004,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -1380,10 +1380,10 @@
   ],
   "por_responsable": {
     "Armando Gaytán": {
-      "avance_pct": 15
+      "avance_pct": 24
     },
     "Fernando De Santiago": {
-      "avance_pct": 44
+      "avance_pct": 46
     },
     "Avelina Paz": {
       "avance_pct": 61
@@ -1391,10 +1391,10 @@
   },
   "por_workstream": {
     "WS1": {
-      "avance_pct": 72
+      "avance_pct": 81
     },
     "WS2": {
-      "avance_pct": 9
+      "avance_pct": 11
     },
     "WS3": {
       "avance_pct": 0
@@ -1409,20 +1409,20 @@
     },
     "2026-08-07": {
       "hito": "Estatus CTS definido en todas las áreas",
-      "avance_pct": 69,
-      "done": 11,
+      "avance_pct": 81,
+      "done": 13,
       "total": 16
     },
     "2026-08-14": {
       "hito": "Diseño Dimensional + Permisos resueltos",
-      "avance_pct": 6,
-      "done": 2,
+      "avance_pct": 24,
+      "done": 8,
       "total": 34
     },
     "2026-08-21": {
       "hito": "Extracción Python + Volcado a RAW",
-      "avance_pct": 9,
-      "done": 3,
+      "avance_pct": 16,
+      "done": 5,
       "total": 32
     },
     "2026-08-28": {
@@ -1445,8 +1445,8 @@
     },
     "2026-09-18": {
       "hito": "Entrega final · todas las áreas en Nivel 1",
-      "avance_pct": 35,
-      "done": 70,
+      "avance_pct": 40,
+      "done": 80,
       "total": 202
     }
   },
@@ -1462,8 +1462,25 @@
     "CAW#3": "Completo",
     "DSH#3": "Completo",
     "CAL#3": "Completo",
-    "EMP#3": ""
+    "EMP#3": "",
+    "FIN#1": false,
+    "FTV#1": false,
+    "SEE#3": "Bloqueado",
+    "MTC#3": "Fase 2",
+    "CAH#3": "Completo",
+    "MIP#3": "Completo",
+    "EMP#4": false,
+    "GAS#3": "Completo",
+    "CAL#4": true,
+    "CAW#4": true,
+    "CAH#4": true,
+    "CRD#4": true,
+    "DSH#4": true,
+    "FIN#4": true,
+    "MIP#4": true,
+    "FIN#7": true,
+    "FIN#6": true
   },
-  "avance_general_pct": 35,
+  "avance_general_pct": 40,
   "areas_nivel1": 0
 }
