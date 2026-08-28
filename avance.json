@@ -1,6 +1,6 @@
 {
   "project": "STEM · Tracker Workstreams",
-  "exported_at": "2026-08-14T16:02:56.205Z",
+  "exported_at": "2026-08-28T16:48:13.444Z",
   "entrega": "2026-09-18",
   "areas": [
     {
@@ -8,7 +8,7 @@
       "area": "Empaque",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 67,
+      "avance_pct": 75,
       "hitos": [
         {
           "ws": "WS1",
@@ -32,7 +32,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -413,7 +413,7 @@
       "area": "Invernadero · Cumplimiento act. culturales",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -437,7 +437,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -1061,7 +1061,7 @@
       "area": "Mantenimiento Preventivo",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -1085,7 +1085,7 @@
           "ws": "WS1",
           "hito": "Estatus CTS",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -1380,7 +1380,7 @@
   ],
   "por_responsable": {
     "Armando Gaytán": {
-      "avance_pct": 24
+      "avance_pct": 28
     },
     "Fernando De Santiago": {
       "avance_pct": 46
@@ -1391,7 +1391,7 @@
   },
   "por_workstream": {
     "WS1": {
-      "avance_pct": 81
+      "avance_pct": 84
     },
     "WS2": {
       "avance_pct": 11
@@ -1409,8 +1409,8 @@
     },
     "2026-08-07": {
       "hito": "Estatus CTS definido en todas las áreas",
-      "avance_pct": 81,
-      "done": 13,
+      "avance_pct": 100,
+      "done": 16,
       "total": 16
     },
     "2026-08-14": {
@@ -1445,8 +1445,8 @@
     },
     "2026-09-18": {
       "hito": "Entrega final · todas las áreas en Nivel 1",
-      "avance_pct": 40,
-      "done": 80,
+      "avance_pct": 41,
+      "done": 83,
       "total": 202
     }
   },
@@ -1462,7 +1462,7 @@
     "CAW#3": "Completo",
     "DSH#3": "Completo",
     "CAL#3": "Completo",
-    "EMP#3": "",
+    "EMP#3": "Completo",
     "FIN#1": false,
     "FTV#1": false,
     "SEE#3": "Bloqueado",
@@ -1479,8 +1479,10 @@
     "FIN#4": true,
     "MIP#4": true,
     "FIN#7": true,
-    "FIN#6": true
+    "FIN#6": true,
+    "MTP#3": "Completo",
+    "INC#3": "Completo"
   },
-  "avance_general_pct": 40,
+  "avance_general_pct": 41,
   "areas_nivel1": 0
 }
