@@ -1,6 +1,6 @@
 {
   "project": "STEM · Tracker Workstreams",
-  "exported_at": "2026-08-28T16:48:13.444Z",
+  "exported_at": "2026-09-04T00:12:01.926Z",
   "entrega": "2026-09-18",
   "areas": [
     {
@@ -8,7 +8,7 @@
       "area": "Empaque",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 75,
+      "avance_pct": 100,
       "hitos": [
         {
           "ws": "WS1",
@@ -38,7 +38,7 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -74,13 +74,13 @@
           "ws": "WS3",
           "hito": "Modelo Semántico",
           "responsable": "Avelina Paz",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS3",
           "hito": "Gobernanza DAX",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         }
       ]
     },
@@ -89,7 +89,7 @@
       "area": "Empaque GHS",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 50,
+      "avance_pct": 100,
       "hitos": [
         {
           "ws": "WS1",
@@ -119,19 +119,19 @@
           "ws": "WS1",
           "hito": "Diseño Dimensional",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
           "hito": "Permisos y Autenticación",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
           "hito": "Script de extracción Python",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
@@ -149,19 +149,19 @@
           "ws": "WS2",
           "hito": "Capa MART",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS3",
           "hito": "Modelo Semántico",
           "responsable": "Avelina Paz",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS3",
           "hito": "Gobernanza DAX",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         }
       ]
     },
@@ -332,7 +332,7 @@
       "area": "Finanzas",
       "fase": 1,
       "sin_cts": false,
-      "avance_pct": 50,
+      "avance_pct": 83,
       "hitos": [
         {
           "ws": "WS1",
@@ -344,7 +344,7 @@
           "ws": "WS1",
           "hito": "Mapeo de Proceso",
           "responsable": "Avelina Paz",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -386,19 +386,19 @@
           "ws": "WS2",
           "hito": "Capa STG",
           "responsable": "Fernando De Santiago",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS2",
           "hito": "Capa MART",
           "responsable": "Armando Gaytán",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS3",
           "hito": "Modelo Semántico",
           "responsable": "Avelina Paz",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS3",
@@ -494,7 +494,7 @@
       "area": "Invernadero · Eficiencia mano de obra",
       "fase": 2,
       "sin_cts": false,
-      "avance_pct": 25,
+      "avance_pct": 33,
       "hitos": [
         {
           "ws": "WS1",
@@ -506,7 +506,7 @@
           "ws": "WS1",
           "hito": "Mapeo de Proceso",
           "responsable": "Avelina Paz",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -1343,7 +1343,7 @@
       "area": "Finanzas · Triángulo de valor",
       "fase": 1,
       "sin_cts": true,
-      "avance_pct": 40,
+      "avance_pct": 60,
       "hitos": [
         {
           "ws": "WS1",
@@ -1355,7 +1355,7 @@
           "ws": "WS1",
           "hito": "Mapeo de Proceso",
           "responsable": "Avelina Paz",
-          "cumplido": false
+          "cumplido": true
         },
         {
           "ws": "WS1",
@@ -1380,31 +1380,31 @@
   ],
   "por_responsable": {
     "Armando Gaytán": {
-      "avance_pct": 28
+      "avance_pct": 36
     },
     "Fernando De Santiago": {
-      "avance_pct": 46
+      "avance_pct": 48
     },
     "Avelina Paz": {
-      "avance_pct": 61
+      "avance_pct": 72
     }
   },
   "por_workstream": {
     "WS1": {
-      "avance_pct": 84
+      "avance_pct": 90
     },
     "WS2": {
-      "avance_pct": 11
+      "avance_pct": 18
     },
     "WS3": {
-      "avance_pct": 0
+      "avance_pct": 15
     }
   },
   "hitos_roadmap": {
     "2026-07-31": {
       "hito": "Mapeo de Proceso 100% + Empaque en Nivel 1",
-      "avance_pct": 75,
-      "done": 15,
+      "avance_pct": 100,
+      "done": 20,
       "total": 20
     },
     "2026-08-07": {
@@ -1415,61 +1415,61 @@
     },
     "2026-08-14": {
       "hito": "Diseño Dimensional + Permisos resueltos",
-      "avance_pct": 24,
-      "done": 8,
+      "avance_pct": 32,
+      "done": 11,
       "total": 34
     },
     "2026-08-21": {
       "hito": "Extracción Python + Volcado a RAW",
-      "avance_pct": 16,
-      "done": 5,
+      "avance_pct": 19,
+      "done": 6,
       "total": 32
     },
     "2026-08-28": {
       "hito": "Capa STG + Capa MART completas",
-      "avance_pct": 9,
-      "done": 3,
+      "avance_pct": 19,
+      "done": 6,
       "total": 32
     },
     "2026-09-04": {
       "hito": "Modelo Semántico en Power BI",
-      "avance_pct": 0,
-      "done": 0,
+      "avance_pct": 17,
+      "done": 3,
       "total": 18
     },
     "2026-09-11": {
       "hito": "Gobernanza DAX + Shadow Mode",
-      "avance_pct": 0,
-      "done": 0,
+      "avance_pct": 13,
+      "done": 2,
       "total": 16
     },
     "2026-09-18": {
       "hito": "Entrega final · todas las áreas en Nivel 1",
-      "avance_pct": 41,
-      "done": 83,
+      "avance_pct": 49,
+      "done": 98,
       "total": 202
     }
   },
   "_state": {
     "DSH#1": true,
     "EGH#3": "Bloqueado",
-    "EGH#4": false,
-    "EGH#5": false,
-    "EGH#6": false,
-    "INE#1": false,
+    "EGH#4": true,
+    "EGH#5": true,
+    "EGH#6": true,
+    "INE#1": true,
     "FIN#3": "Completo",
     "CRD#3": "Completo",
     "CAW#3": "Completo",
     "DSH#3": "Completo",
     "CAL#3": "Completo",
     "EMP#3": "Completo",
-    "FIN#1": false,
-    "FTV#1": false,
+    "FIN#1": true,
+    "FTV#1": true,
     "SEE#3": "Bloqueado",
     "MTC#3": "Fase 2",
     "CAH#3": "Completo",
     "MIP#3": "Completo",
-    "EMP#4": false,
+    "EMP#4": true,
     "GAS#3": "Completo",
     "CAL#4": true,
     "CAW#4": true,
@@ -1481,8 +1481,16 @@
     "FIN#7": true,
     "FIN#6": true,
     "MTP#3": "Completo",
-    "INC#3": "Completo"
+    "INC#3": "Completo",
+    "FIN#8": true,
+    "FIN#9": true,
+    "FIN#10": true,
+    "EGH#9": true,
+    "EMP#11": true,
+    "EMP#10": true,
+    "EGH#10": true,
+    "EGH#11": true
   },
-  "avance_general_pct": 41,
-  "areas_nivel1": 0
+  "avance_general_pct": 49,
+  "areas_nivel1": 2
 }
